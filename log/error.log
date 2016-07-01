@@ -1,0 +1,8 @@
+2016/Jun/01, Wed, 17:00:50 rec_log.py[line:136]   ERROR 
+Traceback (most recent call last):
+File: rec_log.py, line 53, in __deco
+	res = func(*args, **kwargs)
+File: rec_log.py, line 152, in error_test
+	open('123.txt', 'r')
+IOError: [Errno 2] No such file or directory: '123.txt'
+
