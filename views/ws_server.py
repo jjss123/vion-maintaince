@@ -2,7 +2,7 @@
 # @Author: riposa
 # @Date:   2016-06-12 10:08:06
 # @Last Modified by:   riposa
-# @Last Modified time: 2016-06-17 09:38:24
+# @Last Modified time: 2016-07-01 10:47:59
 import os
 import sys
 import json
@@ -27,7 +27,7 @@ class SendHandler(websocket.WebSocketHandler):
 
     def on_message(self, message):
         try:
-            self.msg._msg = message
+            self.msg = ws_protocol.WebsocketProtocol(message)
         except TypeError, x:
             print x
             self.write_message(json.dumps({'Error': x }))
