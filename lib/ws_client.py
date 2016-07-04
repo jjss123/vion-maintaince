@@ -2,22 +2,29 @@
 # @Author: riposa
 # @Date:   2016-06-12 11:03:21
 # @Last Modified by:   riposa
-# @Last Modified time: 2016-06-16 15:56:18
+# @Last Modified time: 2016-07-04 17:18:27
 
-import websocket
-import thread
 import time
+import threading
+import hashlib
 import json
+import websocket
+import ws_protocol
 
+def hash():
+    hash_obj = hashlib.md5()
+    hash_obj.update(str(time.time()))
+    return hash_obj.hexdigest()
 
 def on_message(ws, message):
-    message = json.loads(message)
-    if message['response'] == 'success':
-        print message
-        ws.send(json.dumps('hello world'))
-    else:
-        print message
-    #ws.closed()
+
+    reply = ws_protocol.WebsocketProtocol(message)
+    #msg = ws_protocol.WebsocketProtocol(protocol_init)
+
+    if reply.msg_type == 'CONFIRM':
+        print reply.message
+        return 0
+
 
 def on_error(ws, error):
     print error
@@ -26,14 +33,28 @@ def on_close(ws):
     print '### closed ###'
 
 def on_open(ws):
-    '''def run(*args):
-        for i in range(3):
-            time.sleep(1)
-            ws.send(json.dumps('hello world'))
 
-    thread.start_new_thread(run, ())'''
-    print 'send'
-    ws.send(json.dumps({'request':'connect'}))
+    msg = ws_protocol.WebsocketProtocol(
+        {
+            'msg_type': 'LOGIN',
+            'seq': hash(),
+            'callback': None,
+            'message': None
+        })
+
+    print 'connect'
+    ws.send(msg._msg)
+
+    def keeplive():
+        while True:
+            msg.seq = hash()
+            ws.send(msg._msg)
+            time.sleep(5)
+
+    msg.msg_type = 'KeepLive'
+    thread_keeplive = threading.Thread(target=keeplive, args=())
+    thread_keeplive.setDaemon(True)
+    thread_keeplive.start()
 
 if __name__ == '__main__':
     #websocket.enableTrace(True)

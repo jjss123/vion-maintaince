@@ -2,7 +2,7 @@
 # @Author: riposa
 # @Date:   2016-06-12 17:31:33
 # @Last Modified by:   riposa
-# @Last Modified time: 2016-07-01 10:36:57
+# @Last Modified time: 2016-07-04 17:07:19
 import json
 import hashlib
 import time
@@ -13,10 +13,10 @@ class WebsocketProtocol(object):
     author = 'hylide'
     protocol_init = json.dumps(
     {
-        'msg_type':'LOGIN',
-        'seq':'1',
+        'msg_type':'CONFIRM',
+        'seq': None,
         'callback': None,
-        'message':'connected'
+        'message': None
     }
     )
 
@@ -40,7 +40,7 @@ class WebsocketProtocol(object):
                     self.__setattr__(i, value[i])
 
     def __init__(self, message):
-        if type(message) == str:
+        if type(message) == str or type(message) == unicode:
             message = json.loads(message)
         elif type(message) == dict:
             pass

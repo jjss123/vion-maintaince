@@ -2,7 +2,7 @@
 # @Author: riposa
 # @Date:   2016-06-12 10:08:06
 # @Last Modified by:   riposa
-# @Last Modified time: 2016-07-01 10:47:59
+# @Last Modified time: 2016-07-04 17:10:06
 import os
 import sys
 import json
@@ -14,44 +14,70 @@ from tornado import websocket
 sys.path.append('..')
 from lib import ws_protocol
 
-def msg_handler(msg):
-    msg.msg_type =
+
 
 class SendHandler(websocket.WebSocketHandler):
     clients = set()
-    sequence = dict()
+    login = dict()
 
     def open(self):
-        SendHandler.clients.add(self)
+        if self not in SendHandler.clients:
+            SendHandler.clients.add(self)
+        else:
+            print 'warning: unclosed connection %s'%str(self)
         self.stream.set_nodelay(True)
 
     def on_message(self, message):
+        self.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_init)
+        print message, type(message)
         try:
             self.msg = ws_protocol.WebsocketProtocol(message)
         except TypeError, x:
             print x
-            self.write_message(json.dumps({'Error': x }))
-        except KeyError, x:
-            print x
-            self.write_message(json.dumps({'Error': x }))
-        except NameError:
-            if type(json.loads(message)) == 'dict':
-                if json.loads(message)['Request'] == 'connect':
-                    self.msg = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_init)
-                    self.write_message(self.msg._msg)
-        print self.msg
-        message = json.loads(message)
-        print type(message), message
-        if type(message) == dict:
-            if message[u'request'] == u'connect':
-                self.write_message(json.dumps({'response':'success'}))
-            else:
-                self.write_message(json.dumps({'response':'response... %s'%message}))
+            self.error_reply(str(x))
+            return 0
+
+        self.msg_handler()
 
     def on_close(self):
         SendHandler.clients.remove(self)
 
+    def error_reply(self, msg):
+        self.reply.message = {'Error': msg}
+        self.write_message(self.reply._msg)
+        self.on_close()
 
+    def msg_handler(self):
+
+        if self.msg.msg_type == 'LOGIN':
+            SendHandler.login[self] = True
+            self.reply.msg_type = 'CONFIRM'
+            self.reply.message = {'login': 'success'}
+            self.write_message(self.reply._msg)
+            return 0
+
+        if self not in SendHandler.login.keys():
+            self.error_reply('need login, connection refused')
+            return 0
+        else:
+            if not SendHandler.login[self]:
+                self.error_reply('logged out, connection refused')
+                return 0
+            else:
+                self.reply.seq = self.msg.seq
+                self.reply.msg_type = 'CONFIRM'
+
+        if self.msg.msg_type == 'LOGOUT':
+            SendHandler.login[self] = False
+            self.reply.message = {'logout': 'success'}
+            self.write_message(self.reply._msg)
+            self.on_close()
+        elif self.msg.msg_type == 'KeepLive':
+            self.reply.message = {'keeplive': 'success'}
+            self.write_message(self.reply._msg)
+        else:
+            pass
+        return 0
 
 if __name__ == '__main__':
     app = tornado.web.Application(

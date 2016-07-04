@@ -11,6 +11,8 @@ protocol content description:
 	...
 	{message: value}
 
+***
+
 ###protocol option
 
 | option| value content	| Nullable	|
@@ -19,4 +21,6 @@ protocol content description:
 | seq	|hash string	| No	
 | callback|json-like dict| Yes
 | message|json-like dict|No
+
+***
 ###
