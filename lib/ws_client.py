@@ -2,7 +2,7 @@
 # @Author: riposa
 # @Date:   2016-06-12 11:03:21
 # @Last Modified by:   riposa
-# @Last Modified time: 2016-07-04 17:18:27
+# @Last Modified time: 2016-07-05 11:04:55
 
 import time
 import threading
@@ -49,7 +49,7 @@ def on_open(ws):
         while True:
             msg.seq = hash()
             ws.send(msg._msg)
-            time.sleep(5)
+            time.sleep(1)
 
     msg.msg_type = 'KeepLive'
     thread_keeplive = threading.Thread(target=keeplive, args=())
