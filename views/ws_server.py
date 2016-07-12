@@ -2,7 +2,7 @@
 # @Author: riposa
 # @Date:   2016-06-12 10:08:06
 # @Last Modified by:   riposa
-# @Last Modified time: 2016-07-04 17:10:06
+# @Last Modified time: 2016-07-12 16:23:57
 import os
 import sys
 import json
@@ -28,6 +28,9 @@ class SendHandler(websocket.WebSocketHandler):
         self.stream.set_nodelay(True)
 
     def on_message(self, message):
+        ''''''
+
+        # message protocol check
         self.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_init)
         print message, type(message)
         try:
@@ -37,6 +40,7 @@ class SendHandler(websocket.WebSocketHandler):
             self.error_reply(str(x))
             return 0
 
+        # main handler of event 'on_message'
         self.msg_handler()
 
     def on_close(self):
@@ -79,12 +83,25 @@ class SendHandler(websocket.WebSocketHandler):
             pass
         return 0
 
+class TriggerHandler(tornado.web.RequestHandler):
+    def get(self):
+        all_send()
+        #return 'send broadcast!'
+
+def all_send():
+    for i in SendHandler.clients:
+        i.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_init)
+        i.reply.message = 'this is a broadcast post from server'
+        i.write_message(i.reply._msg)
+
+
 if __name__ == '__main__':
     app = tornado.web.Application(
         handlers = [
-            (r"/send", SendHandler)
+            (r"/send", SendHandler),
+            (r"/broadcast", TriggerHandler)
         ],
-        debug = False
+        debug = True
     )
     http_server = tornado.httpserver.HTTPServer(app, xheaders=True)
     http_server.listen(8200)
