@@ -19,6 +19,13 @@ class WebsocketProtocol(object):
         'message': None
     }
     )
+    protocol_post = {
+            'msg_type':'POST',
+            'seq': None,
+            'callback': None,
+            'message': None
+        }
+
 
     @property
     def _msg(self):

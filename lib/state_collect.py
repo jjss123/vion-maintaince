@@ -94,7 +94,7 @@ def if_callback(status, output):
 
 '''
 class BaseInfo(object):
-    '''
+
         Base Class for getting kinds of information
         base attribute:
             _cpu, usage of every cpu core.
@@ -103,7 +103,7 @@ class BaseInfo(object):
             _net, base info from ifconfig
             _block, disk info from df.
             _sys, system type and version.
-    '''
+
 
     @classmethod
     def
@@ -111,4 +111,4 @@ class BaseInfo(object):
 
 if __name__ == '__main__':
     print get_command_return('cat /proc/net/tcp', net_callback)
-
+    print get_command_return('ifconfig', if_callback)

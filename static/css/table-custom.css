@@ -1,0 +1,20 @@
+table .wait{
+    color: #3399FF
+}
+
+.div-pull-right{
+    float:right;
+}
+
+a.hover-list{
+    width:100%;
+    text-align: left;
+    outline-offset: 0px;
+    text-decoration: none;
+    color: #000;
+}
+
+li.hover-list-active{
+    background-color: rgba(229, 229, 229, 0.4);
+    border: 1px solid rgba(229, 229, 229, 0.6);
+}

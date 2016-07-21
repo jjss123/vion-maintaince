@@ -5,6 +5,8 @@
 # @Last Modified time: 2016-07-12 16:23:57
 import os
 import sys
+import hashlib
+import base64
 import json
 import time
 import tornado.httpserver
@@ -14,15 +16,18 @@ from tornado import websocket
 sys.path.append('..')
 from lib import ws_protocol
 
+def hash():
+    hash_obj = hashlib.md5()
+    hash_obj.update(str(time.time()))
+    return hash_obj.hexdigest()
 
-
-class SendHandler(websocket.WebSocketHandler):
+class WebSockMainHandler(websocket.WebSocketHandler):
     clients = set()
     login = dict()
 
     def open(self):
-        if self not in SendHandler.clients:
-            SendHandler.clients.add(self)
+        if self not in WebSockMainHandler.clients:
+            WebSockMainHandler.clients.add(self)
         else:
             print 'warning: unclosed connection %s'%str(self)
         self.stream.set_nodelay(True)
@@ -44,7 +49,7 @@ class SendHandler(websocket.WebSocketHandler):
         self.msg_handler()
 
     def on_close(self):
-        SendHandler.clients.remove(self)
+        WebSockMainHandler.clients.remove(self)
 
     def error_reply(self, msg):
         self.reply.message = {'Error': msg}
@@ -54,17 +59,17 @@ class SendHandler(websocket.WebSocketHandler):
     def msg_handler(self):
 
         if self.msg.msg_type == 'LOGIN':
-            SendHandler.login[self] = True
+            WebSockMainHandler.login[self] = True
             self.reply.msg_type = 'CONFIRM'
             self.reply.message = {'login': 'success'}
             self.write_message(self.reply._msg)
             return 0
 
-        if self not in SendHandler.login.keys():
+        if self not in WebSockMainHandler.login.keys():
             self.error_reply('need login, connection refused')
             return 0
         else:
-            if not SendHandler.login[self]:
+            if not WebSockMainHandler.login[self]:
                 self.error_reply('logged out, connection refused')
                 return 0
             else:
@@ -72,7 +77,7 @@ class SendHandler(websocket.WebSocketHandler):
                 self.reply.msg_type = 'CONFIRM'
 
         if self.msg.msg_type == 'LOGOUT':
-            SendHandler.login[self] = False
+            WebSockMainHandler.login[self] = False
             self.reply.message = {'logout': 'success'}
             self.write_message(self.reply._msg)
             self.on_close()
@@ -83,28 +88,55 @@ class SendHandler(websocket.WebSocketHandler):
             pass
         return 0
 
+    @classmethod
+    def broad_cast(cls, file_name, *dev):
+        seq = hash()
+        if dev:
+            cli = dev
+        else:
+            cli = WebSockMainHandler.clients
+
+        for i in cli:
+            i.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_post)
+            i.reply.seq = seq
+            i.reply.message = {
+                'file_name': file_name,
+                'server_host': '127.0.0.1',
+                'port': '8201'
+            }
+            i.write_message(i.reply._msg)
+
+
 class TriggerHandler(tornado.web.RequestHandler):
     def get(self):
-        all_send()
+        WebSockMainHandler.broad_cast('test')
         #return 'send broadcast!'
 
-def all_send():
-    for i in SendHandler.clients:
-        i.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_init)
-        i.reply.message = 'this is a broadcast post from server'
-        i.write_message(i.reply._msg)
+class MainPageHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("dashboard.html",User='Cirno', comment='baka')
 
+class TestSuitHandler(tornado.web.RequestHandler):
+    def get(self):
+        suit = self.get_argument('suit')
+        if suit == 'maintaince':
+            self.render("testsuit-maintaince.html",User='Cirno', comment='baka')
 
 if __name__ == '__main__':
     app = tornado.web.Application(
         handlers = [
-            (r"/send", SendHandler),
-            (r"/broadcast", TriggerHandler)
+            (r"/ws/main", WebSockMainHandler),
+            (r"/ws/broadcast", TriggerHandler),
+            (r"/", MainPageHandler),
+            (r"/testsuit", TestSuitHandler)
         ],
+        template_path=os.path.join(os.path.dirname(__file__), "..\\templates"),
+        static_path=os.path.join(os.path.dirname(__file__), "..\\static"),
         debug = True
     )
     http_server = tornado.httpserver.HTTPServer(app, xheaders=True)
     http_server.listen(8200)
     tornado.ioloop.IOLoop.instance().start()
+
 
 

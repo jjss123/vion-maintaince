@@ -1,0 +1,159 @@
+{% extends "main.html" %} {% block PageContent %}
+<div class="page-inner">
+    <div class="page-title">
+        <h3>TestSuit-Maintaince</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">TestSuit</a></li>
+                <li class="active">Maintaince</li>
+            </ol>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading clearfix">
+                        <h4 class="panel-title">TestSuit List</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>TestCase Overview</th>
+                                        <th>Expected Target</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>GetDeviceInfo(single)</td>
+                                        <td>The returns are consistent with definition</td>
+                                        <td>
+                                            <span class="label label-info" id="status-1">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>GetDeviceInfo(cascading)</td>
+                                        <td>the same as above;And lower level device-info can be catch</td>
+                                        <td>
+                                            <span class="label label-info" id="status-2">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>SetDeviceInfo(single)</td>
+                                        <td>Every option can be set with the new values</td>
+                                        <td>
+                                            <span class="label label-info" id="status-3">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>ControlDevice(single)</td>
+                                        <td>Every operation can be done successfully</td>
+                                        <td>
+                                            <span class="label label-info" id="status-4">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>ControlDevice(multi)</td>
+                                        <td>the same as above</td>
+                                        <td>
+                                            <span class="label label-info" id="status-5">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">6</th>
+                                        <td>ImportConfigs</td>
+                                        <td>Every config can be import into devices</td>
+                                        <td>
+                                            <span class="label label-info" id="status-6">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">7</th>
+                                        <td>ExportConfigs</td>
+                                        <td>The operation of exporting configs will be done successfully</td>
+                                        <td>
+                                            <span class="label label-info" id="status-7">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">8</th>
+                                        <td>GetHSCConfig</td>
+                                        <td>Will get correct returns with json-wrapped key-value result or error message</td>
+                                        <td>
+                                            <span class="label label-info" id="status-8">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">9</th>
+                                        <td>GetSoftStatusInfo</td>
+                                        <td>Will get correct returns of specific software`s infomation</td>
+                                        <td>
+                                            <span class="label label-info" id="status-9">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">10</th>
+                                        <td>GetVersion</td>
+                                        <td>Will get well-formed returns of target maintaince-server`s version</td>
+                                        <td>
+                                            <span class="label label-info" id="status-10">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">11</th>
+                                        <td>SetHSCConfig</td>
+                                        <td>Will modify specific configuration of the target service successfully</td>
+                                        <td>
+                                            <span class="label label-info" id="status-11">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">12</th>
+                                        <td>UpgradeSoftware</td>
+                                        <td>Will start to upgrade target service by using specific package</td>
+                                        <td>
+                                            <span class="label label-info" id="status-12">Waiting</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">13</th>
+                                        <td>GetUpgradeProgress</td>
+                                        <td>the upgarde progress-info of target service can be returned in time</td>
+                                        <td>
+                                            <span class="label label-info" id="status-13">Waiting</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="right:0%">
+                            <button type="button" class="btn btn-success">execute</button>
+                            <button type="button" class="btn btn-warning">pause</button>
+                            <button type="button" class="btn btn-danger">stop</button>
+                        </div>
+                        <br />
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:15%">
+                                <span class="sr-only">15% complete</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% end %}
