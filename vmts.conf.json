@@ -1,0 +1,27 @@
+{
+  "redis":{
+    "host": "192.168.9.123",
+    "pwd": "vion1234",
+    "port": 6379
+  },
+  "mysql":{
+    "host": "192.168.9.123",
+    "user": "root",
+    "pwd": "vion1234",
+    "port": 3306
+  },
+  "FileServer":{
+    "start_when": "host_start",
+    "port": 8202
+  },
+  "WebSocketServer":{
+    "start_when": "host_start",
+    "port": 8201
+  },
+  "Website":{
+    "port":8200,
+    "SuperAdmin": "admin",
+    "SuperPwd": "admin",
+    "Guest": "Enable"
+  }
+}

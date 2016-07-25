@@ -1,0 +1,18 @@
+{
+  "web_route":{
+    "/": "WebMainView.MainPageHandler",
+    "/testsuit": "WebMainView.TestSuitHandler"
+  },
+  "ws_route": {
+    "/ws/main":"WebSocketMainView.WebSockMainHandler",
+    "/ws/broadcast": "WebSocketMainView.TriggerHandler"
+  },
+
+
+  "web_views":[
+    "WebMainView"
+  ],
+  "ws_views":[
+    "WebSocketMainView"
+  ]
+}

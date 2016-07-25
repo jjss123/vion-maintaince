@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# @Author: hylide
+# @Date:   2016-07-25 14:27:12
+# @Last Modified by:   hylide
+# @Last Modified time: 2016-07-25 14:54:12
+import tornado.ioloop
+
+from config import Config
+from views.tcp.FileServer import FileSendServer
+
+def run():
+    server = FileSendServer()
+    server.listen(Config.FileServer.port)
+    tornado.ioloop.IOLoop.instance().start()
+
