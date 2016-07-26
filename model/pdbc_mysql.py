@@ -16,15 +16,20 @@ def mysql_init():
 
     sqlhub.processConnection = connectionForURI('mysql://{user}:{pwd}@{host}:{port}/vmts'.format(user='root', pwd=pwd, host=host, port=port))
 
-class UserInterface(SQLObject):
+class User(SQLObject):
     ''''''
 
     user = StringCol(length=120, notNone=True)
     passwd = StringCol(length=120)
     description = StringCol(length=20)
     email = StringCol(length=120)
+    last_login = DateTimeCol()
+
 
 
 
 if __name__ == '__main__':
     mysql_init()
+    if not User.tableExists():
+        User.createTable()
+        print User.createTableSQL()
