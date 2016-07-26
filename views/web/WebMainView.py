@@ -12,6 +12,10 @@ from model import pdbc_mysql
 
 __all__ = ["MainPageHandler", "TestSuitHandler"]
 
+class BaseHandler(tornado.web.RequestHandler):
+    def get_current_user(self):
+        pass
+
 class MainPageHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("dashboard.html",User='Cirno', comment='baka')
@@ -22,3 +26,6 @@ class TestSuitHandler(tornado.web.RequestHandler):
         if suit == 'maintaince':
             self.render("testsuit-maintaince.html",User='Cirno', comment='baka')
 
+class LoginHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("login.html")

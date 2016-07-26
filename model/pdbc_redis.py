@@ -44,7 +44,7 @@ class DeviceInterface(models.Model):
     dev_id = models.Attribute(required=True, unique=True)
     dev_ip = models.Attribute(required=True)
     status = models.Attribute(required=True)
-    static_info = models.Attribute(required=True)
+    static_info = models.ListField(dict, required=True)
     dynamic_info = models.ListField(DeviceInfoInterface)
 
 class DeviceInfoInterface(models.Model):
