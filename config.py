@@ -26,6 +26,12 @@ class DictObject(object):
     def __str__(self):
         return str(self.__repr__())
 
+    def __getitem__(self, item):
+        if isinstance(self.__getattribute__(item), DictObject):
+            return self.__getattribute__(item).__str__()
+        else:
+            return self.__getattribute__(item)
+
     def __dictionary__(self):
         attr = self.__dict__
         for i in attr.keys():
@@ -35,6 +41,12 @@ class DictObject(object):
 
     def keys(self):
         return self.__dict__.keys()
+
+    def has_key(self, key):
+        if key in self.__dict__.keys():
+            return True
+        else:
+            return False
 
 with open(CONFIG) as file:
     Config = DictObject(json.loads(file.read()))

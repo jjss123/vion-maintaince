@@ -1,7 +1,9 @@
 {
   "web_route":{
     "/": "WebMainView.MainPageHandler",
-    "/testsuit": "WebMainView.TestSuitHandler"
+    "/login": "WebMainView.LoginHandler",
+    "/testsuit": "WebMainView.TestSuitHandler",
+    "/logout": "WebMainView.LogoutHandler"
   },
   "ws_route": {
     "/ws/main":"WebSocketMainView.WebSockMainHandler",

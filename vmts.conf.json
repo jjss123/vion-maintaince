@@ -22,6 +22,11 @@
     "port":8200,
     "SuperAdmin": "admin",
     "SuperPwd": "admin",
-    "Guest": "Enable"
+    "Guest": "Enable",
+    "settings": {
+      "cookie_secret": "Z3d5bmRvbGluIHN1bHl2YWhu",
+      "login_url": "/login",
+      "xsrf_cookies": "False"
+    }
   }
 }

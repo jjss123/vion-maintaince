@@ -1,4 +1,5 @@
-{% extends "head.html" %} {% block PageBody %}
+{% extends "head.html" %}
+ {% block PageBody %}
     <body class="page-login">
         <main class="page-content">
             <div class="page-inner">
@@ -6,21 +7,24 @@
                     <div class="row">
                         <div class="col-md-3 center">
                             <div class="login-box">
-                                <a href="index.html" class="logo-name text-lg text-center">Modern</a>
+                                <a href="/login" class="logo-name text-lg text-center">VMTS</a>
                                 <p class="text-center m-t-md">Please login into your account.</p>
-                                <form class="m-t-md" action="index.html">
+                                
+                                <form id="login-form" class="m-t-md" action="/login" method="post">
+                                    
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email" required>
+                                        <input type="user" class="form-control" placeholder="user" name="user" required id="user">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Password" required>
+                                        <input type="password" class="form-control" placeholder="Password" name="password" required id="pwd">
+                                        
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-block">Login</button>
-                                    <a href="forgot.html" class="display-block text-center m-t-md text-sm">Forgot Password?</a>
+                                    <input type="submit" class="btn btn-success btn-block" value="Login" />
+                                    <a href="#" class="display-block text-center m-t-md text-sm">Forgot Password?</a>
                                     <p class="text-center m-t-xs text-sm">Do not have an account?</p>
-                                    <a href="register.html" class="btn btn-default btn-block m-t-md">Create an account</a>
+                                    <a href="#" class="btn btn-default btn-block m-t-md">Create an account</a>
                                 </form>
-                                <p class="text-center m-t-xs text-sm">2015 &copy; Modern by Steelcoders.</p>
+                                <p class="text-center m-t-xs text-sm">2016 &copy; VMTS by hylide.</p>
                             </div>
                         </div>
                     </div><!-- Row -->
@@ -30,18 +34,85 @@
 	
 
         <!-- Javascripts -->
-        <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
-        <script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-        <script src="assets/plugins/pace-master/pace.min.js"></script>
-        <script src="assets/plugins/jquery-blockui/jquery.blockui.js"></script>
-        <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="assets/plugins/switchery/switchery.min.js"></script>
-        <script src="assets/plugins/uniform/jquery.uniform.min.js"></script>
-        <script src="assets/plugins/offcanvasmenueffects/js/classie.js"></script>
-        <script src="assets/plugins/waves/waves.min.js"></script>
-        <script src="assets/js/modern.min.js"></script>
-        
+        <script src="{{ static_url("assets/plugins/jquery/jquery-2.1.4.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/jquery-ui/jquery-ui.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/pace-master/pace.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/jquery-blockui/jquery.blockui.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/switchery/switchery.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/uniform/jquery.uniform.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/offcanvasmenueffects/js/classie.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/waves/waves.min.js") }}"></script>
+        <script src="{{ static_url("assets/js/modern.min.js") }}"></script>
+        <script src="{{ static_url("assets/plugins/toastr/toastr.min.js") }}"></script>
+        <script src="{{ static_url("assets/js/pages/notifications.js") }}"></script>
+
+        <script>
+            function ajaxSubmit(frm, fn){
+                var dataPara = getFormJson(frm);
+                $.ajax({
+                    url: frm.action,
+                    type: frm.method,
+                    data: dataPara,
+                    success: fn
+                });
+            }
+
+            function getFormJson(frm){
+                var o = {};
+                var a = $(frm).serializeArray();
+                $.each(a, function(){
+                    if (o[this.name] != undefined){
+                        if (!o[this.name].push){
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+
+                return o;
+            }
+
+            $(document).ready(function(){
+                $('#login-form').bind('submit', function(){
+                    ajaxSubmit(this, function(data){
+                        if (data.res == 'success'){
+                            window.location.replace('http://' + window.location.host + data.redirect)
+                            //console.log(window.location.host + data.redirect)
+                        } else {
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+
+                            var $toast = toastr['error'](data.msg, data.res);
+                            $toastlast = $toast;
+
+                            document.getElementById("user").value = '';
+                            document.getElementById("pwd").value = '';
+                        }
+
+                    });
+                    return false;
+                });
+            });
+        </script>
     </body>
 </html>
 {% end %}

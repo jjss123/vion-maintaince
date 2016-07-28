@@ -30,11 +30,18 @@ if Config.WebSocketServer.start_when == "host_start":
 
 
 def run():
+    settings = Config.Website.settings
+    if settings.has_key("xsrf_cookies"):
+        if settings.xsrf_cookies == 'True':
+            settings.xsrf_cookies = True
+        elif settings.xsrf_cookies == 'False':
+            settings.xsrf_cookies = False
     app = tornado.web.Application(
         handlers=[(i, eval(Route.web_route.__getattribute__(i))) for i in Route.web_route.keys()],
         template_path = os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
-        debug=True
+        debug=True,
+        **settings
     )
 
     http_server = tornado.httpserver.HTTPServer(app, xheaders=True)

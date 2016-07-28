@@ -22,8 +22,8 @@ class UserInterface(models.Model):
     ''''''
 
     id = models.IntegerField(required=True, unique=True)
-    user = models.Attribute(required=True)
-    passwd = models.Attribute()
+    user = models.Attribute(required=True, unique=True)
+    pwd = models.Attribute()
     description = models.Attribute()
     email = models.Attribute()
     avatar = models.Attribute()
@@ -38,15 +38,6 @@ class TestSuit_Maintaince(models.Model):
     status = models.Attribute(required=True)
     detail = models.ListField(dict)
 
-class DeviceInterface(models.Model):
-    ''''''
-
-    dev_id = models.Attribute(required=True, unique=True)
-    dev_ip = models.Attribute(required=True)
-    status = models.Attribute(required=True)
-    static_info = models.ListField(dict, required=True)
-    dynamic_info = models.ListField(DeviceInfoInterface)
-
 class DeviceInfoInterface(models.Model):
     ''''''
 
@@ -56,6 +47,15 @@ class DeviceInfoInterface(models.Model):
     net_usage = models.Attribute()
     net_flow = models.ListField(dict)
     proc_info = models.ListField(dict)
+
+class DeviceInterface(models.Model):
+    ''''''
+
+    dev_id = models.Attribute(required=True, unique=True)
+    dev_ip = models.Attribute(required=True)
+    status = models.Attribute(required=True)
+    static_info = models.ListField(dict, required=True)
+    dynamic_info = models.ListField(DeviceInfoInterface)
 
 class DeviceInfoPeriodInterface(models.Model):
     ''''''
@@ -68,7 +68,8 @@ redis_init()
 
 if __name__ == "__main__":
 
-    user = UserInterface(id=1, user='testtest')
-    print user.is_valid()
-    print user.save()
-    print UserInterface.objects.all()
+    #user = UserInterface(id=10, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
+    #print user.is_valid()
+    #print user.save()
+    #print UserInterface.objects.all()
+    print UserInterface.objects.filter(user='reimu1')
