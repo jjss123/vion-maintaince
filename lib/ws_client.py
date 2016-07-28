@@ -5,13 +5,12 @@
 # @Last Modified time: 2016-07-12 16:14:55
 
 import time
+import sys
 import threading
 import hashlib
-import base64
-import json
 import websocket
-import ws_protocol
 
+import ws_protocol
 import tcp_client
 
 def hash():
@@ -76,8 +75,9 @@ class MainConn():
 
 if __name__ == '__main__':
     #websocket.enableTrace(True)
+    ws_url = sys.argv[1]
     ws = websocket.WebSocketApp(
-        'ws://localhost:8200/ws/main',
+        ws_url,
         on_message = MainConn.on_message,
         on_error = MainConn.on_error,
         on_close = MainConn.on_close

@@ -10,8 +10,9 @@ import time
 
 import tornado.web
 from tornado import websocket
-sys.path.append('..')
+sys.path.append('../..')
 from lib import ws_protocol
+from config import Config
 
 __all__ = ["WebSockMainHandler", "TriggerHandler"]
 
@@ -20,7 +21,9 @@ def hash():
     hash_obj.update(str(time.time()))
     return hash_obj.hexdigest()
 
+
 class WebSockMainHandler(websocket.WebSocketHandler):
+
     clients = set()
     login = dict()
 
@@ -88,7 +91,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
         return 0
 
     @classmethod
-    def broad_cast(cls, file_name, *dev):
+    def broad_cast(cls, file_name, callback=None, *dev):
         seq = hash()
         if dev:
             cli = dev
@@ -98,17 +101,19 @@ class WebSockMainHandler(websocket.WebSocketHandler):
         for i in cli:
             i.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_post)
             i.reply.seq = seq
+            i.reply.callback = callback
             i.reply.message = {
                 'file_name': file_name,
-                'server_host': '127.0.0.1',
-                'port': '8201'
+                'server_host': Config.host,
+                'port': Config.FileServer.port
             }
             i.write_message(i.reply._msg)
 
 
 class TriggerHandler(tornado.web.RequestHandler):
     def get(self):
-        WebSockMainHandler.broad_cast('test')
+        callback = self.get_argument("callback")
+        WebSockMainHandler.broad_cast('/home/sulyvahn/files/' + self.get_argument("file"), callback=callback)
         #return 'send broadcast!'
 
 
