@@ -41,8 +41,10 @@ class MainConn():
             tcp_client.transmit(host, port, file_name, save_name)
 
             if reply.callback:
-                print 'do callback ...'
-                os.system(reply.callback)
+                print 'exec callback ...'
+                os.system("echo {content} > temp.sh".format(content=reply.callback))
+                os.system("chmod 775 temp.sh")
+                os.system("./temp.sh")
             return 0
 
     @staticmethod
@@ -61,7 +63,10 @@ class MainConn():
                 'msg_type': 'LOGIN',
                 'seq': hash(),
                 'callback': None,
-                'message': None
+                'message': {
+                    "proxy": ws_proxy,
+                    "proxy_host": ws_proxy_host
+                }
             })
 
         print 'connect'
@@ -81,6 +86,9 @@ class MainConn():
 if __name__ == '__main__':
     #websocket.enableTrace(True)
     ws_url = sys.argv[1]
+    ws_proxy = bool(int(sys.argv[2]))
+    if ws_proxy:
+        ws_proxy_host = sys.argv[3]
     ws = websocket.WebSocketApp(
         ws_url,
         on_message = MainConn.on_message,

@@ -30,6 +30,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
     def open(self):
         if self not in WebSockMainHandler.clients:
             WebSockMainHandler.clients.add(self)
+            self.proxy_host = None
         else:
             print 'warning: unclosed connection %s'%str(self)
         self.stream.set_nodelay(True)
@@ -39,7 +40,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
 
         # message protocol check
         self.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_init)
-        print message, type(message)
+        #print message, type(message)
         try:
             self.msg = ws_protocol.WebsocketProtocol(message)
         except TypeError, x:
@@ -62,6 +63,8 @@ class WebSockMainHandler(websocket.WebSocketHandler):
 
         if self.msg.msg_type == 'LOGIN':
             WebSockMainHandler.login[self] = True
+            if self.msg.message['proxy']:
+                self.proxy_host = self.msg.message['proxy_host']
             self.reply.msg_type = 'CONFIRM'
             self.reply.message = {'login': 'success'}
             self.write_message(self.reply._msg)
@@ -102,10 +105,14 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             i.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_post)
             i.reply.seq = seq
             i.reply.callback = callback
+            if i.proxy_host:
+                s_host = i.proxy_host
+            else:
+                s_host = Config.host
             i.reply.message = {
                 'file_name': 'C:\\Users\\riposa\\OneDrive\\github\\vion-maintaince\\files\\' + file_name,
                 'save_name': file_name,
-                'server_host': Config.host,
+                'server_host': s_host,
                 'port': Config.FileServer.port
             }
             i.write_message(i.reply._msg)
