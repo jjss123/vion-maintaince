@@ -103,7 +103,8 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             i.reply.seq = seq
             i.reply.callback = callback
             i.reply.message = {
-                'file_name': file_name,
+                'file_name': 'C:\\Users\\riposa\\OneDrive\\github\\vion-maintaince\\files\\' + file_name,
+                'save_name': file_name,
                 'server_host': Config.host,
                 'port': Config.FileServer.port
             }
@@ -113,7 +114,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
 class TriggerHandler(tornado.web.RequestHandler):
     def get(self):
         callback = self.get_argument("callback")
-        WebSockMainHandler.broad_cast('/home/sulyvahn/files/' + self.get_argument("file"), callback=callback)
+        WebSockMainHandler.broad_cast(self.get_argument("file"), callback=callback)
         #return 'send broadcast!'
 
 

@@ -5,6 +5,7 @@
 # @Last Modified time: 2016-07-12 16:14:55
 
 import time
+import os
 import sys
 import threading
 import hashlib
@@ -34,10 +35,14 @@ class MainConn():
         elif reply.msg_type == 'POST':
             print reply.message
             file_name = reply.message['file_name']
+            save_name = reply.message['save_name']
             host = reply.message['server_host']
             port = int(reply.message['port'])
-            tcp_client.transmit(host, port, file_name)
+            tcp_client.transmit(host, port, file_name, save_name)
 
+            if reply.callback:
+                print 'do callback ...'
+                os.system(reply.callback)
             return 0
 
     @staticmethod
