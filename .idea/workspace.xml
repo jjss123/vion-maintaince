@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f4b8ad7-869d-45f6-a817-234d8909b975" name="Default" comment="Default">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/logger.conf" afterPath="$PROJECT_DIR$/lib/logger.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/rec_log.py" afterPath="$PROJECT_DIR$/lib/rec_log.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/ws_client.py" afterPath="$PROJECT_DIR$/lib/ws_client.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/pdbc_redis.py" afterPath="$PROJECT_DIR$/model/pdbc_redis.py" />
-    </list>
+    <list default="true" id="5f4b8ad7-869d-45f6-a817-234d8909b975" name="Default" comment="Default" />
     <ignored path="vion-maintaince.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -115,8 +108,8 @@
           <file leaf-file-name="state_collect.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/info_collection/state_collect.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
+                <state relative-caret-position="345">
+                  <caret line="59" column="7" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
                   <folding>
                     <element signature="e#181#196#0" expanded="true" />
                   </folding>
@@ -321,8 +314,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="53" />
-    <option name="y" value="105" />
+    <option name="x" value="270" />
+    <option name="y" value="54" />
     <option name="width" value="1986" />
     <option name="height" value="914" />
   </component>
@@ -877,7 +870,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="105" width="1986" height="914" extended-state="0" />
+    <frame x="270" y="54" width="1986" height="914" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.108740896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1299,8 +1292,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/info_collection/state_collect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
+        <state relative-caret-position="345">
+          <caret line="59" column="7" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
           <folding>
             <element signature="e#181#196#0" expanded="true" />
           </folding>
