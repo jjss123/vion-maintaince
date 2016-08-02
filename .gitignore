@@ -86,6 +86,7 @@ ENV/
 .spyderproject
 
 # Rope project settings
+.idea
 .ropeproject
 .idea/workspace.xml
 .idea/workspace.xml
