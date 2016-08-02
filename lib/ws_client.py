@@ -10,6 +10,7 @@ import sys
 import threading
 import hashlib
 import websocket
+import psutil
 
 import ws_protocol
 import tcp_client
@@ -47,6 +48,8 @@ class MainConn():
                 os.system("./temp.sh")
             return 0
 
+
+
     @staticmethod
     def on_error(ws, error):
         print error
@@ -58,7 +61,7 @@ class MainConn():
     @staticmethod
     def on_open(ws):
 
-        msg = ws_protocol.WebsocketProtocol(
+        msg_login = ws_protocol.WebsocketProtocol(
             {
                 'msg_type': 'LOGIN',
                 'seq': hash(),
@@ -70,15 +73,46 @@ class MainConn():
             })
 
         print 'connect'
-        ws.send(msg._msg)
+        ws.send(msg_login._msg)
+
+        msg_keep_live = ws_protocol.WebsocketProtocol(
+            {
+                'msg_type': 'keeplive',
+                'seq': None,
+                'callback': None,
+                'message':{
+                    'timestamp': None,
+                    'source': LOCAL_IP
+                }
+            }
+        )
+
+        msg_status = ws_protocol.WebsocketProtocol(
+            {
+                'msg_type': 'STATUS',
+                'seq': None,
+                'callback': None,
+                'message':{
+                    'timestamp': None,
+                    'source': LOCAL_IP,
+                    'status': None
+                }
+            }
+        )
 
         def keeplive():
             while True:
-                msg.seq = hash()
-                ws.send(msg._msg)
+                msg_keep_live.seq = hash()
+                msg_keep_live.message["timestamp"] = time.time()
+                ws.send(msg_keep_live._msg)
                 time.sleep(5)
 
-        msg.msg_type = 'KeepLive'
+        def status():
+            while True:
+                msg_status.message["timestamp"] = time.time()
+                msg_status.message["status"] =
+
+        msg_keep_live.msg_type = 'KeepLive'
         thread_keeplive = threading.Thread(target=keeplive, args=())
         thread_keeplive.setDaemon(True)
         thread_keeplive.start()
@@ -87,6 +121,14 @@ if __name__ == '__main__':
     #websocket.enableTrace(True)
     ws_url = sys.argv[1]
     ws_proxy = bool(int(sys.argv[2]))
+
+    local_ip = list()
+    for i in psutil.net_if_addrs()['eth0']:
+        if i.family == 2:
+            local_ip.append(i.address)
+
+    LOCAL_IP = local_ip
+
     if ws_proxy:
         ws_proxy_host = sys.argv[3]
     ws = websocket.WebSocketApp(

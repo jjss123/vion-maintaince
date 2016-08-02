@@ -22,9 +22,8 @@ import time
 import shutil
 import os
 import traceback
-
-logging.config.fileConfig(sys.path[0] + '\\' + "logger.conf")
-
+os.system('mkdir -p /var/log/vmts-client/')
+logging.config.fileConfig(os.path.dirname(os.path.abspath(__file__)) + '/' + "logger.conf")
 LOG_PATH = {
     'info': '../log/info.log',
     'error': '../log/error.log',
@@ -107,7 +106,7 @@ class Recording(object):
         # recombine log text
         if args:
             content = '\n\tin %s:\n\tEvent %s Done\n\tinput:\n\t\t%s' % (
-                module, description, str('\t\t'.join(args[0]) + '\n\t\t' + str(args[1])))
+                module, description, str('\t\t'.join(str(args[0])) + '\n\t\t' + str(args[1])))
             content = content + '\n\treturn: ' + str(res)
         else:
             content = 'in %s:\n\tEvent %s Done' % (module, description)

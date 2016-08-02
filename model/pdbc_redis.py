@@ -68,8 +68,8 @@ redis_init()
 
 if __name__ == "__main__":
 
-    #user = UserInterface(id=10, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
+    #user = UserInterface(id=11, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
     #print user.is_valid()
     #print user.save()
     #print UserInterface.objects.all()
-    print UserInterface.objects.filter(user='reimu1')
+    print UserInterface.objects.filter(user='reimu')
