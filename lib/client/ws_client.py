@@ -4,16 +4,18 @@
 # @Last Modified by:   riposa
 # @Last Modified time: 2016-07-12 16:14:55
 
-import time
+import hashlib
 import os
 import sys
 import threading
-import hashlib
-import websocket
-import psutil
+import time
 
-import ws_protocol
+import psutil
+import websocket
+
 import tcp_client
+import ws_protocol
+
 
 def hash():
     hash_obj = hashlib.md5()

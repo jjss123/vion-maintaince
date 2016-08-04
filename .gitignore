@@ -87,6 +87,7 @@ ENV/
 
 # Rope project settings
 .idea
+files
 .ropeproject
 .idea/workspace.xml
 .idea/workspace.xml
