@@ -41,7 +41,7 @@ class TestSuit_Maintaince(models.Model):
 class DeviceInfoInterface(models.Model):
     ''''''
 
-    id = models.Counter(required=True, unique=True)
+    timestamp = models.DateTimeField(required=True)
     cpu_usage = models.Attribute()
     mem_usage = models.Attribute()
     net_usage = models.Attribute()
@@ -51,11 +51,11 @@ class DeviceInfoInterface(models.Model):
 class DeviceInterface(models.Model):
     ''''''
 
-    dev_id = models.Attribute(required=True, unique=True)
     dev_ip = models.Attribute(required=True)
+    timestamp = models.DateTimeField(required=True)
     status = models.Attribute(required=True)
-    static_info = models.ListField(dict, required=True)
-    dynamic_info = models.ListField(DeviceInfoInterface)
+    static_info = models.ListField(dict, required=False)
+    dynamic_info = models.ListField(DeviceInfoInterface, required=False)
 
 class DeviceInfoPeriodInterface(models.Model):
     ''''''
@@ -72,4 +72,7 @@ if __name__ == "__main__":
     #print user.is_valid()
     #print user.save()
     #print UserInterface.objects.all()
-    print UserInterface.objects.filter(user='reimu')
+    a = UserInterface.objects.filter(user='reimu')
+    print a
+    print type(a)
+    print a[0].pwd

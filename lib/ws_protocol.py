@@ -7,26 +7,30 @@ import json
 import hashlib
 import time
 
+class MethodError(Exception):
+    def __init__(self, content):
+        Exception.__init__()
+        self.message = content
+
 class WebsocketProtocol(object):
 
     version = '1.0.0'
     author = 'hylide'
-    protocol_init = json.dumps(
-    {
-        'msg_type':'CONFIRM',
-        'seq': None,
-        'callback': None,
-        'message': None
+    allowed_method = {
+        'Server':[
+            'Transmit',
+            'Get',
+            'Set',
+            'Confirm'
+        ],
+        'Client':[
+            'Transmit',
+            'Confirm',
+            'KeepAlive',
+            'Status'
+        ]
     }
-    )
-    protocol_post = {
-            'msg_type':'POST',
-            'seq': None,
-            'callback': None,
-            'message': None
-        }
-
-
+    
     @property
     def _msg(self):
         p = dict()
@@ -53,7 +57,7 @@ class WebsocketProtocol(object):
             pass
         else:
             raise TypeError('Receive Wrong Type Message')
-        self.msg_type = message['msg_type']
+        self.method = message['method']
         if message['seq']:
             self.seq = message['seq']
         else:
@@ -64,57 +68,13 @@ class WebsocketProtocol(object):
         self.callback = message['callback']
         self.message = message['message']
 
+    def check_method(self, side):
+        if self.method not in WebsocketProtocol.allowed_method[side.capitalize()]:
+            raise MethodError('Uncorrect method')
+
+
     def __getattributelist__(self):
-        return ['msg_type', 'seq', 'callback', 'message']
+        return ['method', 'seq', 'callback', 'message']
 
     def _ver(self):
         return WebsocketProtocol.version
-
-if __name__ == '__main__':
-    hash_obj_t = hashlib.md5()
-    hash_obj_t.update(str(time.time))
-    hash_code_t = hash_obj_t.hexdigest()
-    test = WebsocketProtocol(json.dumps(
-        {
-            'msg_type':'LOGIN',
-            'seq':hash_code_t,
-            'callback':{
-                'function':'nullable'
-            },
-            'message':{
-                'cpu':'123124',
-                'mem':'4421421'
-            }
-        })
-        )
-    print test
-    print test._msg
-    print test.msg_type
-    print test.seq
-    print test.message
-    try:
-        print isinstance(test, WebsocketProtocol)
-    except NameError, x:
-        print x
-
-    test1 = WebsocketProtocol(
-        {
-            'msg_type':'LOGIN',
-            'seq':hash_code_t,
-            'callback':{
-                'function':'nullable'
-            },
-            'message':{
-                'cpu':'123124',
-                'mem':'4421421'
-            }
-        }
-        )
-    print test1
-    print test1._msg
-    print test1.msg_type
-    print test1.seq
-    print test1.message
-
-
-

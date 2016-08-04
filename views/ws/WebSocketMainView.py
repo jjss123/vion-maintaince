@@ -10,9 +10,10 @@ import time
 
 import tornado.web
 from tornado import websocket
-sys.path.append('../..')
+sys.path.append('../../')
 from lib import ws_protocol
 from config import Config
+from model import pdbc_redis
 
 __all__ = ["WebSockMainHandler", "TriggerHandler"]
 
@@ -39,14 +40,18 @@ class WebSockMainHandler(websocket.WebSocketHandler):
         ''''''
 
         # message protocol check
-        self.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_init)
-        #print message, type(message)
-        try:
-            self.msg = ws_protocol.WebsocketProtocol(message)
-        except TypeError, x:
-            print x
-            self.error_reply(str(x))
-            return 0
+        self.reply = ws_protocol.WebsocketProtocol(
+            {
+                'method': None,
+                'seq': None,
+                'callback': None,
+                'message': None
+            }
+        )
+
+        # format recv message
+        self.msg = ws_protocol.WebsocketProtocol(message)
+        self.msg.check_method('Server')
 
         # main handler of event 'on_message'
         self.msg_handler()
@@ -61,11 +66,23 @@ class WebSockMainHandler(websocket.WebSocketHandler):
 
     def msg_handler(self):
 
-        if self.msg.msg_type == 'LOGIN':
+        def logout_handler():
+            WebSockMainHandler.login[self] = False
+            self.reply.message = {'logout': 'success'}
+            self.write_message(self.reply._msg)
+            self.on_close()
+            
+        def keepalive_handler():
+            query = pdbc_redis.DeviceInterface
+
+            self.reply.message = {'keeplive': 'success'}
+            self.write_message(self.reply._msg)
+
+        if self.msg.method == 'Login':
             WebSockMainHandler.login[self] = True
             if self.msg.message['proxy']:
                 self.proxy_host = self.msg.message['proxy_host']
-            self.reply.msg_type = 'CONFIRM'
+            self.reply.method = 'Confirm'
             self.reply.message = {'login': 'success'}
             self.write_message(self.reply._msg)
             return 0
@@ -78,20 +95,8 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 self.error_reply('logged out, connection refused')
                 return 0
             else:
-                self.reply.seq = self.msg.seq
-                self.reply.msg_type = 'CONFIRM'
-
-        if self.msg.msg_type == 'LOGOUT':
-            WebSockMainHandler.login[self] = False
-            self.reply.message = {'logout': 'success'}
-            self.write_message(self.reply._msg)
-            self.on_close()
-        elif self.msg.msg_type == 'KeepLive':
-            self.reply.message = {'keeplive': 'success'}
-            self.write_message(self.reply._msg)
-        else:
-            pass
-        return 0
+                eval(self.msg.method.lower() + 'handler')()
+                return 0
 
     @classmethod
     def broad_cast(cls, file_name, callback=None, *dev):
@@ -102,7 +107,14 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             cli = WebSockMainHandler.clients
 
         for i in cli:
-            i.reply = ws_protocol.WebsocketProtocol(ws_protocol.WebsocketProtocol.protocol_post)
+            i.reply = ws_protocol.WebsocketProtocol(
+                {
+                    'method': 'Transmit',
+                    'seq': None,
+                    'callback': None,
+                    'message': None
+                }
+            )
             i.reply.seq = seq
             i.reply.callback = callback
             if i.proxy_host:
@@ -110,7 +122,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             else:
                 s_host = Config.host
             i.reply.message = {
-                'file_name': 'C:\\Users\\riposa\\OneDrive\\github\\vion-maintaince\\files\\' + file_name,
+                'file_name': '../../files/' + file_name,
                 'save_name': file_name,
                 'server_host': s_host,
                 'port': Config.FileServer.port
@@ -122,7 +134,7 @@ class TriggerHandler(tornado.web.RequestHandler):
     def get(self):
         callback = self.get_argument("callback")
         WebSockMainHandler.broad_cast(self.get_argument("file"), callback=callback)
-        #return 'send broadcast!'
+
 
 
 if __name__ == '__main__':

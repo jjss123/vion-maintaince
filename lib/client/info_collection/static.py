@@ -7,7 +7,7 @@
 import psutil
 import platform
 
-def ret():
+def get():
     static = dict()
 
     static = {
@@ -27,4 +27,7 @@ def ret():
                 "libc_version": platform.libc_ver()
             }
         },
+        ""
     }
+
+    return static
