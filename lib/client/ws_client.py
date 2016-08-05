@@ -95,7 +95,8 @@ class MainConn():
                 'callback': None,
                 'message': {
                     "proxy": load_config('proxy')['enable'],
-                    "proxy_host": load_config('proxy')['host']
+                    "proxy_host": load_config('proxy')['host'],
+                    "source": LOCAL_IP
                 }
             })
 

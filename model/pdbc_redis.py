@@ -54,6 +54,7 @@ class DeviceInterface(models.Model):
     dev_ip = models.Attribute(required=True)
     timestamp = models.DateTimeField(required=True)
     status = models.Attribute(required=True)
+    service_status = models.ListField(dict)
     static_info = models.ListField(dict, required=False)
     dynamic_info = models.ListField(DeviceInfoInterface, required=False)
 
@@ -67,12 +68,21 @@ class DeviceInfoPeriodInterface(models.Model):
 redis_init()
 
 if __name__ == "__main__":
-
+    import datetime
+    import time
     #user = UserInterface(id=11, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
     #print user.is_valid()
     #print user.save()
     #print UserInterface.objects.all()
-    a = UserInterface.objects.filter(user='reimu')
-    print a
-    print type(a)
-    print a[0].pwd
+    #b = DeviceInterface(dev_ip='192.168.5.109', timestamp=datetime.datetime.now(), status='1')
+    #a = UserInterface.objects.filter(user='reimu')
+    #print a
+    #print type(a)
+    #print a[0].pwd
+    #print b.is_valid()
+    #print b.save()
+    t1 = time.time()
+    print DeviceInterface.objects.filter(dev_ip='192.168.5.109')
+    #for i in DeviceInterface.objects.all():
+    #    print i
+    print time.time() - t1

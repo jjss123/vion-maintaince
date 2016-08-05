@@ -7,6 +7,7 @@ import os
 import sys
 import hashlib
 import time
+import datetime
 
 import tornado.web
 from tornado import websocket
@@ -73,7 +74,13 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             self.on_close()
             
         def keepalive_handler():
-            query = pdbc_redis.DeviceInterface
+            query = pdbc_redis.DeviceInterface(
+                dev_ip=self.msg.message['source'],
+                timestamp=datetime.datetime.fromtimestamp(
+                    self.msg.message['timestamp']
+                ),
+                status=self.msg.message['1']
+            )
 
             self.reply.message = {'keeplive': 'success'}
             self.write_message(self.reply._msg)
