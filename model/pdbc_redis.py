@@ -61,7 +61,7 @@ class DeviceInterface(models.Model):
 
 class DeviceDynamicInterface(models.Model):
     ''''''
-    dev_id = models.Atrribute(required=True)
+    dev_id = models.Attribute(required=True)
     timestamp = models.DateTimeField(required=True)
 
     dynamic_info = models.ListField(DeviceInfoInterface, required=False)

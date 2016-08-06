@@ -7,8 +7,8 @@
 import json
 import os
 
-CONFIG = '{path}\\vmts.conf.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
-ROUTE = '{path}\\vmts.route.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
+CONFIG = '{path}/vmts.conf.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
+ROUTE = '{path}/vmts.route.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
 
 class DictObject(object):
 
