@@ -26,8 +26,8 @@ def get():
                 "host_name": platform.node(),
                 "libc_version": platform.libc_ver()
             }
-        },
-        ""
+        }
+
     }
 
     return static

@@ -20,7 +20,7 @@ class MainPageHandler(BaseHandler):
 
     def get(self):
         if not self.current_user:
-            self.redirect("/")
+            self.redirect("/login")
             return
         user = self.get_secure_cookie("user")
         user_res = pdbc_redis.UserInterface.objects.filter(user=user)
@@ -32,13 +32,13 @@ class MainPageHandler(BaseHandler):
                 avatar=user_res[0].avatar
             )
         else:
-            self.redirect("/")
+            self.redirect("/login")
 
 class TestSuitHandler(BaseHandler):
 
     def get(self):
         if not self.current_user:
-            self.redirect("/")
+            self.redirect("/login")
             return
         suit = self.get_argument('suit')
         user = self.get_secure_cookie("user")
@@ -51,7 +51,7 @@ class TestSuitHandler(BaseHandler):
                 avatar=user_res[0].avatar
                 )
         else:
-            self.redirect("/")
+            self.redirect("/login")
 
 class LoginHandler(BaseHandler):
     def get(self):
@@ -78,7 +78,7 @@ class LogoutHandler(BaseHandler):
 
     def get(self):
         if not self.current_user:
-            self.redirect("/")
+            self.redirect("/login")
             return
         self.set_secure_cookie("user", "")
         self.current_user = ''

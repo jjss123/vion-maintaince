@@ -70,9 +70,9 @@ redis_init()
 if __name__ == "__main__":
     import datetime
     import time
-    #user = UserInterface(id=11, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
-    #print user.is_valid()
-    #print user.save()
+    user = UserInterface(id=11, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
+    print user.is_valid()
+    print user.save()
     #print UserInterface.objects.all()
     #b = DeviceInterface(dev_ip='192.168.5.109', timestamp=datetime.datetime.now(), status='1')
     #a = UserInterface.objects.filter(user='reimu')
@@ -81,8 +81,8 @@ if __name__ == "__main__":
     #print a[0].pwd
     #print b.is_valid()
     #print b.save()
-    t1 = time.time()
-    print DeviceInterface.objects.filter(dev_ip='192.168.5.109')
+    #t1 = time.time()
+    #print DeviceInterface.objects.filter(dev_ip='192.168.5.109')
     #for i in DeviceInterface.objects.all():
     #    print i
-    print time.time() - t1
+    #print time.time() - t1

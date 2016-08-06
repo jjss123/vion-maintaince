@@ -27,7 +27,7 @@ class LargeFileSendHandler():
 
 
     def send_message(self, fp):
-        fp = fp.replace('\n', '')
+        fp = os.path.dirname(__file__) + '/' + fp.replace('\n', '')
         print os.stat(fp).st_size
         sct = struct.Struct('I')
         head = sct.pack(os.stat(fp).st_size)

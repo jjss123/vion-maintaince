@@ -52,7 +52,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
 
         # format recv message
         self.msg = ws_protocol.WebsocketProtocol(message)
-        self.msg.check_method('Server')
+        self.msg.check_method('Client')
 
         # main handler of event 'on_message'
         self.msg_handler()
@@ -79,13 +79,16 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 timestamp=datetime.datetime.fromtimestamp(
                     self.msg.message['timestamp']
                 ),
-                status=self.msg.message['1']
+                status='1'
             )
             query.is_valid()
             query.save()
 
             self.reply.message = {'keeplive': 'success'}
             self.write_message(self.reply._msg)
+
+        def status_handler():
+            print self.msg.message
 
         if self.msg.method == 'Login':
             WebSockMainHandler.login[self] = True
@@ -104,7 +107,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 self.error_reply('logged out, connection refused')
                 return 0
             else:
-                eval(self.msg.method.lower() + 'handler')()
+                eval(self.msg.method.lower() + '_handler')()
                 return 0
 
     @classmethod

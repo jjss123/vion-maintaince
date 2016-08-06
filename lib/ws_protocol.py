@@ -9,7 +9,7 @@ import time
 
 class MethodError(Exception):
     def __init__(self, content):
-        Exception.__init__()
+        Exception.__init__(content)
         self.message = content
 
 class WebsocketProtocol(object):
@@ -27,7 +27,9 @@ class WebsocketProtocol(object):
             'Transmit',
             'Confirm',
             'KeepAlive',
-            'Status'
+            'Status',
+            'Login',
+            'Logout'
         ]
     }
     

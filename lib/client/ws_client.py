@@ -19,7 +19,28 @@ import info_collection.static
 import info_collection.dynamic
 import ws_protocol
 
-default_conf = {
+default_conf_debug = {
+    'base': {
+        'url': 'ws://192.168.9.44:8201/ws/main',
+        'net_interface': 'eth0'
+    },
+    'task-0': {
+        'name': 'keep-alive',
+        'enable': True,
+        'interval': 5
+    },
+    'task-1': {
+        'name': 'dynamic-status',
+        'enable': False,
+        'interval': 60
+    },
+    'proxy': {
+        'enable': False,
+        'host': '192.168.9.44'
+    }
+}
+
+default_conf_release = {
     'base': {
         'url': 'ws://192.168.5.222:8201/ws/main',
         'net_interface': 'eth0'
@@ -31,7 +52,7 @@ default_conf = {
     },
     'task-1': {
         'name': 'dynamic-status',
-        'enable': True,
+        'enable': False,
         'interval': 60
     },
     'proxy': {
@@ -96,15 +117,15 @@ class MainConn():
                 'seq': hash(),
                 'callback': None,
                 'message': {
-                    "proxy": load_config('proxy')['enable'],
-                    "proxy_host": load_config('proxy')['host'],
+                    "proxy": load_config()['proxy']['enable'],
+                    "proxy_host": load_config()['proxy']['host'],
                     "source": LOCAL_IP
                 }
             })
 
         print 'connect'
         ws.send(msg_login._msg)
-
+        print msg_login._msg
         # static message
         msg_static_status = ws_protocol.WebsocketProtocol(
             {
@@ -121,7 +142,7 @@ class MainConn():
         ws.send(msg_static_status._msg)
 
         # task keep-alive
-        keep_alive_conf = load_config(keys=['task'])['keep-alive']
+        keep_alive_conf = load_config()['task']['keep-alive']
         if keep_alive_conf['enable']:
             msg_keep_alive = ws_protocol.WebsocketProtocol(
                 {
@@ -143,12 +164,12 @@ class MainConn():
                     ws.send(msg_keep_alive._msg)
                     time.sleep(interval)
 
-            thread_keepAlive = threading.Thread(target=keep_alive, args=(keep_alive_conf['interval'], ))
+            thread_keepAlive = threading.Thread(target=keep_alive, args=(float(keep_alive_conf['interval']), ))
             thread_keepAlive.setDaemon(True)
             thread_keepAlive.start()
 
         # task dynamic status
-        dynamic_status_conf = load_config(keys=['task'])['dynamic-status']
+        dynamic_status_conf = load_config()['task']['dynamic-status']
         if dynamic_status_conf['enabel']:
             msg_dynamic_status = ws_protocol.WebsocketProtocol(
                 {
@@ -170,7 +191,7 @@ class MainConn():
                     ws.send(msg_dynamic_status._msg)
                     time.sleep(interval)
 
-            thread_dynamicStatus = threading.Thread(target=dynamic_status, args=(dynamic_status_conf['interval'], ))
+            thread_dynamicStatus = threading.Thread(target=dynamic_status, args=(float(dynamic_status_conf['interval']), ))
             thread_dynamicStatus.setDaemon(True)
             thread_dynamicStatus.start()
 
@@ -186,7 +207,9 @@ def load_config(fp='./ws_client.conf', *keys):
             conf.add_section(i)
             for j in default_conf[i].keys():
                 conf.set(i, j, default_conf[i][j])
-        conf.write(fp)
+        fph = open(fp, 'w')
+        conf.write(fph)
+        fph.close()
 
     # conf read
     conf.read(fp)
@@ -206,7 +229,10 @@ def load_config(fp='./ws_client.conf', *keys):
 
     cf = {
         'url': get_value('base', 'url'),
-        'proxy': get_value('proxy', 'host'),
+        'proxy': {
+            'host':get_value('proxy', 'host'),
+            'enable': get_value('proxy', 'enable')
+        },
         'net_interface': get_value('base', 'net_interface')
     }
 
@@ -240,8 +266,11 @@ def set_config(section, option, value, fp='./ws_client.conf'):
 
 if __name__ == '__main__':
     #websocket.enableTrace(True)
-    conf_fp = sys.argv[1]
-    if conf_fp:
+
+    DEBUG = True
+
+    if sys.argv.__len__() > 1:
+        conf_fp = sys.argv[1]
         FP = conf_fp
     else:
         FP = ''
@@ -249,12 +278,17 @@ if __name__ == '__main__':
     ws_url = load_config()['url']
     ws_proxy = load_config()['proxy']
 
-    local_ip = list()
-    for i in psutil.net_if_addrs()['eth0']:
-        if i.family == 2:
-            local_ip.append(i.address)
+    if DEBUG:
+        LOCAL_IP = '192.168.9.76'
+        default_conf = default_conf_debug
+    else:
+        local_ip = list()
+        for i in psutil.net_if_addrs()['eth0']:
+            if i.family == 2:
+                local_ip.append(i.address)
 
-    LOCAL_IP = local_ip
+        LOCAL_IP = local_ip
+        default_conf = default_conf_release
 
     ws = websocket.WebSocketApp(
         ws_url,

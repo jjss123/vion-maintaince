@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f4b8ad7-869d-45f6-a817-234d8909b975" name="Default" comment="Default">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/info_collection/dynamic.py" afterPath="$PROJECT_DIR$/lib/client/info_collection/dynamic.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/info_collection/static.py" afterPath="$PROJECT_DIR$/lib/client/info_collection/static.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/ws_client.py" afterPath="$PROJECT_DIR$/lib/client/ws_client.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/ws_protocol.py" afterPath="$PROJECT_DIR$/lib/client/ws_protocol.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/ws_protocol.py" afterPath="$PROJECT_DIR$/lib/ws_protocol.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/pdbc_redis.py" afterPath="$PROJECT_DIR$/model/pdbc_redis.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tcp/FileServer.py" afterPath="$PROJECT_DIR$/views/tcp/FileServer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/web/WebMainView.py" afterPath="$PROJECT_DIR$/views/web/WebMainView.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/ws/WebSocketMainView.py" afterPath="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vmts.conf.json" afterPath="$PROJECT_DIR$/vmts.conf.json" />
     </list>
     <ignored path="vion-maintaince.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,11 +27,11 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/vion-maintaince$ws_server.coverage" NAME="ws_server Coverage Results" MODIFIED="1469086744454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views" />
     <SUITE FILE_PATH="coverage/vion-maintaince$application.coverage" NAME="application Coverage Results" MODIFIED="1470125158368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/vion-maintaince$pdbc_redis.coverage" NAME="pdbc_redis Coverage Results" MODIFIED="1470365769377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/vion-maintaince$pdbc_redis.coverage" NAME="pdbc_redis Coverage Results" MODIFIED="1470474044071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/vion-maintaince$pdbc_mysql.coverage" NAME="pdbc_mysql Coverage Results" MODIFIED="1469524148625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/vion-maintaince$tcp_server.coverage" NAME="tcp_server Coverage Results" MODIFIED="1468900243903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views" />
     <SUITE FILE_PATH="coverage/vion-maintaince$state_collect.coverage" NAME="state_collect Coverage Results" MODIFIED="1470125448160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/info_collection" />
-    <SUITE FILE_PATH="coverage/vion-maintaince$ws_client.coverage" NAME="ws_client Coverage Results" MODIFIED="1468891010385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib" />
+    <SUITE FILE_PATH="coverage/vion-maintaince$ws_client.coverage" NAME="ws_client Coverage Results" MODIFIED="1470470403393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/client" />
     <SUITE FILE_PATH="coverage/vion-maintaince$config.coverage" NAME="config Coverage Results" MODIFIED="1469438127978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -41,7 +49,7 @@
     <favorites_list name="vion-maintaince" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.71244884">
+    <splitter split-orientation="horizontal" split-proportion="0.7191781">
       <split-first>
         <splitter split-orientation="horizontal" split-proportion="0.47502115">
           <split-first>
@@ -49,8 +57,8 @@
               <file leaf-file-name="ws_protocol.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/lib/ws_protocol.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="180">
-                      <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+                    <state relative-caret-position="270">
+                      <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
                       <folding />
                     </state>
                   </provider>
@@ -79,8 +87,8 @@
               <file leaf-file-name="static.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/lib/client/info_collection/static.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="420">
-                      <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+                    <state relative-caret-position="317">
+                      <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
                       <folding>
                         <element signature="e#147#160#0" expanded="true" />
                       </folding>
@@ -102,14 +110,24 @@
           </split-first>
           <split-second>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="WebSocketMainView.py" pinned="false" current-in-tab="true">
+              <file leaf-file-name="WebSocketMainView.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="392">
-                      <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+                    <state relative-caret-position="173">
+                      <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
                       <folding>
                         <element signature="e#146#155#0" expanded="true" />
                       </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="vmts.route.json" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/vmts.route.json">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="210">
+                      <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+                      <folding />
                     </state>
                   </provider>
                 </entry>
@@ -117,20 +135,18 @@
               <file leaf-file-name="FileServer.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/views/tcp/FileServer.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="745">
-                      <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-                      <folding>
-                        <element signature="e#146#155#0" expanded="true" />
-                      </folding>
+                    <state relative-caret-position="338">
+                      <caret line="45" column="40" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+                      <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="tcp_client.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/lib/client/tcp_client.py">
+              <file leaf-file-name="WebMainView.py" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="0">
-                      <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                    <state relative-caret-position="300">
+                      <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
                       <folding />
                     </state>
                   </provider>
@@ -139,11 +155,21 @@
               <file leaf-file-name="ws_client.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/lib/client/ws_client.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="160">
-                      <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+                    <state relative-caret-position="135">
+                      <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
                       <folding>
                         <element signature="e#147#161#0" expanded="true" />
                       </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ws_client.conf" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/lib/client/ws_client.conf">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="165">
+                      <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+                      <folding />
                     </state>
                   </provider>
                 </entry>
@@ -168,7 +194,7 @@
             <entry file="file://$PROJECT_DIR$/lib/client/info_collection/dynamic.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="150">
-                  <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+                  <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
                   <folding />
                 </state>
               </provider>
@@ -177,8 +203,8 @@
           <file leaf-file-name="pdbc_redis.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="316">
-                  <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+                <state relative-caret-position="400">
+                  <caret line="85" column="28" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -279,11 +305,8 @@
         <option value="$PROJECT_DIR$/tcp_server.py" />
         <option value="$PROJECT_DIR$/websocket_server.py" />
         <option value="$PROJECT_DIR$/application.py" />
-        <option value="$PROJECT_DIR$/views/web/WebMainView.py" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/vmts.conf.json" />
         <option value="$PROJECT_DIR$/lib/tcp_client.py" />
-        <option value="$PROJECT_DIR$/views/tcp/FileServer.py" />
         <option value="$PROJECT_DIR$/docs/ws_sdk.md" />
         <option value="$PROJECT_DIR$/lib/ws_client.py" />
         <option value="$PROJECT_DIR$/lib/info_collection/netflow.py" />
@@ -297,10 +320,14 @@
         <option value="$PROJECT_DIR$/lib/client/ws_client_update.py" />
         <option value="$PROJECT_DIR$/lib/client/info_collection/static.py" />
         <option value="$PROJECT_DIR$/lib/client/info_collection/dynamic.py" />
+        <option value="$PROJECT_DIR$/vmts.conf.json" />
+        <option value="$PROJECT_DIR$/lib/client/ws_client.conf" />
         <option value="$PROJECT_DIR$/lib/ws_protocol.py" />
-        <option value="$PROJECT_DIR$/model/pdbc_redis.py" />
-        <option value="$PROJECT_DIR$/lib/client/ws_client.py" />
         <option value="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
+        <option value="$PROJECT_DIR$/lib/client/ws_client.py" />
+        <option value="$PROJECT_DIR$/views/tcp/FileServer.py" />
+        <option value="$PROJECT_DIR$/views/web/WebMainView.py" />
+        <option value="$PROJECT_DIR$/model/pdbc_redis.py" />
       </list>
     </option>
   </component>
@@ -311,9 +338,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="15" />
+    <option name="x" value="-58" />
+    <option name="y" value="15" />
     <option name="width" value="1925" />
-    <option name="height" value="1026" />
+    <option name="height" value="973" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -547,24 +575,6 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RunManager" selected="Python.pdbc_redis">
-    <configuration default="false" name="ws_server" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/views" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="vion-maintaince" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\riposa\OneDrive\github\vion-maintaince\views\WebSocketMain.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="config" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -633,6 +643,24 @@
       <module name="vion-maintaince" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lib/info_collection/state_collect.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ws_client" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lib/client" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="vion-maintaince" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lib/client/ws_client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -846,19 +874,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.ws_server" />
-      <item index="1" class="java.lang.String" itemvalue="Python.config" />
-      <item index="2" class="java.lang.String" itemvalue="Python.application" />
-      <item index="3" class="java.lang.String" itemvalue="Python.pdbc_redis" />
-      <item index="4" class="java.lang.String" itemvalue="Python.state_collect" />
+      <item index="0" class="java.lang.String" itemvalue="Python.config" />
+      <item index="1" class="java.lang.String" itemvalue="Python.application" />
+      <item index="2" class="java.lang.String" itemvalue="Python.pdbc_redis" />
+      <item index="3" class="java.lang.String" itemvalue="Python.state_collect" />
+      <item index="4" class="java.lang.String" itemvalue="Python.ws_client" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.pdbc_redis" />
-        <item index="1" class="java.lang.String" itemvalue="Python.state_collect" />
-        <item index="2" class="java.lang.String" itemvalue="Python.application" />
-        <item index="3" class="java.lang.String" itemvalue="Python.config" />
-        <item index="4" class="java.lang.String" itemvalue="Python.ws_server" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ws_client" />
+        <item index="2" class="java.lang.String" itemvalue="Python.state_collect" />
+        <item index="3" class="java.lang.String" itemvalue="Python.application" />
+        <item index="4" class="java.lang.String" itemvalue="Python.config" />
       </list>
     </recent_temporary>
   </component>
@@ -888,19 +916,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="15" y="0" width="1925" height="1026" extended-state="0" />
+    <frame x="-58" y="15" width="1925" height="973" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09779688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1370231" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288835" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35658044" sideWeight="0.77968836" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35658044" sideWeight="0.22031166" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3791866" sideWeight="0.77968836" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3241627" sideWeight="0.50617945" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.3291212" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1321" y="11" width="573" height="250" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288835" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35194173" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32535365" sideWeight="0.4957265" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3241627" sideWeight="0.49382052" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -946,7 +974,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -955,18 +983,13 @@
         <watch expression="handlers" />
         <watch expression="[(i, Route.web_route.__getattribute__(i)) for i in Route.web_route.keys()]" />
         <watch expression="sys.path[0]" />
+        <watch expression="tasklist" />
+        <watch expression="cf" />
+        <watch expression="keep_alive_conf" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/infomation_collection/netflow.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="937" column="0" selection-start-line="937" selection-start-column="0" selection-end-line="937" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/-762174762/_json.py" />
     <entry file="file://C:/Python27/Lib/json/scanner.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1043,25 +1066,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/tornado-4.3b2-py2.7-win-amd64.egg/tornado/tcpserver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="258" column="25" selection-start-line="258" selection-start-column="25" selection-end-line="258" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1108,6 +1117,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="276" column="49" selection-start-line="276" selection-start-column="49" selection-end-line="276" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1119,42 +1129,10 @@
     <entry file="file://$PROJECT_DIR$/lib/info_collection/procsInfo.py" />
     <entry file="file://$PROJECT_DIR$/lib/info_collection/vt_service.py" />
     <entry file="file://$PROJECT_DIR$/lib/info_collection/state_collect.py" />
-    <entry file="file://$PROJECT_DIR$/vmts.conf.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/ws_client_update.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/info_collection/static.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-          <folding>
-            <element signature="e#147#160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vmts.route.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/info_collection/dynamic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1175,36 +1153,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/tcp_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/ws_protocol.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tcp/FileServer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="745">
-          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-          <folding>
-            <element signature="e#146#155#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ws_protocol.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1217,18 +1169,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
+    <entry file="file://$PROJECT_DIR$/lib/client/tcp_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/info_collection/static.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+          <folding>
+            <element signature="e#147#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/proxy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="22" column="40" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vmts.conf.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/ws_client.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/info_collection/dynamic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ws_protocol.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/ws_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        <state relative-caret-position="135">
+          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
           <folding>
             <element signature="e#147#161#0" expanded="true" />
           </folding>
@@ -1237,11 +1247,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+        <state relative-caret-position="173">
+          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding>
             <element signature="e#146#155#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tcp/FileServer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="45" column="40" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vmts.route.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="85" column="28" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -8,4 +8,4 @@ def get():
     pass
 
 def service_status():
-    pass
+    return 0
