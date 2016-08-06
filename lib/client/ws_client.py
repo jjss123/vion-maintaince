@@ -52,14 +52,12 @@ class MainConn():
 
         reply = ws_protocol.WebsocketProtocol(message)
 
-        #msg = ws_protocol.WebsocketProtocol(protocol_init)
-
+        print reply.message
         if reply.method == 'Confirm':
-            print reply.message
+
             return 0
 
         elif reply.method == 'Transmit':
-            print reply.message
             file_name = reply.message['file_name']
             save_name = reply.message['save_name']
             host = reply.message['server_host']
@@ -73,7 +71,11 @@ class MainConn():
                 os.system("./temp.sh")
             return 0
 
-        elif reply.method == ''
+        elif reply.method == 'Set':
+
+            # todo
+            return 0
+
 
 
     @staticmethod

@@ -81,6 +81,8 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 ),
                 status=self.msg.message['1']
             )
+            query.is_valid()
+            query.save()
 
             self.reply.message = {'keeplive': 'success'}
             self.write_message(self.reply._msg)
