@@ -74,21 +74,55 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             self.on_close()
             
         def keepalive_handler():
-            query = pdbc_redis.DeviceInterface(
-                dev_ip=self.msg.message['source'],
-                timestamp=datetime.datetime.fromtimestamp(
-                    self.msg.message['timestamp']
-                ),
-                status='1'
-            )
+            id = self.msg.message['dev_id']
+            query = pdbc_redis.DeviceInterface.objects.filter(dev_id=id)
+            if query.all().__len__() == 1:
+                query.status = '1'
+                query.service_status = self.msg.message['service']
+            else:
+                raise ValueError('cannot find this device.')
             query.is_valid()
             query.save()
 
-            self.reply.message = {'keeplive': 'success'}
+            self.reply.message = {'KeepAlive': 'success'}
             self.write_message(self.reply._msg)
 
         def status_handler():
-            print self.msg.message
+            id = self.msg.message['dev_id']
+            if self.msg.message.has_key('static'):
+                query = pdbc_redis.DeviceInterface.objects.filter(dev_id=id)
+                if query.all().__len__() == 1:
+                    query.ip = self.msg.message['source']
+                    query.type = self.msg.message['dev_type']
+                    query.name = self.msg.message['name']
+                    query.status = '1'
+                    query.static_info = self.msg.message['static']
+                elif query.all().__len__() == 0:
+                    query = pdbc_redis.DeviceInterface(
+                        dev_id=id,
+                        ip = self.msg.message['source'],
+                        type = self.msg.message['dev_type'],
+                        name = self.msg.message['name'],
+                        status = '1',
+                        static_info = self.msg.message['static']
+                    )
+
+                query.is_valid()
+                query.save()
+
+            elif self.msg.message.has_key('dynamic'):
+                query = pdbc_redis.DeviceDynamicInterface(
+                    dev_id = id,
+                    timestamp = datetime.datetime.fromtimestamp(
+                        self.msg.message['timestamp']
+                    ),
+                    dynamic_info = self.msg.message['dynamic']
+                )
+                query.is_valid()
+                query.save()
+
+            self.reply.message = {'Status': 'success'}
+            self.write_message(self.reply._msg)
 
         if self.msg.method == 'Login':
             WebSockMainHandler.login[self] = True
@@ -111,7 +145,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 return 0
 
     @classmethod
-    def broad_cast(cls, file_name, callback=None, *dev):
+    def broad_cast(cls, file_name, callback_type='shell',callback=None, *dev):
         seq = hash()
         if dev:
             cli = dev
@@ -137,7 +171,8 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 'file_name': '../../files/' + file_name,
                 'save_name': file_name,
                 'server_host': s_host,
-                'port': Config.FileServer.port
+                'port': Config.FileServer.port,
+                'callback_type': callback_type.lower()
             }
             i.write_message(i.reply._msg)
 
@@ -145,7 +180,8 @@ class WebSockMainHandler(websocket.WebSocketHandler):
 class TriggerHandler(tornado.web.RequestHandler):
     def get(self):
         callback = self.get_argument("callback")
-        WebSockMainHandler.broad_cast(self.get_argument("file"), callback=callback)
+        callback_type = self.get_argument("callback_type")
+        WebSockMainHandler.broad_cast(self.get_argument("file"), callback_type=callback_type,callback=callback)
 
 
 

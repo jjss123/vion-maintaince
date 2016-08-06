@@ -51,18 +51,20 @@ class DeviceInfoInterface(models.Model):
 class DeviceInterface(models.Model):
     ''''''
 
-    dev_ip = models.Attribute(required=True)
-    timestamp = models.DateTimeField(required=True)
-    status = models.Attribute(required=True)
-    service_status = models.ListField(dict)
-    static_info = models.ListField(dict, required=False)
-    dynamic_info = models.ListField(DeviceInfoInterface, required=False)
-
-class DeviceInfoPeriodInterface(models.Model):
-    ''''''
-
     dev_id = models.Attribute(required=True, unique=True)
-    dynamic_period_info = models.ListField(DeviceInfoInterface)
+    ip = models.Attribute(required=True)
+    type = models.Attribute(required=True)
+    name = models.Attribute(required=True)
+    status = models.Attribute(required=True)
+    static_info = models.ListField(dict, required=False)
+    service_status = models.ListField(dict)
+
+class DeviceDynamicInterface(models.Model):
+    ''''''
+    dev_id = models.Atrribute(required=True)
+    timestamp = models.DateTimeField(required=True)
+
+    dynamic_info = models.ListField(DeviceInfoInterface, required=False)
 
 
 redis_init()

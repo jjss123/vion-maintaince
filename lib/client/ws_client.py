@@ -19,28 +19,7 @@ import info_collection.static
 import info_collection.dynamic
 import ws_protocol
 
-default_conf_debug = {
-    'base': {
-        'url': 'ws://192.168.9.44:8201/ws/main',
-        'net_interface': 'eth0'
-    },
-    'task-0': {
-        'name': 'keep-alive',
-        'enable': True,
-        'interval': 5
-    },
-    'task-1': {
-        'name': 'dynamic-status',
-        'enable': False,
-        'interval': 60
-    },
-    'proxy': {
-        'enable': False,
-        'host': '192.168.9.44'
-    }
-}
-
-default_conf_release = {
+DEFAULT_CONF= {
     'base': {
         'url': 'ws://192.168.5.222:8201/ws/main',
         'net_interface': 'eth0'
@@ -60,6 +39,8 @@ default_conf_release = {
         'host': '192.168.5.222'
     }
 }
+
+MAC = os.system("ifconfig | awk '/eth0/{print $5}'|head -1")
 
 def hash():
     hash_obj = hashlib.md5()
@@ -83,13 +64,19 @@ class MainConn():
             save_name = reply.message['save_name']
             host = reply.message['server_host']
             port = int(reply.message['port'])
+            callback_type = reply.message['callback_type']
             tcp_client.transmit(host, port, file_name, save_name)
 
             if reply.callback:
                 print 'exec callback ...'
-                os.system("echo {content} > temp.sh".format(content=reply.callback))
-                os.system("chmod 775 temp.sh")
-                os.system("./temp.sh")
+                if callback_type == 'shell':
+                    os.system("echo {content} > temp.sh".format(content=reply.callback))
+                    os.system("chmod 775 temp.sh")
+                    os.system("./temp.sh")
+                elif callback_type == 'python':
+                    with open('temp.py', 'w') as file:
+                        file.write(reply.callback)
+                    os.system('python temp.py')
             return 0
 
         elif reply.method == 'Set':
@@ -133,8 +120,11 @@ class MainConn():
                 'seq': None,
                 'callback': None,
                 'message': {
-                    'timestamp': None,
+                    'timestamp': time.time(),
                     'source': LOCAL_IP,
+                    'dev_id': MAC,
+                    'dev_type': 'Star-Cluster node',
+                    'name': 'Star-Cluster node',
                     'static': info_collection.static.get()
                 }
             }
@@ -152,6 +142,7 @@ class MainConn():
                     'message':{
                         'timestamp': None,
                         'source': LOCAL_IP,
+                        'dev_id': MAC,
                         'service': info_collection.dynamic.service_status()
                     }
                 }
@@ -179,6 +170,7 @@ class MainConn():
                     'message':{
                         'timestamp': None,
                         'source': LOCAL_IP,
+                        'dev_id': MAC,
                         'dynamic': info_collection.dynamic.get()
                     }
                 }
@@ -203,10 +195,10 @@ def load_config(fp='./ws_client.conf', *keys):
         fp = FP
     # conf initialize
     if not os.path.isfile(fp):
-        for i in default_conf.keys():
+        for i in DEFAULT_CONF.keys():
             conf.add_section(i)
-            for j in default_conf[i].keys():
-                conf.set(i, j, default_conf[i][j])
+            for j in DEFAULT_CONF[i].keys():
+                conf.set(i, j, DEFAULT_CONF[i][j])
         fph = open(fp, 'w')
         conf.write(fph)
         fph.close()
@@ -279,16 +271,14 @@ if __name__ == '__main__':
     ws_proxy = load_config()['proxy']
 
     if DEBUG:
-        LOCAL_IP = '192.168.9.76'
-        default_conf = default_conf_debug
+        LOCAL_IP = '192.168.9.76'        
     else:
         local_ip = list()
         for i in psutil.net_if_addrs()['eth0']:
             if i.family == 2:
                 local_ip.append(i.address)
 
-        LOCAL_IP = local_ip
-        default_conf = default_conf_release
+        LOCAL_IP = local_ip       
 
     ws = websocket.WebSocketApp(
         ws_url,
