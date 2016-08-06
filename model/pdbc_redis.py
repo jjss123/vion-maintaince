@@ -56,8 +56,8 @@ class DeviceInterface(models.Model):
     type = models.Attribute(required=True)
     name = models.Attribute(required=True)
     status = models.Attribute(required=True)
-    static_info = models.ListField(dict, required=False)
-    service_status = models.ListField(dict)
+    static_info = models.Attribute(required=False)
+    service_status = models.Attribute(required=False)
 
 class DeviceDynamicInterface(models.Model):
     ''''''

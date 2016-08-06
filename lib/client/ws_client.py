@@ -9,6 +9,7 @@ import os
 import sys
 import threading
 import time
+import commands
 
 import psutil
 import websocket
@@ -18,6 +19,8 @@ import tcp_client
 import info_collection.static
 import info_collection.dynamic
 import ws_protocol
+
+# this is a new one for testing
 
 DEFAULT_CONF= {
     'base': {
@@ -40,7 +43,7 @@ DEFAULT_CONF= {
     }
 }
 
-MAC = os.system("ifconfig | awk '/eth0/{print $5}'|head -1")
+MAC = str(commands.getoutput("ifconfig | awk '/eth0/{print $5}'|head -1"))
 
 def hash():
     hash_obj = hashlib.md5()
@@ -112,7 +115,6 @@ class MainConn():
 
         print 'connect'
         ws.send(msg_login._msg)
-        print msg_login._msg
         # static message
         msg_static_status = ws_protocol.WebsocketProtocol(
             {
@@ -259,7 +261,7 @@ def set_config(section, option, value, fp='./ws_client.conf'):
 if __name__ == '__main__':
     #websocket.enableTrace(True)
 
-    DEBUG = True
+    DEBUG = False
 
     if sys.argv.__len__() > 1:
         conf_fp = sys.argv[1]
@@ -278,7 +280,7 @@ if __name__ == '__main__':
             if i.family == 2:
                 local_ip.append(i.address)
 
-        LOCAL_IP = local_ip       
+        LOCAL_IP = str(local_ip)
 
     ws = websocket.WebSocketApp(
         ws_url,
@@ -287,4 +289,11 @@ if __name__ == '__main__':
         on_close = MainConn.on_close
         )
     ws.on_open = MainConn.on_open
-    ws.run_forever()
+    while True:
+        try:
+            ws.run_forever()
+            break
+        except:
+            print 'retrying ...'
+            time.sleep(1)
+            continue

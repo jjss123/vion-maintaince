@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f4b8ad7-869d-45f6-a817-234d8909b975" name="Default" comment="Default">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/tcp_client.py" afterPath="$PROJECT_DIR$/lib/client/tcp_client.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/ws_client.py" afterPath="$PROJECT_DIR$/lib/client/ws_client.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/pdbc_redis.py" afterPath="$PROJECT_DIR$/model/pdbc_redis.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/ws/WebSocketMainView.py" afterPath="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
     </list>
     <ignored path="vion-maintaince.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,27 +58,17 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="xml_resolve.py" pinned="false" current-in-tab="false">
+              <file leaf-file-name="xml_resolve.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/lib/xml_resolve.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="180">
-                      <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+                    <state relative-caret-position="195">
+                      <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="ws_client_update.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/lib/client/ws_client_update.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="90">
-                      <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="static.py" pinned="false" current-in-tab="true">
+              <file leaf-file-name="static.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/lib/client/info_collection/static.py">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="430">
@@ -105,8 +97,8 @@
               <file leaf-file-name="WebSocketMainView.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="148">
-                      <caret line="158" column="32" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
+                    <state relative-caret-position="210">
+                      <caret line="101" column="44" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
                       <folding>
                         <element signature="e#146#155#0" expanded="true" />
                       </folding>
@@ -117,18 +109,30 @@
               <file leaf-file-name="WebMainView.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="135">
-                      <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                    <state relative-caret-position="430">
+                      <caret line="68" column="52" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="ws_client.py" pinned="false" current-in-tab="false">
+              <file leaf-file-name="tcp_client.py" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/lib/client/tcp_client.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="130">
+                      <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+                      <folding>
+                        <element signature="e#147#160#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ws_client.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/lib/client/ws_client.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="430">
-                      <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
+                    <state relative-caret-position="249">
+                      <caret line="265" column="30" selection-start-line="265" selection-start-column="30" selection-end-line="265" selection-end-column="30" />
                       <folding>
                         <element signature="e#147#161#0" expanded="true" />
                       </folding>
@@ -136,11 +140,11 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="vmts.conf.json" pinned="false" current-in-tab="true">
+              <file leaf-file-name="vmts.conf.json" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/vmts.conf.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="105">
-                      <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+                    <state relative-caret-position="285">
+                      <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
                       <folding />
                     </state>
                   </provider>
@@ -175,8 +179,8 @@
           <file leaf-file-name="pdbc_redis.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="325">
-                  <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+                <state relative-caret-position="385">
+                  <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -288,7 +292,6 @@
         <option value="$PROJECT_DIR$/lib/info_collection/dynamic.py" />
         <option value="$PROJECT_DIR$/lib/info_collection/vt_service.py" />
         <option value="$PROJECT_DIR$/lib/info_collection/state_collect.py" />
-        <option value="$PROJECT_DIR$/lib/client/ws_client_update.py" />
         <option value="$PROJECT_DIR$/lib/client/info_collection/dynamic.py" />
         <option value="$PROJECT_DIR$/vmts.conf.json" />
         <option value="$PROJECT_DIR$/lib/client/ws_client.conf" />
@@ -296,10 +299,12 @@
         <option value="$PROJECT_DIR$/views/tcp/FileServer.py" />
         <option value="$PROJECT_DIR$/views/web/WebMainView.py" />
         <option value="$PROJECT_DIR$/lib/client/info_collection/static.py" />
-        <option value="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
-        <option value="$PROJECT_DIR$/lib/client/ws_client.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/model/pdbc_redis.py" />
+        <option value="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
+        <option value="$PROJECT_DIR$/lib/client/ws_client_update.py" />
+        <option value="$PROJECT_DIR$/lib/client/tcp_client.py" />
+        <option value="$PROJECT_DIR$/lib/client/ws_client.py" />
       </list>
     </option>
   </component>
@@ -310,8 +315,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-29" />
-    <option name="y" value="24" />
+    <option name="x" value="1879" />
+    <option name="y" value="29" />
     <option name="width" value="1925" />
     <option name="height" value="973" />
   </component>
@@ -888,7 +893,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-29" y="24" width="1925" height="973" extended-state="0" />
+    <frame x="1879" y="29" width="1925" height="973" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1370231" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1102,14 +1107,6 @@
     <entry file="file://$PROJECT_DIR$/lib/info_collection/procsInfo.py" />
     <entry file="file://$PROJECT_DIR$/lib/info_collection/vt_service.py" />
     <entry file="file://$PROJECT_DIR$/lib/info_collection/state_collect.py" />
-    <entry file="file://$PROJECT_DIR$/lib/client/ws_client_update.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/info_collection/state_collect.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
@@ -1118,26 +1115,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/xml_resolve.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/ws_protocol.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/tcp_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1200,46 +1181,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="158" column="32" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
-          <folding>
-            <element signature="e#146#155#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/ws_client.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/ws_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
-          <folding>
-            <element signature="e#147#161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vmts.conf.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1252,11 +1197,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vmts.conf.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+        <state relative-caret-position="385">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/ws_client_update.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="68" column="52" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="101" column="44" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
+          <folding>
+            <element signature="e#146#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/tcp_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <folding>
+            <element signature="e#147#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/xml_resolve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/ws_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="265" column="30" selection-start-line="265" selection-start-column="30" selection-end-line="265" selection-end-column="30" />
+          <folding>
+            <element signature="e#147#161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

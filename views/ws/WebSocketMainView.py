@@ -8,6 +8,7 @@ import sys
 import hashlib
 import time
 import datetime
+import json
 
 import tornado.web
 from tornado import websocket
@@ -77,12 +78,12 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             id = self.msg.message['dev_id']
             query = pdbc_redis.DeviceInterface.objects.filter(dev_id=id)
             if query.all().__len__() == 1:
-                query.status = '1'
-                query.service_status = self.msg.message['service']
+                query.first().status = '1'
+                query.first().service_status = json.dumps(self.msg.message['service'])
             else:
                 raise ValueError('cannot find this device.')
-            query.is_valid()
-            query.save()
+            query.first().is_valid()
+            query.first().save()
 
             self.reply.message = {'KeepAlive': 'success'}
             self.write_message(self.reply._msg)
@@ -92,11 +93,14 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             if self.msg.message.has_key('static'):
                 query = pdbc_redis.DeviceInterface.objects.filter(dev_id=id)
                 if query.all().__len__() == 1:
-                    query.ip = self.msg.message['source']
-                    query.type = self.msg.message['dev_type']
-                    query.name = self.msg.message['name']
-                    query.status = '1'
-                    query.static_info = self.msg.message['static']
+                    query.first().ip = self.msg.message['source']
+                    query.first().type = self.msg.message['dev_type']
+                    query.first().name = self.msg.message['name']
+                    query.first().status = '1'
+                    query.first().static_info = json.dumps(self.msg.message['static'])
+
+                    query.first().is_valid()
+                    query.first().save()
                 elif query.all().__len__() == 0:
                     query = pdbc_redis.DeviceInterface(
                         dev_id=id,
@@ -104,11 +108,11 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                         type = self.msg.message['dev_type'],
                         name = self.msg.message['name'],
                         status = '1',
-                        static_info = self.msg.message['static']
+                        static_info = json.dumps(self.msg.message['static'])
                     )
 
-                query.is_valid()
-                query.save()
+                    query.is_valid()
+                    query.save()
 
             elif self.msg.message.has_key('dynamic'):
                 query = pdbc_redis.DeviceDynamicInterface(
@@ -126,6 +130,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
 
         if self.msg.method == 'Login':
             WebSockMainHandler.login[self] = True
+            self.source = self.msg.message['source']
             if self.msg.message['proxy']:
                 self.proxy_host = self.msg.message['proxy_host']
             self.reply.method = 'Confirm'
@@ -162,6 +167,8 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 }
             )
             i.reply.seq = seq
+            if '{' in callback:
+                callback = callback.format(iplast=i.source.split('.')[-1], father='2')
             i.reply.callback = callback
             if i.proxy_host:
                 s_host = i.proxy_host

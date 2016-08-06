@@ -6,6 +6,7 @@
 
 import socket
 import struct
+import time
 
 HOST = '127.0.0.1'
 PORT = 8202
@@ -14,7 +15,15 @@ FILEINFO_SIZE = struct.calcsize('I')
 
 def transmit(host, port, file_name, save_name):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((host, port))
+    while True:
+        try:
+            s.connect((host, port))
+            break
+        except:
+            print 'retrying ...'
+            time.sleep(1)
+            continue
+    print 'connected.'
 
     s.sendall('%s\n'%file_name)    
     head = s.recv(FILEINFO_SIZE)
