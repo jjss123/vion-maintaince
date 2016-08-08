@@ -168,7 +168,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             )
             i.reply.seq = seq
             if '{' in callback:
-                callback = callback.format(iplast=i.source.split('.')[-1], father='2')
+                callback = callback.replace('{iplast}', str(i.source.split('.')[-1]))
             i.reply.callback = callback
             if i.proxy_host:
                 s_host = i.proxy_host

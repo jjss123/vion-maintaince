@@ -72,14 +72,11 @@ class MainConn():
 
             if reply.callback:
                 print 'exec callback ...'
-                if callback_type == 'shell':
-                    os.system("echo {content} > temp.sh".format(content=reply.callback))
-                    os.system("chmod 775 temp.sh")
-                    os.system("./temp.sh")
-                elif callback_type == 'python':
-                    with open('temp.py', 'w') as file:
-                        file.write(reply.callback)
-                    os.system('python temp.py')
+
+                os.system("echo {content} > temp.sh".format(content=reply.callback))
+                os.system("chmod 775 temp.sh")
+                os.system("./temp.sh")
+
             return 0
 
         elif reply.method == 'Set':
@@ -280,7 +277,7 @@ if __name__ == '__main__':
             if i.family == 2:
                 local_ip.append(i.address)
 
-        LOCAL_IP = str(local_ip)
+        LOCAL_IP = str(local_ip[0])
 
     ws = websocket.WebSocketApp(
         ws_url,
