@@ -178,7 +178,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 'file_name': '../../files/' + file_name,
                 'save_name': file_name,
                 'server_host': s_host,
-                'port': Config.FileServer.port,
+                'port': 18202,
                 'callback_type': callback_type.lower()
             }
             i.write_message(i.reply._msg)
