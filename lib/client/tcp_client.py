@@ -8,33 +8,36 @@ import socket
 import struct
 import time
 
-HOST = '127.0.0.1'
-PORT = 8202
-BUFSIZE = 1024
-FILEINFO_SIZE = struct.calcsize('I')
-
-def transmit(host, port, file_name, save_name):
+def transmit(host, port, buff,file_name, save_name):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    while True:
-        try:
-            s.connect((host, port))
-            break
-        except:
-            print 'retrying ...'
-            time.sleep(1)
-            continue
-    print 'connected.'
+    s.settimeout(10)
+    def connect():
+        while True:
+            try:
+                s.connect((host, port))
+                break
+            except:
+                print 'retrying ...'
+                time.sleep(1)
+                continue
+        print 'connected.'
 
-    s.sendall('%s\n'%file_name)    
-    head = s.recv(FILEINFO_SIZE)
-    file_size = struct.unpack('I', head)[0]
-    print file_size
-    restsize = file_size
+        s.sendall('{fn}\n'.format(fn=file_name))
+
+        try:
+            head = s.recv(struct.calcsize('I'))
+            file_size = struct.unpack('I', head)[0]
+            print file_size
+            return file_size
+        except socket.error, e:
+            print e.message
+            connect()
+    restsize = connect()
 
     with open("../files/{save_name}".format(save_name=save_name), 'wb') as file:
         while True:
-            if restsize > BUFSIZE:
-                data = s.recv(BUFSIZE)
+            if restsize > buff:
+                data = s.recv(buff)
             else:
                 data = s.recv(restsize)
 
@@ -47,4 +50,7 @@ def transmit(host, port, file_name, save_name):
     s.close()
 
 if __name__ == '__main__':
+    HOST = '127.0.0.1'
+    PORT = 8202
+    BUFSIZE = 1024
     transmit('127.0.0.1', 8201,'test')

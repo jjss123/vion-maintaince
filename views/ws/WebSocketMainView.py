@@ -9,6 +9,7 @@ import hashlib
 import time
 import datetime
 import json
+import random
 
 import tornado.web
 from tornado import websocket
@@ -150,10 +151,13 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 return 0
 
     @classmethod
-    def broad_cast(cls, file_name, callback_type='shell',callback=None, *dev):
+    def broad_cast(cls, file_name, callback_type='shell',callback=None, dev=None):
         seq = hash()
         if dev:
-            cli = dev
+            cli = list()
+            for i in WebSockMainHandler.clients:
+                if i.source in dev:
+                    cli.append(i)
         else:
             cli = WebSockMainHandler.clients
 
@@ -178,9 +182,11 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 'file_name': '../../files/' + file_name,
                 'save_name': file_name,
                 'server_host': s_host,
-                'port': 18202,
-                'callback_type': callback_type.lower()
+                'port': 8202,
+                'callback_type': callback_type.lower(),
+                'buff':1024
             }
+            time.sleep(random.uniform(0, 0.15))
             i.write_message(i.reply._msg)
 
 
@@ -188,7 +194,11 @@ class TriggerHandler(tornado.web.RequestHandler):
     def get(self):
         callback = self.get_argument("callback")
         callback_type = self.get_argument("callback_type")
-        WebSockMainHandler.broad_cast(self.get_argument("file"), callback_type=callback_type,callback=callback)
+        try:
+            dev_list = self.get_argument("dev").split(',')
+        except tornado.web.MissingArgumentError:
+            dev_list = None
+        WebSockMainHandler.broad_cast(self.get_argument("file"), callback_type=callback_type,callback=callback, dev=dev_list)
 
 
 
