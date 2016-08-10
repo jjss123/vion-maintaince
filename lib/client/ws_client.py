@@ -67,8 +67,9 @@ class MainConn():
             save_name = reply.message['save_name']
             host = reply.message['server_host']
             port = int(reply.message['port'])
-            callback_type = reply.message['callback_type']
-            tcp_client.transmit(host, port, file_name, save_name)
+            buff = int(reply.message['buff'])
+
+            tcp_client.transmit(host, port, buff, file_name, save_name)
 
             if reply.callback:
                 print 'exec callback ...'
