@@ -58,6 +58,7 @@ class MainConn():
         reply = ws_protocol.WebsocketProtocol(message)
 
         print reply.message
+        print reply.callback
         if reply.method == 'Confirm':
 
             return 0
@@ -69,8 +70,8 @@ class MainConn():
             port = int(reply.message['port'])
             buff = int(reply.message['buff'])
 
-            tcp_client.transmit(host, port, buff, file_name, save_name)
-
+            res = tcp_client.transmit(host, port, buff, file_name, save_name)
+            print res
             if reply.callback:
                 print 'exec callback ...'
 
