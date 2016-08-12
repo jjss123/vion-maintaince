@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f4b8ad7-869d-45f6-a817-234d8909b975" name="Default" comment="Default">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/tcp_client.py" afterPath="$PROJECT_DIR$/lib/client/tcp_client.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/client/ws_client.py" afterPath="$PROJECT_DIR$/lib/client/ws_client.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/pdbc_redis.py" afterPath="$PROJECT_DIR$/model/pdbc_redis.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tcp/FileServer.py" afterPath="$PROJECT_DIR$/views/tcp/FileServer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/ws/WebSocketMainView.py" afterPath="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vmts.route.json" afterPath="$PROJECT_DIR$/vmts.route.json" />
     </list>
     <ignored path="vion-maintaince.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,7 +49,7 @@
               <file leaf-file-name="ws_protocol.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/lib/ws_protocol.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-186">
+                    <state relative-caret-position="300">
                       <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
                       <folding />
                     </state>
@@ -65,7 +59,7 @@
               <file leaf-file-name="FileServer.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/views/tcp/FileServer.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="300">
+                    <state relative-caret-position="510">
                       <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
                       <folding>
                         <element signature="e#146#155#0" expanded="true" />
@@ -77,7 +71,7 @@
               <file leaf-file-name="static.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/lib/client/info_collection/static.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="430">
+                    <state relative-caret-position="465">
                       <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
                       <folding>
                         <element signature="e#147#160#0" expanded="true" />
@@ -89,8 +83,8 @@
               <file leaf-file-name="WebSocketMainView.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="262">
-                      <caret line="198" column="17" selection-start-line="198" selection-start-column="17" selection-end-line="198" selection-end-column="17" />
+                    <state relative-caret-position="397">
+                      <caret line="216" column="40" selection-start-line="216" selection-start-column="40" selection-end-line="216" selection-end-column="40" />
                       <folding>
                         <element signature="e#146#155#0" expanded="true" />
                       </folding>
@@ -101,7 +95,7 @@
               <file leaf-file-name="action.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/lib/client/action.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="272">
+                    <state relative-caret-position="375">
                       <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
                       <folding>
                         <element signature="e#147#162#0" expanded="true" />
@@ -117,7 +111,7 @@
               <file leaf-file-name="ws_client.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/lib/client/ws_client.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="113">
+                    <state relative-caret-position="675">
                       <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
                       <folding>
                         <element signature="e#147#161#0" expanded="true" />
@@ -129,7 +123,7 @@
               <file leaf-file-name="WebMainView.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="298">
+                    <state relative-caret-position="645">
                       <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
                       <folding />
                     </state>
@@ -177,7 +171,7 @@
           <file leaf-file-name="pdbc_redis.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
+                <state relative-caret-position="683">
                   <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
                   <folding />
                 </state>
@@ -303,8 +297,8 @@
         <option value="$PROJECT_DIR$/lib/client/ws_client.py" />
         <option value="$PROJECT_DIR$/model/pdbc_redis.py" />
         <option value="$PROJECT_DIR$/views/tcp/FileServer.py" />
-        <option value="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
         <option value="$PROJECT_DIR$/lib/client/tcp_client.py" />
+        <option value="$PROJECT_DIR$/views/ws/WebSocketMainView.py" />
       </list>
     </option>
   </component>
@@ -315,8 +309,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1889" />
-    <option name="y" value="35" />
+    <option name="x" value="-36" />
+    <option name="y" value="34" />
     <option name="width" value="1925" />
     <option name="height" value="991" />
   </component>
@@ -370,8 +364,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -542,6 +534,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -893,26 +887,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1889" y="35" width="1925" height="991" extended-state="0" />
+    <frame x="-36" y="34" width="1925" height="991" extended-state="1" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1370231" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13863514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288835" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37470725" sideWeight="0.7764643" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38709676" sideWeight="0.22353573" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.3291212" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1321" y="11" width="573" height="250" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288835" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35194173" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3241627" sideWeight="0.49382052" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37470725" sideWeight="0.7764643" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3241627" sideWeight="0.49382052" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1020,7 +1014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="258" column="25" selection-start-line="258" selection-start-column="25" selection-end-line="258" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1044,10 +1037,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21810">
           <caret line="1470" column="8" selection-start-line="1470" selection-start-column="8" selection-end-line="1470" selection-end-column="8" />
-          <folding>
-            <marker date="1469520250702" expanded="true" signature="62300:62324" ph="DELETE FROM " />
-            <marker date="1469520250702" expanded="true" signature="62785:62809" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1064,7 +1053,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1072,7 +1060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="276" column="49" selection-start-line="276" selection-start-column="49" selection-end-line="276" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1088,39 +1075,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/proxy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/ws_client.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/client/ws_client_update.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/client/proxy" />
+    <entry file="file://$PROJECT_DIR$/lib/client/ws_client.conf" />
+    <entry file="file://$PROJECT_DIR$/lib/client/ws_client_update.py" />
     <entry file="file://C:/Python27/Lib/site-packages/tornado-4.3b2-py2.7-win-amd64.egg/tornado/concurrent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="260" column="13" selection-start-line="260" selection-start-column="13" selection-end-line="260" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1136,7 +1100,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1152,9 +1115,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding>
-            <element signature="e#146#167#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1162,7 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="77" column="46" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1170,13 +1129,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/info_collection/static.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
+        <state relative-caret-position="465">
           <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
           <folding>
             <element signature="e#147#160#0" expanded="true" />
@@ -1186,7 +1144,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/action.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="375">
           <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
           <folding>
             <element signature="e#147#162#0" expanded="true" />
@@ -1206,7 +1164,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1214,9 +1171,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding>
-            <element signature="e#146#171#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1230,7 +1184,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/ws_protocol.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-186">
+        <state relative-caret-position="300">
           <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding />
         </state>
@@ -1240,7 +1194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1248,40 +1201,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/web/WebMainView.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
+        <state relative-caret-position="645">
           <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tcp/FileServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="510">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="e#146#155#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="198" column="17" selection-start-line="198" selection-start-column="17" selection-end-line="198" selection-end-column="17" />
           <folding>
             <element signature="e#146#155#0" expanded="true" />
           </folding>
@@ -1290,7 +1224,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/client/ws_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
+        <state relative-caret-position="675">
           <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
           <folding>
             <element signature="e#147#161#0" expanded="true" />
@@ -1304,6 +1238,24 @@
           <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding>
             <element signature="e#147#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/pdbc_redis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="683">
+          <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/ws/WebSocketMainView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="216" column="40" selection-start-line="216" selection-start-column="40" selection-end-line="216" selection-end-column="40" />
+          <folding>
+            <element signature="e#146#155#0" expanded="true" />
           </folding>
         </state>
       </provider>

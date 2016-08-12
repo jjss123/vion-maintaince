@@ -204,7 +204,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                 save_name = file_name[i.source] + '.lic'
             else:
                 fp = '../../files/' + file_name
-
+                save_name = file_name
             i.reply.message = {
                 'file_name': fp,
                 'save_name': save_name,
