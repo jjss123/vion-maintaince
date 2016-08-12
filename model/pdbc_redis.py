@@ -66,15 +66,20 @@ class DeviceDynamicInterface(models.Model):
 
     dynamic_info = models.ListField(DeviceInfoInterface, required=False)
 
+class DeviceSerialNumInterface(models.Model):
+    ''''''
+
+    ip = models.Attribute(required=False)
+    cpu_id = models.Attribute(required=False)
 
 redis_init()
 
 if __name__ == "__main__":
     import datetime
     import time
-    user = UserInterface(id=11, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
-    print user.is_valid()
-    print user.save()
+    #user = UserInterface(id=11, user='reimu', pwd='reimu', description='楽園の巫女', avatar='Reimu2.jpg')
+    #print user.is_valid()
+    #print user.save()
     #print UserInterface.objects.all()
     #b = DeviceInterface(dev_ip='192.168.5.109', timestamp=datetime.datetime.now(), status='1')
     #a = UserInterface.objects.filter(user='reimu')
@@ -88,3 +93,15 @@ if __name__ == "__main__":
     #for i in DeviceInterface.objects.all():
     #    print i
     #print time.time() - t1
+    #print DeviceSerialNumInterface.objects.all()
+
+    q = DeviceSerialNumInterface.objects.filter(ip='192.168.5.115')
+    print q
+    q = q.first()
+    q.update_attributes(cpu_id=u'5666')
+    print q.is_valid()
+    print q.save()
+
+
+    qq = DeviceSerialNumInterface.objects.filter(ip='192.168.5.115')
+    print qq.first()

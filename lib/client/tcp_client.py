@@ -23,7 +23,7 @@ def transmit(host, port, buff,file_name, save_name):
     print 'connected.'
 
     s.sendall('{fn}\n'.format(fn=file_name))
-
+    print 'send file: ', file_name
     try:
         head = s.recv(struct.calcsize('I'))
         file_size = struct.unpack('I', head)[0]
@@ -48,7 +48,7 @@ def transmit(host, port, buff,file_name, save_name):
         transmit(host, port, buff,file_name, save_name)
 
     s.close()
-    return True
+    return 'Success'
 
 if __name__ == '__main__':
     HOST = '127.0.0.1'

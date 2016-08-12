@@ -7,7 +7,8 @@
   },
   "ws_route": {
     "/ws/main":"WebSocketMainView.WebSockMainHandler",
-    "/ws/broadcast": "WebSocketMainView.TriggerHandler"
+    "/ws/broadcast": "WebSocketMainView.TriggerHandler",
+    "/ws/devserial": "WebSocketMainView.SerialNumHandler"
   },
 
 

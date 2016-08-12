@@ -19,6 +19,7 @@ import tcp_client
 import info_collection.static
 import info_collection.dynamic
 import ws_protocol
+from action import CommandAction
 
 # this is a new one for testing
 
@@ -58,7 +59,7 @@ class MainConn():
         reply = ws_protocol.WebsocketProtocol(message)
 
         print reply.message
-        print reply.callback
+        #print reply.callback
         if reply.method == 'Confirm':
 
             return 0
@@ -71,7 +72,7 @@ class MainConn():
             buff = int(reply.message['buff'])
 
             res = tcp_client.transmit(host, port, buff, file_name, save_name)
-            print res
+            print 'tcp_client.transmit call success/failed: ', res
             if reply.callback:
                 print 'exec callback ...'
 
@@ -86,6 +87,33 @@ class MainConn():
             # todo
             return 0
 
+        elif reply.method == 'Get':
+            if 'file' in str(reply.message['type']):
+                # todo
+                pass
+            elif True:
+                func_name = str(reply.message['func']).replace('"', '')
+                params = str(reply.message['params']).replace('"', '')
+                if params:
+                    res = eval('CommandAction.' + func_name)(params)
+                else:
+                    res = eval('CommandAction.' + func_name)()
+
+                msg = ws_protocol.WebsocketProtocol(
+                    {
+                        'method': 'Confirm',
+                        'seq': reply.seq,
+                        'callback': None,
+                        'message': {
+                            'type': 'get_result',
+                            'source': LOCAL_IP,
+                            'result': res
+                        }
+                    }
+                )
+
+                ws.send(msg._msg)
+                print 'send result ...'
 
 
     @staticmethod

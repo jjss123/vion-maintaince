@@ -57,7 +57,6 @@ class LargeFileSendHandler():
 
         print 'one client quit', self._address
         print 'only {clients} clients remain'.format(clients=str(LargeFileSendHandler.clients.__len__()))
-        print [ i._address for i in LargeFileSendHandler.clients]
 
 class FileSendServer(TCPServer):
 
