@@ -126,11 +126,11 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul id="device-list" class="list-unstyled">
-                                        <li><a class="hover-list" onclick="deviceList(this)">VMT Server<div class="div-pull-right "><span class="label label-success">Online</span></div></a></li>
-                                        <li><a class="hover-list" onclick="deviceList(this)">192.10.11.119</a><div class="div-pull-right"><span class="label label-success">Online</span></div></li>
-                                        <li><a class="hover-list" onclick="deviceList(this)">192.10.11.105</a><div class="div-pull-right"><span class="label label-success">Online</span></div></li>
-                                        <li><a class="hover-list" onclick="deviceList(this)">192.10.11.109</a><div class="div-pull-right"><span class="label label-danger">Offline</span></div></li>
-                                        <li><a class="hover-list" onclick="deviceList(this)">192.10.11.108</a><div class="div-pull-right"><span class="label label-danger">Offline</span></div></li>
+                                        <li onclick="deviceList(this)"><a class="hover-list" >VMT Server<div class="div-pull-right "><span class="label label-success">Online</span></div></a></li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.119</a><div class="div-pull-right"><span class="label label-success">Online</span></div></li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.105</a><div class="div-pull-right"><span class="label label-success">Online</span></div></li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.109</a><div class="div-pull-right"><span class="label label-danger">Offline</span></div></li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.108</a><div class="div-pull-right"><span class="label label-danger">Offline</span></div></li>
                                     </ul>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
     <script>
         function deviceList(it){            
             $("#device-list li").each(function(){$(this).removeClass("hover-list-active")});
-            $(it).parent().addClass("hover-list-active");
+            $(it).addClass("hover-list-active");
         }
     </script>
 {% end %}
