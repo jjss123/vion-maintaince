@@ -8,7 +8,8 @@
   "ws_route": {
     "/ws/main":"WebSocketMainView.WebSockMainHandler",
     "/ws/broadcast": "WebSocketMainView.TriggerHandler",
-    "/ws/devserial": "WebSocketMainView.SerialNumHandler"
+    "/ws/devserial": "WebSocketMainView.SerialNumHandler",
+    "/ws/browser": "WebSocketBrowserView.WebSockBrowserMainHandler"
   },
 
 
@@ -16,6 +17,7 @@
     "WebMainView"
   ],
   "ws_views":[
-    "WebSocketMainView"
+    "WebSocketMainView",
+    "WebSocketBrowserView"
   ]
 }

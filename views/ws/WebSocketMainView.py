@@ -18,7 +18,6 @@ from lib import ws_protocol
 from config import Config
 from model import pdbc_redis
 
-__all__ = ["WebSockMainHandler", "TriggerHandler"]
 
 def hash():
     hash_obj = hashlib.md5()
