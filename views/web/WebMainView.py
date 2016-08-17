@@ -9,6 +9,7 @@ import tornado.web
 sys.path.append('..\\..')
 from model import pdbc_mysql
 from model import pdbc_redis
+from config import Config
 
 __all__ = ["MainPageHandler", "TestSuitHandler", "LoginHandler", "LogoutHandler"]
 
@@ -29,7 +30,12 @@ class MainPageHandler(BaseHandler):
                 "dashboard.html",
                 User=user_res[0].user,
                 comment=user_res[0].description,
-                avatar=user_res[0].avatar
+                avatar=user_res[0].avatar,
+                ws_url="ws://{host}:{port}{route}".format(
+                    host=Config.host,
+                    port=Config.WebSocketServer.port,
+                    route=Route.ws_route
+                )
             )
         else:
             self.redirect("/login")

@@ -126,11 +126,19 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul id="device-list" class="list-unstyled">
-                                        <li onclick="deviceList(this)"><a class="hover-list" >VMT Server<div class="div-pull-right "><span class="label label-success">Online</span></div></a></li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.119</a><div class="div-pull-right"><span class="label label-success">Online</span></div></li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.105</a><div class="div-pull-right"><span class="label label-success">Online</span></div></li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.109</a><div class="div-pull-right"><span class="label label-danger">Offline</span></div></li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.108</a><div class="div-pull-right"><span class="label label-danger">Offline</span></div></li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">VMT Server<div class="div-pull-right "><span class="label label-success">Online</span></div></a></li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.119</a>
+                                            <div class="div-pull-right"><span class="label label-success">Online</span></div>
+                                        </li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.105</a>
+                                            <div class="div-pull-right"><span class="label label-success">Online</span></div>
+                                        </li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.109</a>
+                                            <div class="div-pull-right"><span class="label label-danger">Offline</span></div>
+                                        </li>
+                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.108</a>
+                                            <div class="div-pull-right"><span class="label label-danger">Offline</span></div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -152,7 +160,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Service</th>
-                                        <th>Status</th>                                        
+                                        <th>Status</th>
                                         <th>Test</th>
                                     </tr>
                                 </thead>
@@ -160,21 +168,21 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>Vion Maintaince</td>
-                                        <td><span class="label label-success">Running</span></td>                                        
+                                        <td><span class="label label-success">Running</span></td>
                                         <td><span class="label label-info">Ready</span></td>
-                                    </tr> 
+                                    </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Intelligent Traffic Management Platform 2.1</td>
                                         <td><span class="label label-success">Running</span></td>
-                                        <td><span class="label label-info">Ready</span></td>    
+                                        <td><span class="label label-info">Ready</span></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>Vion Data Receiver Service 2.6</td>
                                         <td><span class="label label-warning">Fatal</span></td>
-                                        <td><span class="label label-danger">Finished</span></td>    
-                                    </tr>                                  
+                                        <td><span class="label label-danger">Finished</span></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -183,18 +191,56 @@
             </div>
         </div>
     </div>
-    <!-- Main Wrapper -->  
+    <!-- Main Wrapper -->
 </div>
+<div id="ws" data-url="{{ ws_url }}"></div>
 <!-- Page Inner -->
-{% end %}
+{% end %} {% block AppendScript %}
+<script>
+    function deviceList(it) {
+        $("#device-list li").each(function() {
+            $(this).removeClass("hover-list-active")
+        });
+        $(it).addClass("hover-list-active");
+    }
+</script>
 
-{% block AppendScript %}
-    <script>
-        function deviceList(it){            
-            $("#device-list li").each(function(){$(this).removeClass("hover-list-active")});
-            $(it).addClass("hover-list-active");
+<script>
+    url = $('#ws').data('url')
+
+    var ws = function(url) {
+        if ("WebSocket" in window) {
+            var sock = new WebSocket(url);
+            var date = new Date();
+
+            sock.onopen = function() {
+                sock.send({
+                    "method": "Login",
+                    "timestamp": date.getTime(),
+                    "message": ""
+                });
+                console.log("connect ...");
+                sock.send({
+                    "method": "Get",
+                    "timestamp": date.getTime(),
+                    "message": {
+                        "type": "interface",
+                        "request":"dashboard::device_status"
+                    }
+                })
+            };
+            sock.onmessage = function(evt) {
+                var recv = evt.data;                
+                console.log(recv);
+                sock.send("KeepAlive");      
+                
+            };
+            sock.onclose = function() {
+                console.log('Connection is closed. Logout');
+            };
+        } else {
+            console.log("WebSocket NOT supported by your Browser!");
         }
-    </script>
-
-    <script src="{{ static_url("js/websock-common.js") }}"></script>
+    }
+</script>
 {% end %}
