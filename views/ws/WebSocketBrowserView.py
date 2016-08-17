@@ -15,6 +15,9 @@ class WebSockBrowserMainHandler(websocket.WebSocketHandler):
 
     clients = set()
 
+    def check_origin(self, origin):
+        return True
+
     def open(self):
         if self not in WebSockBrowserMainHandler.clients:
             WebSockBrowserMainHandler.clients.add(self)
