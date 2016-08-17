@@ -9,7 +9,7 @@ import tornado.web
 sys.path.append('..\\..')
 from model import pdbc_mysql
 from model import pdbc_redis
-from config import Config
+from config import Config, Route
 
 __all__ = ["MainPageHandler", "TestSuitHandler", "LoginHandler", "LogoutHandler"]
 
