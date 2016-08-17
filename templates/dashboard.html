@@ -232,7 +232,6 @@
             sock.onmessage = function(evt) {
                 var recv = evt.data;                
                 console.log(recv);
-                sock.send("KeepAlive");      
                 
             };
             sock.onclose = function() {
