@@ -196,50 +196,5 @@
 <div id="ws" data-url="{{ ws_url }}"></div>
 <!-- Page Inner -->
 {% end %} {% block AppendScript %}
-<script>
-    function deviceList(it) {
-        $("#device-list li").each(function() {
-            $(this).removeClass("hover-list-active")
-        });
-        $(it).addClass("hover-list-active");
-    }
-</script>
-
-<script>
-    url = $('#ws').data('url')
-
-    var ws = function(url) {
-        if ("WebSocket" in window) {
-            var sock = new WebSocket(url);
-            var date = new Date();
-
-            sock.onopen = function() {
-                sock.send({
-                    "method": "Login",
-                    "timestamp": date.getTime(),
-                    "message": ""
-                });
-                console.log("connect ...");
-                sock.send({
-                    "method": "Get",
-                    "timestamp": date.getTime(),
-                    "message": {
-                        "type": "interface",
-                        "request":"dashboard::device_status"
-                    }
-                })
-            };
-            sock.onmessage = function(evt) {
-                var recv = evt.data;                
-                console.log(recv);
-                
-            };
-            sock.onclose = function() {
-                console.log('Connection is closed. Logout');
-            };
-        } else {
-            console.log("WebSocket NOT supported by your Browser!");
-        }
-    }
-</script>
+<script src="{{ static_url("js/dashboard-ws.js"></script>
 {% end %}
