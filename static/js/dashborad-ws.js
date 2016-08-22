@@ -12,13 +12,27 @@ function deviceList(it) {
     $(it).addClass("hover-list-active");
 }
 
+$(document).ready(function () {
+    var timeout;
 
-$('#device-list').bind('data-refresh', function () {
-    $('#device-list').empty();
-    dev_lst = JSON.parse(localStorage['device_status'])
-    for (var i in dev_lst){
-
-    }
+    $("#device-search").keypress(function () {
+        if (timeout != "undefined") {
+            clearTimeout(timeout);
+        }
+    });
+    $("#device-search").keyup(function () {
+        t = setTimeout(function () {
+            var data = $('#device-search').val();
+            $('#device-search').trigger('data-filter', [data]);
+        }, 1000);
+        if (timeout > 2) {
+            clearTimeout(timeout);
+            t = setTimeout(function () {
+                var data = $('#device-search').val();
+                $('#device-search').trigger('data-filter', [data]);
+            }, 1000);
+        }
+    });
 });
 
 if (window.localStorage) {
@@ -26,7 +40,82 @@ if (window.localStorage) {
     console.log('localStorage NOT supported by your browser!')
 }
 
-url = $('#ws').data('url')
+$('#device-search').bind('data-filter', function (evt, data) {
+    var filter = data;
+    var dev_lst = JSON.parse(localStorage['device_status']);
+    var root = $('#device-list li');
+
+    $('#device-list').empty();
+    for (var i = 0; i < dev_lst.length; i++) {
+        if ((filter in dev_lst[j].name) || (filter in dev_lst.status)) {
+            $('#device-list').append(
+                '<li onclick="deviceList(this)" data-dev-status="' +
+                i.status + '" data-dev-name="' +
+                i.name + '"><a class="hover-list">' + i.name +
+                '</a><div class="div-pull-right"><span class="label label-' +
+                icon + '">' + i.status + '</span></div>'
+            );
+        }
+    }
+});
+
+$('#device-list').bind('data-refresh', function (evt) {
+    var icon = '';
+    var dev_lst = JSON.parse(localStorage['device_status']);
+    var nameset = new Array();
+    var data = $('device-search').val();
+
+    if (data) {
+        r = $('#device-list li')
+        for (var j = 0; j < r.length; j++) {
+            nameset[r[j].getAttribute('data-dev-name')] = r[j];
+        };
+        for (var i in dev_lst) {
+            if ((data in i.name) && (!(data in i.status))) {
+                ('Online' in i.status) ? icon = "success" : icon = "danger";
+                ('Online' in i.status) ? label = "danger" : label = "success";
+
+                if (!(!!nameset[i.name])) {
+                    node = nameset[i.name];
+                    node.setAttribute('data-dev-status', i.status);
+                    spanLabel = $(node).children('span');
+                    if (!(icon in spanLabel.attr('class'))) {
+                        spanLabel.removeClass('label-' + label);
+                        spanLabel.addClass('label-' + icon);
+                    }
+                    spanLabel.html(i.status);
+                } else {
+                    $('#device-list').append(
+                        '<li onclick="deviceList(this)" data-dev-status="' +
+                        i.status + '" data-dev-name="' +
+                        i.name + '"><a class="hover-list">' + i.name +
+                        '</a><div class="div-pull-right"><span class="label label-' +
+                        icon + '">' + i.status + '</span></div>'
+                    );
+                }
+            } else if (!(data in i.name) && !(data in i.status)) {
+                $('#device-list').empty();
+            } else {
+                console.log('Query by status NOT supported!');
+            }
+        };
+    } else {
+        $('#device-list').empty();
+        for (var i in dev_lst) {
+            ('Online' in i.status) ? icon = "success" : icon = "danger";
+
+            $('#device-list').append(
+                '<li onclick="deviceList(this)" data-dev-status="' +
+                i.status + '" data-dev-name="' +
+                i.name + '"><a class="hover-list">' + i.name +
+                '</a><div class="div-pull-right"><span class="label label-' +
+                icon + '">' + i.status + '</span></div>'
+            );
+        };
+    };
+});
+
+var url = $('#ws').data('url')
 
 var ws = function (url) {
     if ("WebSocket" in window) {

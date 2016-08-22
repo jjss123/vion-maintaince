@@ -121,11 +121,12 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="stats-info">
-                                <div class="panel-heading">
+                                <div class="panel-heading" style="display:inline;">
                                     <h4 class="panel-title">Device List</h4>
+                                    <input type="text" class="device-search" id="device-search">
                                 </div>
                                 <div class="panel-body">
-                                    <ul id="device-list" class="list-unstyled">
+                                    <ul id="device-list" class="list-unstyled device-list-ul">
                                         <li onclick="deviceList(this)"><a class="hover-list">VMT Server<div class="div-pull-right "><span class="label label-success">Online</span></div></a></li>
                                         <li onclick="deviceList(this)"><a class="hover-list">192.10.11.119</a>
                                             <div class="div-pull-right"><span class="label label-success">Online</span></div>

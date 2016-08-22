@@ -28,6 +28,15 @@ a.hover-list{
     
 }
 
+.device-list-ul{
+    overflow-y: scroll;
+}
+
+.device-search{
+    float: right;
+    width: 120px;
+}
+
 li.hover-list-active{
     background-color: rgba(229, 229, 229, 0.4);
     border: 1px solid rgba(229, 229, 229, 0.6);

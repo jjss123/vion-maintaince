@@ -1,0 +1,35 @@
+/*
+* @Author: hylide
+* @Date:   2016-08-18 17:25:34
+* @Last Modified by:   hylide
+* @Last Modified time: 2016-08-18 17:26:27
+*/
+ #main-body {
+        width:200px;
+        height:200px;
+        overflow:auto;
+    }
+    #main-body div {
+        width:400px;
+        height:400px;
+    }    #main-body::-webkit-scrollbar {
+        width:10px;
+        height:10px;
+    }
+    #main-body::-webkit-scrollbar-button    {
+        background-color:#FF7677;
+    }
+    #main-body::-webkit-scrollbar-track     {
+        background:#FF66D5;
+    }
+
+    #main-body::-webkit-scrollbar-thumb{
+        background:#FFA711;
+        border-radius:4px;
+    }
+    #main-body::-webkit-scrollbar-corner {
+        background:#82AFFF;
+    }
+    #main-body::-webkit-scrollbar-resizer  {
+        background:#FF0BEE;
+    }
