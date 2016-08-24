@@ -44,19 +44,40 @@ $('#device-search').bind('data-filter', function (evt, data) {
     var filter = data;
     var dev_lst = JSON.parse(localStorage['device_status']);
     var root = $('#device-list li');
+    var count = 0;
 
     $('#device-list').empty();
-    for (var i = 0; i < dev_lst.length; i++) {
-        if ((filter in dev_lst[j].name) || (filter in dev_lst.status)) {
-            $('#device-list').append(
-                '<li onclick="deviceList(this)" data-dev-status="' +
-                i.status + '" data-dev-name="' +
-                i.name + '"><a class="hover-list">' + i.name +
-                '</a><div class="div-pull-right"><span class="label label-' +
-                icon + '">' + i.status + '</span></div>'
-            );
+    if (filter) {        
+        for (var i = 0; i < dev_lst.length; i++) {
+            if ((filter in dev_lst[j].name) || (filter in dev_lst.status)) {
+                $('#device-list').append(
+                    '<li onclick="deviceList(this)" data-dev-status="' +
+                    i.status + '" data-dev-name="' +
+                    i.name + '"><a class="hover-list">' + i.name +
+                    '</a><div class="div-pull-right"><span class="label label-' +
+                    icon + '">' + i.status + '</span></div>'
+                );
+                count += 1;
+            }
+        }
+
+        if (!count){
+            console.log('no result after screening ...');
+            $('#device-list').append('<p>no result after screening</p>');
+        }
+
+    } else {
+        for (var i = 0; i < dev_lst.length; i++){
+             $('#device-list').append(
+                    '<li onclick="deviceList(this)" data-dev-status="' +
+                    i.status + '" data-dev-name="' +
+                    i.name + '"><a class="hover-list">' + i.name +
+                    '</a><div class="div-pull-right"><span class="label label-' +
+                    icon + '">' + i.status + '</span></div>'
+                );
         }
     }
+
 });
 
 $('#device-list').bind('data-refresh', function (evt) {
@@ -123,7 +144,7 @@ var ws = function (url) {
         var date = new Date();
 
         sock.onopen = function () {
-            sock.send(JSON.stringfy({
+            sock.send(JSON.stringify({
                 "method": "Login",
                 "timestamp": date.getTime(),
                 "message": {
