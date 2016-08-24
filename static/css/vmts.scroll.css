@@ -4,29 +4,36 @@
 * @Last Modified by:   hylide
 * @Last Modified time: 2016-08-18 17:26:27
 */
- #main-body {
-        overflow:auto;
-    }
-    #main-body div {
 
-    }    #main-body::-webkit-scrollbar {
-        width:10px;
-        height:10px;
-    }
-    #main-body::-webkit-scrollbar-button    {
-        background-color:rgba(255,255,255,0.7);
-    }
-    #main-body::-webkit-scrollbar-track     {
-        background:#FFFFFF;
-    }
+#main-body {
+    overflow: auto;
+}
 
-    #main-body::-webkit-scrollbar-thumb{
-        background:rgb(34,186,160);
-        border-radius:4px;
-    }
-    #main-body::-webkit-scrollbar-corner {
-        background:#82AFFF;
-    }
-    #main-body::-webkit-scrollbar-resizer  {
-        background:rgba(255,255,255,0.7);
-    }
+#main-body div {}
+
+#main-body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+#main-body::-webkit-scrollbar-button {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#main-body::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+#main-body::-webkit-scrollbar-thumb {
+    background: rgb(34, 186, 160);
+    border-radius: 4px;
+}
+
+#main-body::-webkit-scrollbar-corner {
+    background: #82AFFF;
+}
+
+#main-body::-webkit-scrollbar-resizer {
+    background: rgba(255, 255, 255, 0.7);
+}
+

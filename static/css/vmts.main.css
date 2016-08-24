@@ -29,8 +29,37 @@ a.hover-list{
 }
 
 .device-list-ul{
-    overflow-y: scroll;
+    overflow-y: auto;
 }
+
+.device-list-ul div {}
+
+.device-list-ul::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.device-list-ul::-webkit-scrollbar-button {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.device-list-ul::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+.device-list-ul::-webkit-scrollbar-thumb {
+    background: rgb(34, 186, 160);
+    border-radius: 4px;
+}
+
+.device-list-ul::-webkit-scrollbar-corner {
+    background: #82AFFF;
+}
+
+.device-list-ul::-webkit-scrollbar-resizer {
+    background: rgba(255, 255, 255, 0.7);
+}
+
 
 .device-search{
     float: right;
