@@ -47,12 +47,11 @@ $('#device-search').bind('data-filter', function (evt, data) {
     var count = 0;
     var icon = '';
 
-    ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
-
     $('#device-list').empty();
-    if (filter) {        
+    if (filter) {
         for (var i = 0; i < dev_lst.length; i++) {
             if ((filter in dev_lst[i].name) || (filter in dev_lst[i].status)) {
+                ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
                 $('#device-list').append(
                     '<li onclick="deviceList(this)" data-dev-status="' +
                     dev_lst[i].status + '" data-dev-name="' +
@@ -64,20 +63,21 @@ $('#device-search').bind('data-filter', function (evt, data) {
             }
         }
 
-        if (!count){
+        if (!count) {
             console.log('no result after screening ...');
             $('#device-list').append('<p>no result after screening</p>');
         }
 
     } else {
-        for (var i = 0; i < dev_lst.length; i++){
-             $('#device-list').append(
-                    '<li onclick="deviceList(this)" data-dev-status="' +
-                    dev_lst[i].status + '" data-dev-name="' +
-                    dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
-                    '</a><div class="div-pull-right"><span class="label label-' +
-                    icon + '">' + dev_lst[i].status + '</span></div>'
-                );
+        for (var i = 0; i < dev_lst.length; i++) {
+            ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
+            $('#device-list').append(
+                '<li onclick="deviceList(this)" data-dev-status="' +
+                dev_lst[i].status + '" data-dev-name="' +
+                dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
+                '</a><div class="div-pull-right"><span class="label label-' +
+                icon + '">' + dev_lst[i].status + '</span></div>'
+            );
         }
     }
 
@@ -94,7 +94,7 @@ $('#device-list').bind('data-refresh', function (evt) {
         for (var j = 0; j < r.length; j++) {
             nameset[r[j].getAttribute('data-dev-name')] = r[j];
         };
-        for (var i=0;i<dev_lst.length;i++) {
+        for (var i = 0; i < dev_lst.length; i++) {
             if ((data in dev_lst[i].name) && (!(data in dev_lst[i].status))) {
                 ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
                 ('Online' in dev_lst[i].status) ? label = "danger" : label = "success";
@@ -125,7 +125,7 @@ $('#device-list').bind('data-refresh', function (evt) {
         };
     } else {
         $('#device-list').empty();
-        for (var i=0;i<dev_lst.length;i++) {
+        for (var i = 0; i < dev_lst.length; i++) {
             ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
 
             $('#device-list').append(
