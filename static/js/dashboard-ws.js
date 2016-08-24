@@ -50,8 +50,8 @@ $('#device-search').bind('data-filter', function (evt, data) {
     $('#device-list').empty();
     if (filter) {
         for (var i = 0; i < dev_lst.length; i++) {
-            if ((filter in dev_lst[i].name) || (filter in dev_lst[i].status)) {
-                ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
+            if ((dev_lst[i].name.indexOf(filter)) || (dev_lst[i].status.indexOf(filter))) {
+                (dev_lst[i].status.indexOf('Online')) ? icon = "success" : icon = "danger";
                 $('#device-list').append(
                     '<li onclick="deviceList(this)" data-dev-status="' +
                     dev_lst[i].status + '" data-dev-name="' +
@@ -70,7 +70,7 @@ $('#device-search').bind('data-filter', function (evt, data) {
 
     } else {
         for (var i = 0; i < dev_lst.length; i++) {
-            ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
+            (dev_lst[i].status.indexOf('Online')) ? icon = "success" : icon = "danger";
             $('#device-list').append(
                 '<li onclick="deviceList(this)" data-dev-status="' +
                 dev_lst[i].status + '" data-dev-name="' +
@@ -95,15 +95,15 @@ $('#device-list').bind('data-refresh', function (evt) {
             nameset[r[j].getAttribute('data-dev-name')] = r[j];
         };
         for (var i = 0; i < dev_lst.length; i++) {
-            if ((data in dev_lst[i].name) && (!(data in dev_lst[i].status))) {
-                ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
-                ('Online' in dev_lst[i].status) ? label = "danger" : label = "success";
+            if ((dev_lst[i].name.indexOf(data)) && (!(dev_lst[i].status.indexOf(data)))) {
+                (dev_lst[i].status.indexOf('Online')) ? icon = "success" : icon = "danger";
+                (dev_lst[i].status.indexOf('Online')) ? label = "danger" : label = "success";
 
                 if (!(!!nameset[dev_lst[i].name])) {
                     node = nameset[dev_lst[i].name];
                     node.setAttribute('data-dev-status', dev_lst[i].status);
                     spanLabel = $(node).children('span');
-                    if (!(icon in spanLabel.attr('class'))) {
+                    if (!(spanLabel.attr('class').indexOf(icon))) {
                         spanLabel.removeClass('label-' + label);
                         spanLabel.addClass('label-' + icon);
                     }
@@ -117,7 +117,7 @@ $('#device-list').bind('data-refresh', function (evt) {
                         icon + '">' + dev_lst[i].status + '</span></div>'
                     );
                 }
-            } else if (!(data in dev_lst[i].name) && !(data in dev_lst[i].status)) {
+            } else if (!(dev_lst[i].name.indexOf(data)) && !(dev_lst[i].status.indexOf(data))) {
                 $('#device-list').empty();
             } else {
                 console.log('Query by status NOT supported!');
@@ -126,7 +126,7 @@ $('#device-list').bind('data-refresh', function (evt) {
     } else {
         $('#device-list').empty();
         for (var i = 0; i < dev_lst.length; i++) {
-            ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
+            (dev_lst[i].status.indexOf('Online')) ? icon = "success" : icon = "danger";
 
             $('#device-list').append(
                 '<li onclick="deviceList(this)" data-dev-status="' +
