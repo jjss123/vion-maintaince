@@ -93,7 +93,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="panel panel-white" style="height:100%">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8" id="Server-load">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Server Load</h4>
                                 <div class="panel-control">
@@ -121,25 +121,13 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="stats-info">
-                                <div class="panel-heading" style="display:inline;">
+                                <div class="panel-heading">
                                     <h4 class="panel-title">Device List</h4>
                                     <input type="text" class="device-search" id="device-search">
+                                    <span style="float:right;margin-right:10px;">filter: </span>
                                 </div>
-                                <div class="panel-body">
-                                    <ul id="device-list" class="list-unstyled device-list-ul">
-                                        <li onclick="deviceList(this)"><a class="hover-list">VMT Server<div class="div-pull-right "><span class="label label-success">Online</span></div></a></li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.119</a>
-                                            <div class="div-pull-right"><span class="label label-success">Online</span></div>
-                                        </li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.105</a>
-                                            <div class="div-pull-right"><span class="label label-success">Online</span></div>
-                                        </li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.109</a>
-                                            <div class="div-pull-right"><span class="label label-danger">Offline</span></div>
-                                        </li>
-                                        <li onclick="deviceList(this)"><a class="hover-list">192.10.11.108</a>
-                                            <div class="div-pull-right"><span class="label label-danger">Offline</span></div>
-                                        </li>
+                                <div class="panel-body" id="dev-panel-body">
+                                    <ul id="device-list" class="list-unstyled device-list-ul">                                       
                                     </ul>
                                 </div>
                             </div>

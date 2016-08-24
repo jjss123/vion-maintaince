@@ -5,6 +5,22 @@
 * @Last Modified time: 2016-08-08 09:58:59
 */
 
+function devLst_color_style(s, l) {
+    var res = '';
+    (l.indexOf(s) >= 0) ? res = "success" : res = "danger";
+    return res
+}
+
+function devLst_append(status, name, icon) {
+    $('#device-list').append(
+        '<li onclick="deviceList(this)" data-dev-status="' +
+        status + '" data-dev-name="' +
+        name + '"><a class="hover-list">' + name +
+        '</a><div class="div-pull-right"><span class="label label-' +
+        icon + '">' + status + '</span></div>'
+    );
+}
+
 function deviceList(it) {
     $("#device-list li").each(function () {
         $(this).removeClass("hover-list-active")
@@ -12,8 +28,92 @@ function deviceList(it) {
     $(it).addClass("hover-list-active");
 }
 
+$('#device-search').bind('data-filter', function (evt, data) {
+    var filter = data;
+    var dev_lst = JSON.parse(localStorage['device_status']);
+    var root = $('#device-list li');
+    var count = 0;
+    var icon = '';
+
+    $('#device-list').empty();
+    if (filter) {
+        for (var i = 0; i < dev_lst.length; i++) {
+            if (((dev_lst[i].name.indexOf(filter)) || (dev_lst[i].status.indexOf(filter))) >= 0) {
+                icon = devLst_color_style('Online', dev_lst[i].status);
+                devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+                count += 1;
+            }
+        }
+
+        if (!count) {
+            console.log('no result after screening ...');
+            $('#device-list').append('<p>no result after screening</p>');
+        }
+
+    } else {
+        for (var i = 0; i < dev_lst.length; i++) {
+            icon = devLst_color_style('Online', dev_lst[i].status);
+            devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+        }
+    }
+
+});
+
+$('#device-list').bind('data-refresh', function (evt) {
+    var icon = '';
+    var dev_lst = JSON.parse(localStorage['device_status']);
+    var nameset = new Array();
+    var data = $('device-search').val();
+
+    if (data) {
+        var r = $('#device-list li');
+        for (var j = 0; j < r.length; j++) {
+            nameset[r[j].getAttribute('data-dev-name')] = r[j];
+        };
+        for (var i = 0; i < dev_lst.length; i++) {
+            if (((dev_lst[i].name.indexOf(data)) && (!(dev_lst[i].status.indexOf(data)))) >= 0) {
+
+                icon = devLst_color_style('Online', dev_lst[i].status);
+                (dev_lst[i].status.indexOf('Online') >= 0) ? label = "danger" : label = "success";
+
+                if (!(!!nameset[dev_lst[i].name])) {
+                    node = nameset[dev_lst[i].name];
+                    node.setAttribute('data-dev-status', dev_lst[i].status);
+                    spanLabel = $(node).children('span');
+                    if (!(spanLabel.attr('class').indexOf(icon))) {
+                        spanLabel.removeClass('label-' + label);
+                        spanLabel.addClass('label-' + icon);
+                    }
+                    spanLabel.html(dev_lst[i].status);
+                } else {
+                    devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+                }
+            } else if ((!(dev_lst[i].name.indexOf(data)) && !(dev_lst[i].status.indexOf(data))) >= 0) {
+                $('#device-list').empty();
+            } else {
+                console.log('Query by status NOT supported!');
+            }
+        };
+    } else {
+        $('#device-list').empty();
+        for (var i = 0; i < dev_lst.length; i++) {
+            icon = devLst_color_style('Online', dev_lst[i].status);
+
+            devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+        };
+    };
+});
+
 $(document).ready(function () {
+
+    if (window.localStorage) {
+    } else {
+        console.log('localStorage NOT supported by your browser!')
+    }
+
     var timeout;
+
+    $('#device-search').trigger('data-filter', ['']);
 
     $("#device-search").keypress(function () {
         if (timeout != "undefined") {
@@ -33,110 +133,6 @@ $(document).ready(function () {
             }, 1000);
         }
     });
-});
-
-if (window.localStorage) {
-} else {
-    console.log('localStorage NOT supported by your browser!')
-}
-
-$('#device-search').bind('data-filter', function (evt, data) {
-    var filter = data;
-    var dev_lst = JSON.parse(localStorage['device_status']);
-    var root = $('#device-list li');
-    var count = 0;
-    var icon = '';
-
-    $('#device-list').empty();
-    if (filter) {
-        for (var i = 0; i < dev_lst.length; i++) {
-            if (((dev_lst[i].name.indexOf(filter)) || (dev_lst[i].status.indexOf(filter))) >= 0) {
-                (dev_lst[i].status.indexOf('Online') >=0) ? icon = "success" : icon = "danger";
-                $('#device-list').append(
-                    '<li onclick="deviceList(this)" data-dev-status="' +
-                    dev_lst[i].status + '" data-dev-name="' +
-                    dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
-                    '</a><div class="div-pull-right"><span class="label label-' +
-                    icon + '">' + dev_lst[i].status + '</span></div>'
-                );
-                count += 1;
-            }
-        }
-
-        if (!count) {
-            console.log('no result after screening ...');
-            $('#device-list').append('<p>no result after screening</p>');
-        }
-
-    } else {
-        for (var i = 0; i < dev_lst.length; i++) {
-            (dev_lst[i].status.indexOf('Online') >=0) ? icon = "success" : icon = "danger";
-            $('#device-list').append(
-                '<li onclick="deviceList(this)" data-dev-status="' +
-                dev_lst[i].status + '" data-dev-name="' +
-                dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
-                '</a><div class="div-pull-right"><span class="label label-' +
-                icon + '">' + dev_lst[i].status + '</span></div>'
-            );
-        }
-    }
-
-});
-
-$('#device-list').bind('data-refresh', function (evt) {
-    var icon = '';
-    var dev_lst = JSON.parse(localStorage['device_status']);
-    var nameset = new Array();
-    var data = $('device-search').val();
-
-    if (data) {
-        var r = $('#device-list li');
-        for (var j = 0; j < r.length; j++) {
-            nameset[r[j].getAttribute('data-dev-name')] = r[j];
-        };
-        for (var i = 0; i < dev_lst.length; i++) {
-            if (((dev_lst[i].name.indexOf(data)) && (!(dev_lst[i].status.indexOf(data)))) >= 0) {
-                (dev_lst[i].status.indexOf('Online') >=0) ? icon = "success" : icon = "danger";
-                (dev_lst[i].status.indexOf('Online') >=0) ? label = "danger" : label = "success";
-
-                if (!(!!nameset[dev_lst[i].name])) {
-                    node = nameset[dev_lst[i].name];
-                    node.setAttribute('data-dev-status', dev_lst[i].status);
-                    spanLabel = $(node).children('span');
-                    if (!(spanLabel.attr('class').indexOf(icon))) {
-                        spanLabel.removeClass('label-' + label);
-                        spanLabel.addClass('label-' + icon);
-                    }
-                    spanLabel.html(dev_lst[i].status);
-                } else {
-                    $('#device-list').append(
-                        '<li onclick="deviceList(this)" data-dev-status="' +
-                        dev_lst[i].status + '" data-dev-name="' +
-                        dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
-                        '</a><div class="div-pull-right"><span class="label label-' +
-                        icon + '">' + dev_lst[i].status + '</span></div>'
-                    );
-                }
-            } else if ((!(dev_lst[i].name.indexOf(data)) && !(dev_lst[i].status.indexOf(data))) >= 0) {
-                $('#device-list').empty();
-            } else {
-                console.log('Query by status NOT supported!');
-            }
-        };
-    } else {
-        $('#device-list').empty();
-        for (var i = 0; i < dev_lst.length; i++) {
-            (dev_lst[i].status.indexOf('Online') >=0) ? icon = "success" : icon = "danger";
-
-            $('#device-list').append(
-                '<li onclick="deviceList(this)" data-dev-status="' +
-                dev_lst[i].status + '" data-dev-name="' +
-                dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
-                '</a><div class="div-pull-right"><span class="label label-' +
-                icon + '">' + dev_lst[i].status + '</span></div>'
-            );
-        };
-    };
 });
 
 var url = $('#ws').data('url')
