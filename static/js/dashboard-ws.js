@@ -38,7 +38,7 @@ $('#device-search').bind('data-filter', function (evt, data) {
     $('#device-list').empty();
     if (filter) {
         for (var i = 0; i < dev_lst.length; i++) {
-            if (((dev_lst[i].name.indexOf(filter)) || (dev_lst[i].status.indexOf(filter))) >= 0) {
+            if ((dev_lst[i].name.indexOf(filter)) >= 0 || (dev_lst[i].status.indexOf(filter) >= 0)) {
                 icon = devLst_color_style('Online', dev_lst[i].status);
                 devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
                 count += 1;
@@ -71,7 +71,7 @@ $('#device-list').bind('data-refresh', function (evt) {
             nameset[r[j].getAttribute('data-dev-name')] = r[j];
         };
         for (var i = 0; i < dev_lst.length; i++) {
-            if (((dev_lst[i].name.indexOf(data)) && (!(dev_lst[i].status.indexOf(data)))) >= 0) {
+            if ((dev_lst[i].name.indexOf(data) >= 0) && (dev_lst[i].status.indexOf(data) < 0)) {
 
                 icon = devLst_color_style('Online', dev_lst[i].status);
                 (dev_lst[i].status.indexOf('Online') >= 0) ? label = "danger" : label = "success";
@@ -88,7 +88,7 @@ $('#device-list').bind('data-refresh', function (evt) {
                 } else {
                     devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
                 }
-            } else if ((!(dev_lst[i].name.indexOf(data)) && !(dev_lst[i].status.indexOf(data))) >= 0) {
+            } else if ((dev_lst[i].name.indexOf(data) < 0) && (dev_lst[i].status.indexOf(data) < 0)) {
                 $('#device-list').empty();
             } else {
                 console.log('Query by status NOT supported!');
