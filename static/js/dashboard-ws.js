@@ -45,17 +45,20 @@ $('#device-search').bind('data-filter', function (evt, data) {
     var dev_lst = JSON.parse(localStorage['device_status']);
     var root = $('#device-list li');
     var count = 0;
+    var icon = '';
+
+    ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
 
     $('#device-list').empty();
     if (filter) {        
         for (var i = 0; i < dev_lst.length; i++) {
-            if ((filter in dev_lst[j].name) || (filter in dev_lst.status)) {
+            if ((filter in dev_lst[i].name) || (filter in dev_lst[i].status)) {
                 $('#device-list').append(
                     '<li onclick="deviceList(this)" data-dev-status="' +
-                    i.status + '" data-dev-name="' +
-                    i.name + '"><a class="hover-list">' + i.name +
+                    dev_lst[i].status + '" data-dev-name="' +
+                    dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
                     '</a><div class="div-pull-right"><span class="label label-' +
-                    icon + '">' + i.status + '</span></div>'
+                    icon + '">' + dev_lst[i].status + '</span></div>'
                 );
                 count += 1;
             }
@@ -70,10 +73,10 @@ $('#device-search').bind('data-filter', function (evt, data) {
         for (var i = 0; i < dev_lst.length; i++){
              $('#device-list').append(
                     '<li onclick="deviceList(this)" data-dev-status="' +
-                    i.status + '" data-dev-name="' +
-                    i.name + '"><a class="hover-list">' + i.name +
+                    dev_lst[i].status + '" data-dev-name="' +
+                    dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
                     '</a><div class="div-pull-right"><span class="label label-' +
-                    icon + '">' + i.status + '</span></div>'
+                    icon + '">' + dev_lst[i].status + '</span></div>'
                 );
         }
     }
@@ -87,34 +90,34 @@ $('#device-list').bind('data-refresh', function (evt) {
     var data = $('device-search').val();
 
     if (data) {
-        r = $('#device-list li')
+        var r = $('#device-list li');
         for (var j = 0; j < r.length; j++) {
             nameset[r[j].getAttribute('data-dev-name')] = r[j];
         };
-        for (var i in dev_lst) {
-            if ((data in i.name) && (!(data in i.status))) {
-                ('Online' in i.status) ? icon = "success" : icon = "danger";
-                ('Online' in i.status) ? label = "danger" : label = "success";
+        for (var i=0;i<dev_lst.length;i++) {
+            if ((data in dev_lst[i].name) && (!(data in dev_lst[i].status))) {
+                ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
+                ('Online' in dev_lst[i].status) ? label = "danger" : label = "success";
 
-                if (!(!!nameset[i.name])) {
-                    node = nameset[i.name];
-                    node.setAttribute('data-dev-status', i.status);
+                if (!(!!nameset[dev_lst[i].name])) {
+                    node = nameset[dev_lst[i].name];
+                    node.setAttribute('data-dev-status', dev_lst[i].status);
                     spanLabel = $(node).children('span');
                     if (!(icon in spanLabel.attr('class'))) {
                         spanLabel.removeClass('label-' + label);
                         spanLabel.addClass('label-' + icon);
                     }
-                    spanLabel.html(i.status);
+                    spanLabel.html(dev_lst[i].status);
                 } else {
                     $('#device-list').append(
                         '<li onclick="deviceList(this)" data-dev-status="' +
-                        i.status + '" data-dev-name="' +
-                        i.name + '"><a class="hover-list">' + i.name +
+                        dev_lst[i].status + '" data-dev-name="' +
+                        dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
                         '</a><div class="div-pull-right"><span class="label label-' +
-                        icon + '">' + i.status + '</span></div>'
+                        icon + '">' + dev_lst[i].status + '</span></div>'
                     );
                 }
-            } else if (!(data in i.name) && !(data in i.status)) {
+            } else if (!(data in dev_lst[i].name) && !(data in dev_lst[i].status)) {
                 $('#device-list').empty();
             } else {
                 console.log('Query by status NOT supported!');
@@ -122,15 +125,15 @@ $('#device-list').bind('data-refresh', function (evt) {
         };
     } else {
         $('#device-list').empty();
-        for (var i in dev_lst) {
-            ('Online' in i.status) ? icon = "success" : icon = "danger";
+        for (var i=0;i<dev_lst.length;i++) {
+            ('Online' in dev_lst[i].status) ? icon = "success" : icon = "danger";
 
             $('#device-list').append(
                 '<li onclick="deviceList(this)" data-dev-status="' +
-                i.status + '" data-dev-name="' +
-                i.name + '"><a class="hover-list">' + i.name +
+                dev_lst[i].status + '" data-dev-name="' +
+                dev_lst[i].name + '"><a class="hover-list">' + dev_lst[i].name +
                 '</a><div class="div-pull-right"><span class="label label-' +
-                icon + '">' + i.status + '</span></div>'
+                icon + '">' + dev_lst[i].status + '</span></div>'
             );
         };
     };
