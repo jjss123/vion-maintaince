@@ -1,34 +1,26 @@
-table .wait{
+table .wait {
     color: #3399FF
 }
 
-.div-pull-right{
-    float:right;
+.div-pull-right {
+    float: right;
 }
 
-a.hover-list{
-    width:100%;
+a.hover-list {
+    width: 100%;
     text-align: left;
     outline-offset: 0px;
     text-decoration: none;
     color: #000;
 }
 
-#device-list li{
-    padding-top: 13px;
-    padding-bottom: 13px;
-}
-
-#device-list li:hover{
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(0,0,0,0.4);
-    border-top: 1px solid rgba(0,0,0,0.4);
+#device-list li:hover {
+    background-color: rgba(34, 186, 160, 0.5);
     cursor: pointer;
-    
 }
 
-.device-list-ul{
+.device-list-ul {
+    max-height: 270px;
     overflow-y: auto;
 }
 
@@ -60,13 +52,12 @@ a.hover-list{
     background: rgba(255, 255, 255, 0.7);
 }
 
-
-.device-search{
+.device-search {
     float: right;
     width: 120px;
 }
 
-li.hover-list-active{
+li.hover-list-active {
     background-color: rgba(229, 229, 229, 0.4);
     border: 1px solid rgba(229, 229, 229, 0.6);
 }
