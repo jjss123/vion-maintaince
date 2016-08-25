@@ -124,13 +124,13 @@ $(document).ready(function () {
         t = setTimeout(function () {
             var data = $('#device-search').val();
             $('#device-search').trigger('data-filter', [data]);
-        }, 1000);
+        }, 500);
         if (timeout > 2) {
             clearTimeout(timeout);
             t = setTimeout(function () {
                 var data = $('#device-search').val();
                 $('#device-search').trigger('data-filter', [data]);
-            }, 1000);
+            }, 500);
         }
     });
 });
