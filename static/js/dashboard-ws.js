@@ -162,28 +162,26 @@ var ws = function (url) {
         };
         sock.onmessage = function (evt) {
             var recv = JSON.parse(evt.data);
-            if (recv.message.command == 'comfirm') {
+            if (recv.method == 'Comfirm') {
                 // recv message example:
                 /*
                 {
-                    "method": "",
+                    "method": "Comfirm",
                     "timestamp": "",
-                    "message": {
-                        "command":"comfirm",
+                    "message": {                        
                         "from_request": "Login/... ..."
                     }
                 }               
                 */
                 console.log('recv comfirm from-request: ' + rec.message.from_request + ' ok')
 
-            } else if (recv.message.command == 'refresh') {
+            } else if (recv.method == 'Refresh') {
                 // recv message example:
                 /*
                 {
-                    "method": "",
+                    "method": "Refresh",
                     "timestamp": "",
-                    "message": {
-                        "command":"refresh",
+                    "message": {                        
                         "type": %static/%
                         "content":[
                             {dev info 1},

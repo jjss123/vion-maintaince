@@ -159,11 +159,11 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             return 0
 
         if self not in WebSockMainHandler.login.keys():
-            self.error_reply('need login, connection refused')
+            self.error_reply('Need login, connection refused')
             return 0
         else:
             if not WebSockMainHandler.login[self]:
-                self.error_reply('logged out, connection refused')
+                self.error_reply('Logged out, connection refused')
                 return 0
             else:
                 eval(self.msg.method.lower() + '_handler')()
@@ -258,7 +258,7 @@ class TriggerHandler(tornado.web.RequestHandler):
             sendfile = self.get_argument("file")
         except tornado.web.MissingArgumentError:
             sendfile = json.loads(self.get_argument("dict"))
-            WebSockMainHandler.broad_cast(sendfile, callback_type=callback_type,callback=callback, dev=dev_list)
+        WebSockMainHandler.broad_cast(sendfile, callback_type=callback_type,callback=callback, dev=dev_list)
 
 class SerialNumHandler(tornado.web.RequestHandler):
     def get(self):
