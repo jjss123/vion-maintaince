@@ -72,6 +72,12 @@ class DeviceSerialNumInterface(models.Model):
     ip = models.Attribute(required=False)
     cpu_id = models.Attribute(required=False)
 
+class DeviceInterfaceHash(models.Model):
+    ''''''
+
+    hash_anchor = models.Attribute(required=True)
+    hash_str = models.Attribute(required=True)
+
 redis_init()
 
 if __name__ == "__main__":
@@ -98,6 +104,7 @@ if __name__ == "__main__":
     q = DeviceSerialNumInterface.objects.filter(ip='192.168.5.115')
     print q
     q = q.first()
+    print q.ip
     q.update_attributes(cpu_id=u'5666')
     print q.is_valid()
     print q.save()

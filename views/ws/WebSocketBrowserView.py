@@ -4,7 +4,7 @@
 # @Last Modified by:   hylide
 # @Last Modified time: 2016-08-16 16:30:45
 
-import datetime
+import time
 import hashlib
 import json
 import sys
@@ -83,12 +83,78 @@ class WebSockBrowserMainHandler(websocket.WebSocketHandler):
         message = self.msg.message
         timestamp = self.msg.timestamp
 
+        # handle start here
+        def get_device_status_handler():
+
+            # todo: need format
+            cli_hash = hash(str(message['localStorage']))
+            # todo: need exception
+            try:
+                svr_hash = pdbc_redis.DeviceInterfaceHash.objects.filter(hash_anchor='vmts').first().hash_str
+            except AttributeError:
+                # todo: need calculate hash string
+                pass
+
+            if cli_hash == svr_hash:
+                # device list has keeped up-to-date, no need to refreshing
+                reply = {
+                    "method": "Confirm",
+                    "timestamp": time.time(),
+                    "message": {
+                        "from_request": message["request"],
+                        "result": "No action",
+                        "commet": "Is up-to-date, no need of refreshing."
+                    }
+                }
+                self.reply = json.dumps(reply)
+                self.write_message(self.reply)
+                return 0
+            else:
+                # device list has changed, must refresh the data
+                reply = {
+                    "method": "Confrim",
+                    "timestamp": time.time(),
+                    "message": {
+                        "from_request": message["request"],
+                        "result": "Prepare to Refresh",
+                        "commet": "Is not up-to-date, must refresh the data."
+                    }
+                }
+                self.reply = json.dumps(reply)
+                self.write_message(self.reply)
+
+                # refresh data start here
+
+                res = pdbc_redis.DeviceInterface.objects.all()
+                content = list()
+                for i in res:
+                    dev_info = dict()
+                    dev_info['id'] = i.dev_id
+                    dev_info['status'] = "Online" if i.status else "Offline"
+                    dev_info['ip'] = i.ip
+                    dev_info['name'] = i.name
+                    dev_info['type'] = i.type
+                    dev_info['static'] = i.static
+                    content.append(dev_info)
+
+                reply = {
+                    "method": "Refresh",
+                    "timestamp": time.time(),
+                    "message": {
+                        "type": "static",
+                        "content":content
+                    }
+                }
+
+                self.reply = json.dumps(reply)
+                self.write_message(self.reply)
+
         if method.lower() == "login".lower():
             WebSockBrowserMainHandler.login[self] = True
             # todo: optional single instance
             reply = {
                 "method": "Confirm",
-                "timestamp": datetime.datetime.ctime(),
+                "timestamp": time.time(),
                 "message": {
                     "from_request": "Login",
                     "success": True
@@ -101,7 +167,7 @@ class WebSockBrowserMainHandler(websocket.WebSocketHandler):
         if self not in WebSockBrowserMainHandler.login.keys():
             reply = {
                 "method": "Confirm",
-                "timestamp": datetime.datetime.ctime(),
+                "timestamp": time.time(),
                 "message": {
                     "from_request": method,
                     "success": False,
@@ -115,13 +181,18 @@ class WebSockBrowserMainHandler(websocket.WebSocketHandler):
             if not WebSockBrowserMainHandler.login[self]:
                 reply = {
                     "method": "Confirm",
-                    "timestamp": datetime.datetime.ctime(),
+                    "timestamp": time.time(),
                     "message": {
                         "from_request": method,
                         "success": False,
                         "reason": "Log, connection refused"
                     }
                 }
+                self.reply = json.dumps(reply)
+                self.write_message(self.reply)
+            else:
+                eval(method.lower() + '_' + message['request'].lower() + '_handler')()
+                return 0
 
     def on_close(self):
         WebSockBrowserMainHandler.clients.remove(self)
