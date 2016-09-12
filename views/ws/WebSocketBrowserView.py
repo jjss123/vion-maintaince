@@ -93,7 +93,27 @@ class WebSockBrowserMainHandler(websocket.WebSocketHandler):
                 svr_hash = pdbc_redis.DeviceInterfaceHash.objects.filter(hash_anchor='vmts').first().hash_str
             except AttributeError:
                 # todo: need calculate hash string
-                pass
+                print 'need requery'
+                res = pdbc_redis.DeviceInterface.objects.all()
+                content = list()
+                for i in res:
+                    dev_info = dict()
+                    dev_info['id'] = i.dev_id
+                    dev_info['status'] = "Online" if i.status else "Offline"
+                    dev_info['ip'] = i.ip
+                    dev_info['name'] = i.name
+                    dev_info['type'] = i.type
+                    dev_info['static'] = i.static_info
+                    content.append(dev_info)
+                hash_dev_str = hash(str(content))
+                new_hash = pdbc_redis.DeviceInterfaceHash(
+                    hash_anchor='vmts',
+                    hash_str=hash_dev_str
+                )
+                if new_hash.is_valid() and new_hash.save():
+                    svr_hash = hash_dev_str
+                else:
+                    raise Exception('can not hash.')
 
             if cli_hash == svr_hash:
                 # device list has keeped up-to-date, no need to refreshing
@@ -134,7 +154,7 @@ class WebSockBrowserMainHandler(websocket.WebSocketHandler):
                     dev_info['ip'] = i.ip
                     dev_info['name'] = i.name
                     dev_info['type'] = i.type
-                    dev_info['static'] = i.static
+                    dev_info['static'] = i.static_info
                     content.append(dev_info)
 
                 reply = {
@@ -147,6 +167,7 @@ class WebSockBrowserMainHandler(websocket.WebSocketHandler):
                 }
 
                 self.reply = json.dumps(reply)
+                print self.reply
                 self.write_message(self.reply)
 
         if method.lower() == "login".lower():

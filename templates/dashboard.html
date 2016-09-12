@@ -127,8 +127,24 @@
                                     <span style="float:right;margin-right:10px;">filter: </span>
                                 </div>
                                 <div class="panel-body" id="dev-panel-body">
-                                    <ul id="device-list" class="list-unstyled device-list-ul">                                       
+                                    <ul id="device-list" class="list-unstyled device-list-ul">
                                     </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div tabindex="-1" id="devDetailModal" class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="DeviceDetailModalLabel" style="display: none;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" aria-label="Close" type="button" data-dismiss="modal">
+                                        <span aria-hidden="true">x</span>
+                                    </button>
+                                    <h4 class="modal-title" id="devDetailModalLabel">Device Detail</h4>
+                                </div>
+                                <div class="modal-body" id="devDetailModalContent">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +200,7 @@
 </div>
 <div id="ws" data-url="{{ ws_url }}"></div>
 <!-- Page Inner -->
-{% end %}
-{% block AppendScript %}
+{% end %} {% block AppendScript %}
+<script src="{{ static_url("js/context.js") }}"></script>
 <script src="{{ static_url("js/dashboard-ws.js") }}"></script>
 {% end %}

@@ -153,7 +153,7 @@ class MainConn():
                     'source': LOCAL_IP,
                     'dev_id': MAC,
                     'dev_type': 'Star-Cluster node',
-                    'name': 'Star-Cluster node',
+                    'name': 'Star-Cluster-'+ LOCAL_IP,
                     'static': info_collection.static.get()
                 }
             }
