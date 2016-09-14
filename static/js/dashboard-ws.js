@@ -5,20 +5,77 @@
 * @Last Modified time: 2016-08-08 09:58:59
 */
 
+// context menu objects
+
+var contextMenuArray = new Array();
+var contextMenuArrayCount = 0;
+
+function ret_context_obj() {
+    var context_obj = [
+        { header: "Operation" },
+        {
+            text: "View",
+            custom_data: "1",
+            action: function (e) {
+                var dev_obj;
+                var devList = JSON.parse(localStorage['device_status']);
+                var id = 
+                e.preventDefault();
+
+                console.log(this);
+
+                for (var i = 0; i < devList.length; i++) {
+                    if (devList[i].id == id) {
+                        dev_obj = devList[i];
+                        break;
+                    }
+                }
+                if (dev_obj) {
+                    $('#devDetailModalContent').empty();
+                    for (var p in dev_obj) {
+                        if (p) {
+                            $('#devDetailModalContent').append(
+                                '<span>' + p + ':</span><p>' + dev_obj[p] + '</p>'
+                            );
+                        }
+                    };
+                    $('#devDetailModal').modal('show');
+                } else {
+                    console.log('can not find this device.');
+                }
+            }
+        }
+    ];
+    return context_obj;
+}
+
+
 function devLst_color_style(s, l) {
     var res = '';
     (l.indexOf(s) >= 0) ? res = "success" : res = "danger";
     return res
 }
 
-function devLst_append(status, name, icon) {
+function devLst_append(serialNum, status, name, icon) {
     $('#device-list').append(
-        '<li onclick="deviceList(this)" data-dev-status="' +
+        '<li onclick="deviceList(this)" id="' + serialNum.replace(":","").replace(":","").replace(":","").replace(":","").replace(":","") + '" data-dev-serialnum="' + serialNum + '" data-dev-status="' +
         status + '" data-dev-name="' +
         name + '"><a class="hover-list">' + name +
         '</a><div class="div-pull-right"><span class="label label-' +
         icon + '">' + status + '</span></div>'
     );
+    contextMenuArray[contextMenuArrayCount] = new Context();
+    console.log(contextMenuArray.length);
+    contextMenuArray[contextMenuArrayCount].init(
+        {
+            fadeSpeed: 50,
+            above: 'auto',
+            preventDoubleContext: false,
+            compress: false
+        }
+    )
+    contextMenuArray[contextMenuArrayCount].attach(serialNum.replace(":","").replace(":","").replace(":","").replace(":","").replace(":",""), ret_context_obj());
+    contextMenuArrayCount ++;
 }
 
 function deviceList(it) {
@@ -36,24 +93,7 @@ $(document).ready(function () {
     }
 
     // context menu initial
-    context.init({
-        fadeSpeed: 100,
-        above: 'auto',
-        preventDoubleContext: true,
-        compress: false
-    })
 
-    // context menu objects
-    var context_obj = [
-        {header: "Operation"},
-        {
-            text: "View",
-            action: function(e){
-                e.preventDefault();
-                
-            }
-        }
-        ];
 
     // device list filter
     $('#device-search').bind('data-filter', function (evt, data) {
@@ -68,7 +108,7 @@ $(document).ready(function () {
             for (var i = 0; i < dev_lst.length; i++) {
                 if ((dev_lst[i].name.indexOf(filter)) >= 0 || (dev_lst[i].status.indexOf(filter) >= 0)) {
                     icon = devLst_color_style('Online', dev_lst[i].status);
-                    devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+                    devLst_append(dev_lst[i].id, dev_lst[i].status, dev_lst[i].name, icon);
                     count += 1;
                 }
             }
@@ -81,7 +121,7 @@ $(document).ready(function () {
         } else {
             for (var i = 0; i < dev_lst.length; i++) {
                 icon = devLst_color_style('Online', dev_lst[i].status);
-                devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+                devLst_append(dev_lst[i].id, dev_lst[i].status, dev_lst[i].name, icon);
             }
         }
 
@@ -114,7 +154,7 @@ $(document).ready(function () {
                         }
                         spanLabel.html(dev_lst[i].status);
                     } else {
-                        devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+                        devLst_append(dev_lst[i].id, dev_lst[i].status, dev_lst[i].name, icon);
                     }
                 } else if ((dev_lst[i].name.indexOf(data) < 0) && (dev_lst[i].status.indexOf(data) < 0)) {
                     $('#device-list').empty();
@@ -127,7 +167,7 @@ $(document).ready(function () {
             for (var i = 0; i < dev_lst.length; i++) {
                 icon = devLst_color_style('Online', dev_lst[i].status);
 
-                devLst_append(dev_lst[i].status, dev_lst[i].name, icon);
+                devLst_append(dev_lst[i].id, dev_lst[i].status, dev_lst[i].name, icon);
             };
         };
     });
@@ -152,7 +192,7 @@ $(document).ready(function () {
             }, 500);
         }
     });
-    
+
 
 });
 
