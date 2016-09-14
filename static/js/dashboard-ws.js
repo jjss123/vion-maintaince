@@ -19,10 +19,22 @@ function ret_context_obj() {
             action: function (e) {
                 var dev_obj;
                 var devList = JSON.parse(localStorage['device_status']);
-                var id = 
+                var dId, lId, id; 
                 e.preventDefault();
-
+                dId = $(this).parent().parent()[0].getAttribute("id").split('-')[1]
                 console.log(this);
+                for (var j in relation){
+                    if (relation[j] == dId){
+                        lId = j;
+                        break;
+                    }
+                }
+                if (lId){
+                    id = $('#' + lId).data().devSerialnum;
+                } else {
+                    console.log('can not find this id.');
+                    return false;
+                }
 
                 for (var i = 0; i < devList.length; i++) {
                     if (devList[i].id == id) {
