@@ -229,7 +229,7 @@ var ws = function (url) {
                 "timestamp": date.getTime(),
                 "message": {
                     "request": "Device_Status",
-                    "localStorage": JSON.parse(localStorage["device_status"])
+                    "localStorage": (localStorage["device_status"] == undefined)?'undefined':JSON.parse(localStorage["device_status"])
                 }
             }))
         };

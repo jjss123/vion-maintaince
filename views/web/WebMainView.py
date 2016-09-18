@@ -34,7 +34,7 @@ class MainPageHandler(BaseHandler):
                 ws_url="ws://{host}:{port}{route}".format(
                     host=Config.host,
                     port=Config.WebSocketServer.port,
-                    route=Route.ws_route
+                    route='/ws/browser'
                 )
             )
         else:
