@@ -30,9 +30,10 @@ Context.prototype.init = function (opts) {
 
 	$(document).on('click', 'html', function () {
 		setTimeout(function () {
-			$('.dropdown-context').fadeOut(options.fadeSpeed, function () {
-				//$('.dropdown-context').css({ display: '' }).find('.drop-left').removeClass('drop-left');
+			$('.dropdown-context-active').fadeOut(options.fadeSpeed, function () {
+				$('.dropdown-context-active').css({ display: '' }).find('.drop-left').removeClass('drop-left');
 				// TODO: mi zhi kadun
+				$('.dropdown-context-active').removeClass('dropdown-context-active');
 			});
 		}, 0);
 	});
@@ -123,6 +124,7 @@ Context.prototype.attach = function (selector, data) {
 		$('.dropdown-context:not(.dropdown-context-sub)').hide();
 
 		$dd = $('#dropdown-' + drId);
+		$dd.addClass('dropdown-context-active');
 		if (typeof options.above == 'boolean' && options.above) {
 			$dd.addClass('dropdown-context-up').css({
 				top: e.pageY - 20 - $('#dropdown-' + drId).height(),
