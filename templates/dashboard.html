@@ -96,27 +96,24 @@
                         <div class="col-sm-8" id="Server-load">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Server Load</h4>
-                                <div class="panel-control">
-                                    <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="icon-arrow-down"></i></a>
-                                    <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
-                                </div>
                             </div>
                             <div class="panel-body">
-                                <div class="server-load">
-                                    <div class="server-stat">
-                                        <span>Usage/Total Space</span>
-                                        <p id="mem-used">2.3GB/8GB</p>
+                                <div class="row">
+                                    <div class="col-sm-2 hc-thumbnail-view" id="hc-thumbnail-group">
+                                        <div class="row hc-thumbnail-button">
+                                            <div class="col-sm-5 hc-thumbnail" id="hc-thumbnail-cpu"></div>
+                                            <div class="col-sm-7 hc-thumbnail-label">
+                                                <div>CPU</div>
+                                                <div>21% 3.31Ghz</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="server-stat">
-                                        <span>CPU</span>
-                                        <p id="cpu-used">34%</p>
-                                    </div>
-                                    <div class="server-stat">
-                                        <span>Network</span>
-                                        <p id="net-used">11.2%</p>
+                                    <div class="col-sm-1 hc-divider"></div>
+                                    <div class="col-sm-9 hc-detail-view">
+                                        <div id="highchart-cpu"></div>
                                     </div>
                                 </div>
-                                <div id="flotchart3"></div>
+
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -201,6 +198,9 @@
 <div id="ws" data-url="{{ ws_url }}"></div>
 <!-- Page Inner -->
 {% end %} {% block AppendScript %}
-<script src="{{ static_url("js/context.js") }}"></script>
-<script src="{{ static_url("js/dashboard-ws.js") }}"></script>
+<script src="{{ static_url("assets/plugins/highcharts/highcharts.js ") }}"></script>
+<script src="{{ static_url("assets/plugins/highcharts/exporting.js ") }}"></script>
+<script src="{{ static_url("js/context.js ") }}"></script>
+<script src="{{ static_url("js/dashboard-ws.js ") }}"></script>
+<script src="{{ static_url("js/dashboard-highchart-custom.js ")}}"></script>
 {% end %}

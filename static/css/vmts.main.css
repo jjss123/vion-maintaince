@@ -24,7 +24,7 @@ a.hover-list {
 }
 
 .device-list-ul {
-    max-height: 270px;
+    max-height: 480px;
     overflow-y: auto;
 }
 
