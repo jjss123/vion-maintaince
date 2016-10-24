@@ -134,7 +134,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
                     query.is_valid()
                     query.save()
 
-            elif self.msg.message.has_key('dynamic'):
+            if self.msg.message.has_key('dynamic'):
                 query = pdbc_redis.DeviceDynamicInterface(
                     dev_id = id,
                     timestamp = datetime.datetime.fromtimestamp(
