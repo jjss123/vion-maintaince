@@ -1,12 +1,17 @@
 {
-  "apps":{
-    "auto_test":{
+  "apps": [
+    {
+      "app":"auto_test",
       "type": "webservice",
       "host": "localhost",
       "port": 7200,
-      "route":"/auto",
+      "route": "/auto",
       "load": true,
-      "load_type": "immediately"
+      "load_type": "immediately",
+      "log_path": "log",
+      "testable": true,
+      "testsuit": "test",
+      "documents": "doc"
     }
-  }
+  ]
 }

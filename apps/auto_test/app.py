@@ -9,7 +9,7 @@ import tornado.gen
 import urllib
 import json
 import time
-from envelope import soap_request, resolve_post
+from lib.envelope import soap_request, resolve_post
 from tornado.options import define, options
 define("port", default=8192, help="run on the given port", type=int)
 
@@ -19,12 +19,12 @@ method_name = 'GetDeviceInfo'
 param = {'deviceSerialNums': '00-10-14-87-cd-a1', 'nDeviceInfoType': '0', 'bGroup': 'false'}
 
 def cost():
+	pass
 
 
-@cost
 def soap_send(url, data):
 	client = tornado.httpclient.HTTPClient()
-	response = client.fetch(url, method='POST', data)
+	response = client.fetch(url, data, method='POST')
 	return response
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -42,11 +42,7 @@ class IndexHandler(tornado.web.RequestHandler):
 			soap_send(wsnp.url, wsnp.data)
 
 
-
-
-
-
-	def GetDeviceInfo():
+	'''def GetDeviceInfo():
 		(head, data) = soap_request(ip, 'GetDeviceInfo', {'deviceSerialNums': '00-10-14-87-cd-a1', 'nDeviceInfoType': '0', 'bGroup': 'false'})
 		client = tornado.httpclient.HTTPClient()
 		response = client.fetch(url, method = 'POST', body = data)
@@ -62,7 +58,7 @@ class IndexHandler(tornado.web.RequestHandler):
 		(head, data) = soap_request(ip, 'ExportConfigs',{'deviceSerialNums': '00-10-14-87-cd-a1', 'configName': 'ServerConfig', 'softServiceName': 'QServer'})
 		client = tornado.httpclient.HTTPClient()
 		response = client.fetch(url, method = 'POST', body = data)
-		print response.body
+		print response.body'''
 
 
 if __name__ == "__main__":

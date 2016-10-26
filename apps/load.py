@@ -7,6 +7,7 @@
 import sys
 import json
 import os
+import multiprocessing
 sys.path.append('../')
 
 from lib.dict_objectified import DictObject
@@ -14,5 +15,38 @@ from lib.dict_objectified import DictObject
 with open("apps.conf.json") as file:
     conf = DictObject(json.loads(file.read()))
 
+def app_run(p):
+    impstring = "from {app}.app import loading".format(app=p["app"])
+    exec impstring
+
+    loading(host=p["host"], port=p["port"], route=p["route"])
+
+
 def load():
-    pass
+    app_list = conf.apps
+    proc = list()
+    for i in app_list:
+        if i.load:
+            sub_proc = multiprocessing.Process(
+                target=app_run,
+                args={
+                    "app":i.app,
+                    "host": i.host,
+                    "port": i.port,
+                    "route": i.route
+                })
+            if i.load_type.lower() == "immediately":
+                sub_proc.start()
+            #todo: elif "delay"
+            else:
+                #todo: external
+                pass
+
+            proc.append(sub_proc)
+
+
+
+
+def reload(**new_conf):
+    with open("apps.conf.json") as file:
+        conf = DictObject(json.loads(file.read()))
