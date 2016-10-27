@@ -6,7 +6,6 @@
 
 import sys
 import json
-import os
 import multiprocessing
 sys.path.append('../')
 
@@ -44,8 +43,9 @@ def load():
 
             proc.append(sub_proc)
 
-
-
+    # all subprocess begin
+    for i in proc:
+        i.join()
 
 def reload(**new_conf):
     with open("apps.conf.json") as file:

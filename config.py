@@ -10,11 +10,14 @@ from lib.dict_objectified import DictObject
 
 CONFIG = '{path}/vmts.conf.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
 ROUTE = '{path}/vmts.route.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
+DAEMON = '{path}/vmts.daemon.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
 
 with open(CONFIG) as file:
     Config = DictObject(json.loads(file.read()))
 with open(ROUTE) as file:
     Route = DictObject(json.loads(file.read()))
+with open(DAEMON) as file:
+    DAEMON = DictObject(json.loads(file.read()))
 
 def get_config(module):
     return Config.__getattribute__(module)

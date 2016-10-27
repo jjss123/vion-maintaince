@@ -6,13 +6,12 @@
 
 import os
 import multiprocessing
-import inspect
 
 import tornado.httpserver
 import tornado.web
 import tornado.ioloop
 
-from config import Config, Route
+from config import Config, Route, DAEMON
 
 tcp_start = ws_start = False
 
@@ -27,6 +26,8 @@ if Config.FileServer.start_when == "host_start":
 if Config.WebSocketServer.start_when == "host_start":
     import websocket_server
     ws_start = True
+
+if DAEMON
 
 
 def run():
