@@ -12,6 +12,7 @@ import tornado.web
 import tornado.ioloop
 
 from config import config, route
+from apps.load import load
 tcp_start = ws_start = False
 
 for i in route.web_views:
@@ -62,6 +63,11 @@ def start_server():
         ws.start()
         proc.append(ws)
         print 'websocket server started ...'
+    if config.apps.enable:
+        app_load = multiprocessing.Process(target=load)
+        app_load.start()
+        proc.append(app_load)
+        print 'external apps loading ...'
 
     for i in proc:
         i.join()

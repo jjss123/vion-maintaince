@@ -4,16 +4,13 @@
 # @Last Modified by:   hylide
 # @Last Modified time: 2016-07-22 15:36:15
 
-import sys
-sys.path.append('..')
-
 from redisco import models, connection_setup
-from config import Config
+from config import config
 
 def redis_init(db=0):
-    host = Config.redis.host
-    port = Config.redis.port
-    pwd = Config.redis.pwd
+    host = config.redis.host
+    port = config.redis.port
+    pwd = config.redis.pwd
 
     connection_setup(host=host, port=port, password=pwd, db=db)
 

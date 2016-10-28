@@ -3,16 +3,13 @@
 # @Date:   2016-07-25 14:03:25
 # @Last Modified by:   hylide
 # @Last Modified time: 2016-07-26 15:37:35
-import sys
-sys.path.append('..')
-
 from sqlobject import *
-from config import Config
+from config import config
 
 def mysql_init():
-    host = Config.mysql.host
-    port = Config.mysql.port
-    pwd = Config.mysql.pwd
+    host = config.mysql.host
+    port = config.mysql.port
+    pwd = config.mysql.pwd
 
     sqlhub.processConnection = connectionForURI('mysql://{user}:{pwd}@{host}:{port}/vmts'.format(user='root', pwd=pwd, host=host, port=port))
 

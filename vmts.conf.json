@@ -29,5 +29,8 @@
       "login_url": "/login",
       "xsrf_cookies": "False"
     }
+  },
+  "apps":{
+    "enable": true
   }
 }

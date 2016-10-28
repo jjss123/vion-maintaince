@@ -3,13 +3,12 @@
 # @Date:   2016-07-25 14:24:26
 # @Last Modified by:   hylide
 # @Last Modified time: 2016-07-25 15:15:06
-import sys
 
 import tornado.web
-sys.path.append('..\\..')
+
 from model import pdbc_mysql
 from model import pdbc_redis
-from config import Config, Route
+from config import config
 
 __all__ = ["MainPageHandler", "TestSuitHandler", "LoginHandler", "LogoutHandler"]
 
@@ -32,8 +31,8 @@ class MainPageHandler(BaseHandler):
                 comment=user_res[0].description,
                 avatar=user_res[0].avatar,
                 ws_url="ws://{host}:{port}{route}".format(
-                    host=Config.host,
-                    port=Config.WebSocketServer.port,
+                    host=config.host,
+                    port=config.WebSocketServer.port,
                     route='/ws/browser'
                 )
             )

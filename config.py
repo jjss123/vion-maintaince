@@ -10,7 +10,7 @@ from lib.dict_objectified import DictObject
 
 CONFIG = '{path}/vmts.conf.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
 ROUTE = '{path}/vmts.route.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
-APPS = '{path}/apps/apps.conf.config'.format(path=os.path.split(os.path.realpath(__file__))[0])
+APPS = '{path}/apps/apps.conf.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
 
 CONFIG_ARRAY = {
     "config": CONFIG,
@@ -26,8 +26,9 @@ with open(APPS) as file:
     apps = DictObject(json.loads(file.read()))
 
 def reload(moudle):
-    with open(CONFIG_ARRAY[moudle.lower()]) as file:
-
+    with open(CONFIG_ARRAY[str(moudle).lower()]) as file:
+        moudle = DictObject(json.loads(file.read()))
+    return 0
 
 def update(moudle, **dic):
     pass

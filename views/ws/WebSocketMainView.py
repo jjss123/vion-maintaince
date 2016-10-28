@@ -4,19 +4,17 @@
 # @Last Modified by:   riposa
 # @Last Modified time: 2016-07-12 16:23:57
 import os
-import sys
 import hashlib
 import time
 import datetime
 import json
 import random
-
 import tornado.web
-from tornado import websocket
-sys.path.append('../')
-import
-from model import pdbc_redis
 
+from tornado import websocket
+from config import config
+from lib import ws_protocol
+from model import pdbc_redis
 
 def hash():
     hash_obj = hashlib.md5()
@@ -195,7 +193,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
             if i.proxy_host:
                 s_host = i.proxy_host
             else:
-                s_host = Config.host
+                s_host = config.host
 
             if type(file_name) == dict:
                 fp = '../../files/' + file_name[i.source] + '.lic'

@@ -4,26 +4,23 @@
 # @Last Modified by:   hylide
 # @Last Modified time: 2016-10-24 11:24:08
 
-import sys
 import json
 import multiprocessing
-sys.path.append('../')
 
-from lib.dict_objectified import DictObject, Apps
+from config import apps
+from lib.dict_objectified import DictObject
 
-
-
-def app_run(p):
-    impstring = "from {app}.app import loading".format(app=p["app"])
+def app_run(app, host, port, route):
+    impstring = "from {app}.app import launch".format(app=app)
     exec impstring
 
-    loading(host=p["host"], port=p["port"], route=p["route"])
-
+    launch(host, port, route)
 
 def load():
-    app_list = Apps.apps
+    app_list = apps.apps
     proc = list()
     for i in app_list:
+        i = DictObject(i)
         if i.load:
             sub_proc = multiprocessing.Process(
                 target=app_run,
@@ -40,6 +37,7 @@ def load():
                 #todo: external
                 pass
 
+            print '\tapp: {app} loading ...'.format(app=i.app)
             proc.append(sub_proc)
 
     # all subprocess begin
