@@ -10,15 +10,25 @@ from lib.dict_objectified import DictObject
 
 CONFIG = '{path}/vmts.conf.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
 ROUTE = '{path}/vmts.route.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
-DAEMON = '{path}/vmts.daemon.json'.format(path=os.path.split(os.path.realpath(__file__))[0])
+APPS = '{path}/apps/apps.conf.config'.format(path=os.path.split(os.path.realpath(__file__))[0])
+
+CONFIG_ARRAY = {
+    "config": CONFIG,
+    "route": ROUTE,
+    "apps": APPS
+}
 
 with open(CONFIG) as file:
-    Config = DictObject(json.loads(file.read()))
+    config = DictObject(json.loads(file.read()))
 with open(ROUTE) as file:
-    Route = DictObject(json.loads(file.read()))
-with open(DAEMON) as file:
-    DAEMON = DictObject(json.loads(file.read()))
+    route = DictObject(json.loads(file.read()))
+with open(APPS) as file:
+    apps = DictObject(json.loads(file.read()))
 
-def get_config(module):
-    return Config.__getattribute__(module)
+def reload(moudle):
+    with open(CONFIG_ARRAY[moudle.lower()]) as file:
+
+
+def update(moudle, **dic):
+    pass
 

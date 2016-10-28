@@ -7,18 +7,18 @@ import tornado.httpserver
 import tornado.web
 import tornado.ioloop
 
-from config import Config, Route
+from config import config, route
 
-for i in Route.ws_views:
+for i in route.ws_views:
     viewstring = "from views.ws import {view}".format(view=i)
     exec viewstring
 
 def run():
     app = tornado.web.Application(
-        handlers=[(i, eval(Route.ws_route.__getattribute__(i))) for i in Route.ws_route.keys()],
+        handlers=[(i, eval(route.ws_route.__getattribute__(i))) for i in route.ws_route.keys()],
         debug=True
     )
 
     websocket_server = tornado.httpserver.HTTPServer(app, xheaders=True)
-    websocket_server.listen(Config.WebSocketServer.port)
+    websocket_server.listen(config.WebSocketServer.port)
     tornado.ioloop.IOLoop.instance().start()

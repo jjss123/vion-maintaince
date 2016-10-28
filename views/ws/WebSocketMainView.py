@@ -13,9 +13,8 @@ import random
 
 import tornado.web
 from tornado import websocket
-sys.path.append('../../')
-from lib import ws_protocol
-from config import Config
+sys.path.append('../')
+import
 from model import pdbc_redis
 
 

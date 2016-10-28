@@ -9,10 +9,9 @@ import json
 import multiprocessing
 sys.path.append('../')
 
-from lib.dict_objectified import DictObject
+from lib.dict_objectified import DictObject, Apps
 
-with open("apps.conf.json") as file:
-    conf = DictObject(json.loads(file.read()))
+
 
 def app_run(p):
     impstring = "from {app}.app import loading".format(app=p["app"])
@@ -22,7 +21,7 @@ def app_run(p):
 
 
 def load():
-    app_list = conf.apps
+    app_list = Apps.apps
     proc = list()
     for i in app_list:
         if i.load:

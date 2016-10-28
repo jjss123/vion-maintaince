@@ -5,11 +5,11 @@
 # @Last Modified time: 2016-07-25 14:54:12
 import tornado.ioloop
 
-from config import Config
+from config import config
 from views.tcp.FileServer import FileSendServer
 
 def run():
     server = FileSendServer()
-    server.listen(Config.FileServer.port)
+    server.listen(config.FileServer.port)
     tornado.ioloop.IOLoop.instance().start()
 
