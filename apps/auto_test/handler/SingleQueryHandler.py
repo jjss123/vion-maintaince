@@ -5,10 +5,14 @@
 # @Last Modified time: 2016-10-24 11:26:36
 
 import tornado.web
+import tornado.httpclient
 
 from apps.auto_test.libs.envelope import soap_request
 
 class SingleQueryHandler(tornado.web.RequestHandler):
+
+    def get(self):
+        return 'usage: blablablabla'
 
     def post(self):
         '''

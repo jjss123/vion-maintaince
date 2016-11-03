@@ -6,7 +6,6 @@
 
 import tornado.web
 
-from model import pdbc_mysql
 from model import pdbc_redis
 from config import config
 

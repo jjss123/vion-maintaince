@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Author: riposa
-# @Date:   2016-10-24 10:56:47
-# @Last Modified by:   riposa
-# @Last Modified time: 2016-10-24 10:56:56
-import json
-
-CFG = "service.config"
+# @Author: hylide
+# @Date:   2016-10-24 11:26:15
+# @Last Modified by:   hylide
+# @Last Modified time: 2016-10-24 11:26:36
 
 class DictObject(object):
 
@@ -45,10 +42,36 @@ class DictObject(object):
         else:
             return False
 
-def get():
-    try:
-        with open(CFG) as file:
-            Config = DictObject(json.loads(file.read()))
-            return Config
-    except IOError:
-        raise Exception("Configuration Missing!")
+
+if __name__ == '__main__':
+    import time
+
+    test = {
+        "a": 1,
+        "b":{
+            "c": 2,
+            "d": {
+                "e": 3,
+                "f": [1,2,4],
+                "g": {
+                    "h":55
+                }
+            }
+        }
+    }
+    t1 = float(time.time())
+    test_obj = DictObject(test)
+    t2 = float(time.time())
+    print test_obj.a
+
+    print test_obj.b.c
+    print test_obj.b.d
+    t3 = time.time()
+    print test_obj.b.d.e
+    t4 = time.time()
+    test_obj.b.d.e = '1'
+    t5 = time.time()
+    print 'init time: ', t2-t1
+    print 'call time: ', t4-t3
+    print 'set time: ', t5-t4
+

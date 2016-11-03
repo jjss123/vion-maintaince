@@ -5,7 +5,6 @@
 # @Last Modified time: 2016-10-24 11:24:08
 
 import json
-import multiprocessing
 
 from config import apps
 from lib.dict_objectified import DictObject
@@ -22,14 +21,7 @@ def load():
     for i in app_list:
         i = DictObject(i)
         if i.load:
-            sub_proc = multiprocessing.Process(
-                target=app_run,
-                args={
-                    "app":i.app,
-                    "host": i.host,
-                    "port": i.port,
-                    "route": i.route
-                })
+            app_run(i.app, )
             if i.load_type.lower() == "immediately":
                 sub_proc.start()
             #todo: elif "delay"
@@ -41,6 +33,7 @@ def load():
             proc.append(sub_proc)
 
     # all subprocess begin
+    print 'all external apps loaded.'
     for i in proc:
         i.join()
 
