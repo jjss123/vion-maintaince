@@ -58,9 +58,10 @@ class XmlTree(object):
             self.root = self.tree.getroot()
             return True
         except etree.XMLSyntaxError:
-            self.xml_file_handle = codecs.open(fp, 'w',
-                                               encoding=('GBK' if self.encoding.lower() == 'cp936' else self.encoding))
-            return False
+            with codecs.open(fp, 'r', encoding=('GBK' if self.encoding.lower() == 'cp936' else self.encoding)) as self.xml_file_handle:
+                self.tree = etree.parse(self.xml_file_handle.read())
+            self.root = self.tree.getroot()
+            return True
         except IOError:
             self.xml_file_handle = codecs.open(fp, 'w', encoding=('GBK' if self.encoding.lower()=='cp936' else self.encoding))
             return False
@@ -84,13 +85,16 @@ class XmlTree(object):
         :return: <List>, <Element> nodes
         '''
 
-        result = dict()
+        result = list()
         # tag list de-duplication
-        tags = list(set(tags))
-
-        for i in tags:
-            for j in etree.ElementDepthFirstIterator(self.root, i, inclusive=False):
-                result[i].append(j)
+        if type(tags) == list:
+            tags = list(set(tags))
+            for i in tags:
+                for j in etree.ElementDepthFirstIterator(self.root, i, inclusive=False):
+                    result.append(j)
+        elif type(tags) == str:
+            for i in etree.ElementDepthFirstIterator(self.root, tags, inclusive=False):
+                result.append(i)
 
         return result
 
@@ -99,7 +103,7 @@ class XmlTree(object):
         '''
         get elements by using node text. The text here means keyword which was included by some node text,
         :param text: <String>, keyword
-        :param tags: <List>, xml tag names, can not be duplicate
+        :param tags: <List> or <String>, xml tag names, can not be duplicate
         :return: <List>, <Element> nodes
         '''
 
@@ -107,7 +111,7 @@ class XmlTree(object):
 
         def textIterator(tag=None):
             for j in self.tree.getiterator(tag=tag):
-                if text in j.text:
+                if bool(j.text) and (text in j.text):
                     result.append(j)
 
         if tags:
@@ -145,7 +149,10 @@ class XmlTree(object):
         return self.tree.getpath(e)
 
 if __name__ == "__main__":
-    fp = 'D:\\basic-conf\\123.xml'
+    fp = 'D:\\basic-conf\\1.xml'
     test = XmlTree(fp, encoding='GBK')
     print test.xml_tree_initiated
-    print test.get_elements_by_tags(['hh'])
+    print test.get_elements_by_text('192')
+    print test.get_elements_by_tags('SceneInfo')
+    print test.get_xpath_by_element(test.get_elements_by_text('192')[3])
+    test.write('D:\\basic-conf\\1.xml')

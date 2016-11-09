@@ -13,19 +13,13 @@ import tornado.web
 
 from tornado import websocket
 from config import config
-from lib import ws_protocol
+from lib import prot
 from model import pdbc_redis
-
-def hash():
-    hash_obj = hashlib.md5()
-    hash_obj.update(str(time.time()))
-    return hash_obj.hexdigest()
 
 
 class WebSockMainHandler(websocket.WebSocketHandler):
 
     clients = set()
-    login = dict()
 
     def open(self):
         if self not in WebSockMainHandler.clients:
@@ -39,27 +33,22 @@ class WebSockMainHandler(websocket.WebSocketHandler):
         ''''''
 
         # message protocol check
-        self.reply = ws_protocol.WebsocketProtocol(
-            {
-                'method': None,
-                'seq': None,
-                'callback': None,
-                'message': None
-            }
-        )
+        recv = prot.WebsocketProtocol(msg=message).seal()
 
         # format recv message
-        self.msg = ws_protocol.WebsocketProtocol(message)
-        self.msg.check_method('Client')
+        self.recv = recv if type(recv) == tuple else None
+        if not self.recv:
+            self.write_message('Protocol error.')
 
         # main handler of event 'on_message'
-        self.msg_handler()
+        self.recv_handler()
 
     def on_close(self):
         WebSockMainHandler.clients.remove(self)
 
     def error_reply(self, msg):
-        self.reply.message = {'Error': msg}
+        send = prot.WebsocketProtocol(_type='response', method='')
+        self.send = {'Error': msg}
         self.write_message(self.reply._msg)
         self.on_close()
 
