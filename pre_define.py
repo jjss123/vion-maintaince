@@ -14,9 +14,8 @@ def singleton(cls, *args, **kw):
     return _singleton
 
 
-#@singleton
+@singleton
 class GlobalVar(object):
-    __b =1
 
     def __init__(self):
         pass
@@ -56,19 +55,23 @@ class GlobalVar(object):
         '''
 
         if not attrs:
-            return GlobalVar.list()
+            return self.list()
 
-        res = dict()
+        res = {}
         for i in attrs:
-            res[i.replace('_GlobalVar__','')] = GlobalVar.__getattribute__(GlobalVar, '_GlobalVar__' + i)
+            res[i] = GlobalVar.__getattribute__('_GlobalVar__' + i)
 
         return res
 
+def load_config():
+    pass
 
 if __name__ == '__main__':
     a = GlobalVar()
     print a.set({"test":1, "tt": 2})
     print GlobalVar
     print dir(GlobalVar)
-    print a.test
     print a.list()
+    print a
+    b = GlobalVar()
+    print b.get("test", "tt")

@@ -18,4 +18,4 @@ def netdevs():
 if __name__=='__main__':
     netdevs = netdevs()
     for dev in netdevs.keys():
-        print '{0}: {1} MiB {2} MiB'.format(dev, netdevs[dev].rx, netdevs[dev].tx)
+        print '{0}: {1} MiB {2} MiB'.format(dev, netdevs[dev]['recv'], netdevs[dev]['sent'])
