@@ -27,10 +27,10 @@ class GlobalVar(object):
         '''
         res = dict()
         for i in dir(GlobalVar):
-            m = re.match(r'^[_GlobalVar__]\w+[^__]$', i)
+            m = re.match(r"^[_GlobalVar__]\w+[^__]$", i)
             if m:
 
-                res[i.replace('_GlobalVar__','')] = getattr(GlobalVar, i)
+                res[i.replace('_GlobalVar__', '')] = getattr(GlobalVar, i)
         return res
 
 
