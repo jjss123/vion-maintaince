@@ -62,6 +62,7 @@ if __name__ == '__main__':
     t1 = float(time.time())
     test_obj = DictObject(test)
     t2 = float(time.time())
+    print test_obj
     print test_obj.a
 
     print test_obj.b.c
