@@ -13,7 +13,7 @@ import tornado.web
 
 from tornado import websocket
 from config import config
-from lib import prot
+from lib import vmts_jsonrpc_protocol
 from model import pdbc_redis
 
 
@@ -33,7 +33,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
         ''''''
 
         # message protocol check
-        recv = prot.WebsocketProtocol(msg=message).seal()
+        recv = vmts_jsonrpc_protocol.WebsocketProtocol(msg=message).seal()
 
         # format recv message
         self.recv = recv if type(recv) == tuple else None
@@ -47,7 +47,7 @@ class WebSockMainHandler(websocket.WebSocketHandler):
         WebSockMainHandler.clients.remove(self)
 
     def error_reply(self, msg):
-        send = prot.WebsocketProtocol(_type='response', method='')
+        send = vmts_jsonrpc_protocol.WebsocketProtocol(_type='response', method='')
         self.send = {'Error': msg}
         self.write_message(self.reply._msg)
         self.on_close()

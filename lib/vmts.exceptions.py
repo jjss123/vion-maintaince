@@ -5,5 +5,8 @@
 # @Last Modified time: 2016-07-12 16:23:57
 
 
-
 class VmtsExceptions(Exception):
+
+    def __init__(self):
+        Exception.__init__()
+        self.
