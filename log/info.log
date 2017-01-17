@@ -1,7 +1,0 @@
-2016/Jun/01, Wed, 17:00:50 rec_log.py[line:115]   INFO 
-	in unknown:
-	Event unknown Done
-	input:
-		1
-		{'bin1': 'b', 'cin': '3'}
-	return: None
