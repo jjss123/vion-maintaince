@@ -3,6 +3,11 @@
 # @Date:   2016-06-12 10:08:06
 # @Last Modified by:   riposa
 # @Last Modified time: 2016-07-12 16:23:57
+"""
+error code:
+    0x00, the leaf_name didnt match with leaves-node Index(self.index)
+    0x01,
+"""
 
 import json
 import os
@@ -110,6 +115,110 @@ def load_config(input_dict):
     for i in input_dict:
         if type(input_dict[i]) == dict:
             predef.set()
+
+
+class Node(object):
+
+    def __init__(self, child=None, name=None, value=None, isLeaf=False):
+        if child is not None:
+            self._check_child(child)
+
+        self.__child = self.add_child(child)
+        self.name = name
+        self.isLeaf = isLeaf
+        if not self.isLeaf and value:
+            raise ValueError('Only leaf node own its value.')
+        self.value = value
+
+
+    def _check_child(self, child):
+        if type(child) == list:
+            if False in set([isinstance(i, Node) for i in child]):
+                raise ValueError('child node must be an instance of Node class.')
+        elif not isinstance(child, Node):
+            raise ValueError('child node must be an instance of Node class.')
+
+        return type(child)
+
+    def add_child(self, child_node):
+
+        if child_node is not None:
+            child_type =  self._check_child(child_node)
+        else:
+            raise ValueError('child node must not be None.')
+
+        if child_type == list:
+            self.__child.extend(child_node)
+        elif child_type == object:
+            self.__child.append(child_node)
+
+
+class DictTrie(object):
+    """
+    Trie-tree class for loading all the config
+    """
+
+    def __init__(self):
+
+        self.root = Node(name='vmts-root')
+        self.index = dict()
+
+    def append_child(self, dictObj, root_node=None):
+        """
+        :param dictObj: new dictobj for extend dict-trie tree.
+        :param root_node: the root node you wanna to make new dictobj append on,
+        :return: None
+        """
+
+        if root_node is None:
+            root = self.root
+        else:
+            root = root_node
+
+
+        def create_node(dictObj, root):
+
+            for i in dictObj:
+                n = Node(name=i)
+                root.add_child(n)
+                if type(dictObj[i]) == dict:
+                    create_node(dictObj=dictObj[i], root=n)
+                elif type(dictObj[i]) == list:
+                    trans_dict = {}
+                    for k in range(len(dictObj[i])):
+                        trans_dict[k] = dictObj[i][k]
+                    create_node(dictObj=dictObj[i], root=n)
+                else:
+                    n.isLeaf = True
+                    n.value = dictObj[i]
+                    self.index[n.name] = n
+
+        create_node(dictObj=dictObj, root=root)
+
+
+    def get(self, leaf_name):
+        """
+        :param leaf_name: <str> or <int>, the leaf-node config name.
+        :return: <tuple>, (result, msg)
+                success: <boolean>, the result of trying to get the config value,
+                msg: if success is true, msg means the value of the config name,
+                     if is false, means the error code of reason.
+        """
+
+        if leaf_name not in self.index:
+            return 0x00
+
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     '''a = GlobalVar()
